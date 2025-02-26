@@ -1,0 +1,455 @@
+Begin Object Class=/Script/Engine.PhysicsAsset Name="Horse_Physics" ExportPath="/Script/Engine.PhysicsAsset'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics'"
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_10" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_10'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_17" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_17'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_18" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_18'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_19" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_19'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_2" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_2'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_20" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_20'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_21" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_21'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_23" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_23'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_25" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_25'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_26" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_26'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_27" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_27'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_29" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_29'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_3" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_3'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_30" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_30'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_31" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_31'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_32" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_32'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_34" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_34'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_37" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_37'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_39" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_39'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_4" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_4'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_47" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_47'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_49" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_49'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_5" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_5'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_50" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_50'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_51" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_51'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_52" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_52'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_54" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_54'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_6" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_6'"
+   End Object
+   Begin Object Class=/Script/Engine.PhysicsConstraintTemplate Name="PhysicsConstraintTemplate_7" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_7'"
+   End Object
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfo Name="SceneThumbnailInfo_0" ExportPath="/Script/UnrealEd.SceneThumbnailInfo'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SceneThumbnailInfo_0'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_0" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_0'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_1" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_1'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_11" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_11'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_12" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_12'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_13" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_13'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_14" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_14'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_15" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_15'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_16" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_16'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_17" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_17'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_18" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_18'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_19" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_19'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_2" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_2'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_20" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_20'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_21" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_21'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_22" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_22'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_23" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_23'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_24" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_24'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_25" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_25'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_26" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_26'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_27" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_27'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_3" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_3'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_32" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_32'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_33" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_33'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_34" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_34'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_35" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_35'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_36" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_36'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_37" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_37'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_4" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_4'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_5" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_5'"
+   End Object
+   Begin Object Class=/Script/Engine.SkeletalBodySetup Name="SkeletalBodySetup_6" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_6'"
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_10" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_10'"
+      DefaultInstance=(JointName="Tail_3",ConstraintBone1="Tail_3",ConstraintBone2="Tail",Pos1=(X=-5.216568,Y=0.814721,Z=0.176386),PriAxis1=(X=1.000000,Y=-0.000000,Z=0.000000),SecAxis1=(X=0.000000,Y=1.000000,Z=0.000000),Pos2=(X=8.307557,Y=0.445421,Z=0.176385),PriAxis2=(X=0.865732,Y=-0.500507,Z=0.000000),SecAxis2=(X=0.500507,Y=0.865732,Z=0.000000),ProfileInstance=(ProjectionLinearTolerance=2.478148,ProjectionAngularTolerance=17.932493,ConeLimit=(Swing1LimitDegrees=9.908244,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Locked),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Locked)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_17" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_17'"
+      DefaultInstance=(JointName="B_R_Leg_1",ConstraintBone1="B_R_Leg_1",ConstraintBone2="BR_Root",Pos2=(X=-17.871489,Y=20.743132,Z=16.790018),PriAxis2=(X=-0.447592,Y=-0.894238,Z=-0.000000),SecAxis2=(X=0.894238,Y=-0.447592,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=20.229361,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_18" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_18'"
+      DefaultInstance=(JointName="B_R_Leg_2",ConstraintBone1="B_R_Leg_2",ConstraintBone2="B_R_Leg_1",Pos1=(X=-7.018182,Y=-10.490997,Z=0.000031),PriAxis1=(X=1.000000,Y=0.000000,Z=-0.000000),SecAxis1=(X=-0.000000,Y=1.000000,Z=-0.000000),Pos2=(X=-31.158812,Y=-17.465261,Z=4.166048),PriAxis2=(X=0.474028,Y=0.880510,Z=0.000000),SecAxis2=(X=-0.878231,Y=0.472801,Z=0.071907),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=15.275231,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_19" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_19'"
+      DefaultInstance=(JointName="B_R_Leg_3",ConstraintBone1="B_R_Leg_3",ConstraintBone2="B_R_Leg_2",Pos2=(X=-49.391598,Y=-0.483546,Z=-4.898312),PriAxis2=(X=0.689831,Y=-0.722096,Z=0.052058),SecAxis2=(X=0.723970,Y=0.688045,Z=-0.049603),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=13.623855,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_2" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_2'"
+      DefaultInstance=(JointName="B_L_Leg_1",ConstraintBone1="B_L_Leg_1",ConstraintBone2="BR_Root",Pos2=(X=-17.871529,Y=20.743105,Z=-16.790024),PriAxis2=(X=0.447592,Y=0.894238,Z=0.000000),SecAxis2=(X=-0.894238,Y=0.447592,Z=-0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=18.577982,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_20" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_20'"
+      DefaultInstance=(JointName="B_R_Leg_4",ConstraintBone1="B_R_Leg_4",ConstraintBone2="B_R_Leg_3",Pos2=(X=-37.681065,Y=-0.223637,Z=-0.000000),PriAxis2=(X=0.846588,Y=-0.532249,Z=-0.000000),SecAxis2=(X=0.532249,Y=0.846588,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=21.880735,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_21" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_21'"
+      DefaultInstance=(JointName="B_R_Leg_5",ConstraintBone1="B_R_Leg_5",ConstraintBone2="B_R_Leg_4",Pos2=(X=-14.329711,Y=-0.000045,Z=-0.000000),PriAxis2=(X=0.967466,Y=0.252999,Z=0.000000),SecAxis2=(X=-0.252999,Y=0.967466,Z=-0.000000),ProfileInstance=(ConeLimit=(Swing1Motion=ACM_Locked,Swing2Motion=ACM_Locked),TwistLimit=(TwistMotion=ACM_Locked)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_23" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_23'"
+      DefaultInstance=(JointName="Spine_2",ConstraintBone1="Spine_2",ConstraintBone2="Spine_1",Pos1=(X=8.519989,Y=-0.000003,Z=0.000015),PriAxis1=(X=1.000000,Y=-0.000000,Z=0.000000),SecAxis1=(X=0.000000,Y=1.000000,Z=-0.000000),Pos2=(X=29.575459,Y=1.759716,Z=-0.565387),PriAxis2=(X=0.999806,Y=0.019722,Z=0.000000),SecAxis2=(X=-0.019722,Y=0.999806,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=8.256881,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_25" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_25'"
+      DefaultInstance=(JointName="Spine_4",ConstraintBone1="Spine_4",ConstraintBone2="Spine_2",Pos1=(X=-10.236593,Y=0.000001,Z=0.000054),Pos2=(X=33.358265,Y=-2.817690,Z=0.000040),PriAxis2=(X=0.968920,Y=-0.247372,Z=0.000000),SecAxis2=(X=0.247372,Y=0.968920,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=11.559633,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=4.954128,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_26" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_26'"
+      DefaultInstance=(JointName="Spine_5",ConstraintBone1="Spine_5",ConstraintBone2="Spine_4",Pos1=(X=-2.559314,Y=15.335594,Z=0.000069),Pos2=(X=17.819672,Y=16.145592,Z=0.000070),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=31.376146,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=8.256881,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_27" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_27'"
+      DefaultInstance=(JointName="F_L_Leg_1",ConstraintBone1="F_L_Leg_1",ConstraintBone2="Spine_5",Pos2=(X=5.958082,Y=14.644889,Z=-7.545923),PriAxis2=(X=0.000000,Y=0.000000,Z=-1.000000),SecAxis2=(X=-0.093703,Y=0.995600,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=0.000000,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=13.211009,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_29" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_29'"
+      DefaultInstance=(JointName="F_L_Leg_3",ConstraintBone1="F_L_Leg_3",ConstraintBone2="F_L_Leg_1",Pos2=(X=11.102921,Y=39.140839,Z=-11.792351),PriAxis2=(X=0.000000,Y=0.998131,Z=0.061109),SecAxis2=(X=0.000000,Y=0.061109,Z=-0.998131),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=29.724771,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_3" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_3'"
+      DefaultInstance=(JointName="B_L_Leg_2",ConstraintBone1="B_L_Leg_2",ConstraintBone2="B_L_Leg_1",Pos1=(X=0.000004,Y=-8.108594,Z=0.000009),PriAxis1=(X=1.000000,Y=0.000000,Z=-0.000000),Pos2=(X=29.905905,Y=10.169201,Z=-4.920406),PriAxis2=(X=0.474028,Y=0.880510,Z=0.000000),SecAxis2=(X=0.880510,Y=-0.474028,Z=-0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=16.926607,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_30" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_30'"
+      DefaultInstance=(JointName="F_L_Leg_4",ConstraintBone1="F_L_Leg_4",ConstraintBone2="F_L_Leg_3",Pos2=(X=41.264595,Y=1.864492,Z=1.438275),PriAxis2=(X=0.615189,Y=0.788379,Z=0.000000),SecAxis2=(X=0.788379,Y=-0.615189,Z=-0.000000),ProfileInstance=(ConeLimit=(Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_31" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_31'"
+      DefaultInstance=(JointName="F_L_Leg_5",ConstraintBone1="F_L_Leg_5",ConstraintBone2="F_L_Leg_4",Pos1=(X=-4.697550,Y=-2.868164,Z=0.000004),PriAxis1=(X=1.000000,Y=-0.000000,Z=-0.000000),SecAxis1=(X=0.000000,Y=1.000000,Z=-0.000000),Pos2=(X=25.924610,Y=-3.168966,Z=-0.351167),PriAxis2=(X=0.702145,Y=0.712034,Z=-0.000000),SecAxis2=(X=0.712034,Y=-0.702145,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=9.908257,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_32" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_32'"
+      DefaultInstance=(JointName="F_L_Leg_6",ConstraintBone1="F_L_Leg_6",ConstraintBone2="F_L_Leg_5",Pos2=(X=13.519114,Y=-0.031486,Z=0.000000),PriAxis2=(X=0.980857,Y=0.194729,Z=-0.000000),SecAxis2=(X=-0.194729,Y=0.980857,Z=-0.000000),ProfileInstance=(ConeLimit=(Swing1Motion=ACM_Locked,Swing2Motion=ACM_Locked),TwistLimit=(TwistMotion=ACM_Locked)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_34" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_34'"
+      DefaultInstance=(JointName="Neck_2",ConstraintBone1="Neck_2",ConstraintBone2="Spine_5",Pos1=(X=-0.000012,Y=-11.868398,Z=0.000098),PriAxis1=(X=1.000000,Y=0.000000,Z=-0.000000),Pos2=(X=22.310911,Y=-9.008406,Z=0.086143),PriAxis2=(X=0.791774,Y=-0.610814,Z=0.000000),SecAxis2=(X=0.610814,Y=0.791774,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=13.211009,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=6.605505,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_37" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_37'"
+      DefaultInstance=(JointName="Neck_5",ConstraintBone1="Neck_5",ConstraintBone2="Neck_2",Pos1=(X=-8.830482,Y=1.949690,Z=-0.000053),PriAxis1=(X=1.000000,Y=-0.000000,Z=-0.000000),SecAxis1=(X=0.000000,Y=1.000000,Z=-0.000000),Pos2=(X=28.501667,Y=-13.322016,Z=-0.086101),PriAxis2=(X=0.999572,Y=0.029270,Z=0.000000),SecAxis2=(X=-0.029270,Y=0.999572,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=19.816511,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=6.605505,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_39" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_39'"
+      DefaultInstance=(JointName="Head",ConstraintBone1="Head",ConstraintBone2="Neck_5",Pos1=(X=-0.118727,Y=1.161261,Z=0.336795),PriAxis1=(X=1.000000,Y=0.000000,Z=0.000000),SecAxis1=(X=-0.000000,Y=1.000000,Z=-0.000000),Pos2=(X=23.597748,Y=6.598228,Z=0.598860),PriAxis2=(X=0.651370,Y=0.758760,Z=-0.000000),SecAxis2=(X=-0.758760,Y=0.651370,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=26.422012,Swing2LimitDegrees=21.467875,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=11.559633,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_4" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_4'"
+      DefaultInstance=(JointName="B_L_Leg_3",ConstraintBone1="B_L_Leg_3",ConstraintBone2="B_L_Leg_2",Pos2=(X=49.391582,Y=-0.130160,Z=-4.920395),PriAxis2=(X=0.689831,Y=0.723971,Z=-0.000000),SecAxis2=(X=0.723971,Y=-0.689831,Z=-0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=13.623852,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_47" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_47'"
+      DefaultInstance=(JointName="F_R_Leg_1",ConstraintBone1="F_R_Leg_1",ConstraintBone2="Spine_5",Pos2=(X=5.958093,Y=14.644881,Z=7.545935),PriAxis2=(X=0.000000,Y=0.000000,Z=-1.000000),SecAxis2=(X=0.093703,Y=-0.995600,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=0.000000,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=20.229351,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_49" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_49'"
+      DefaultInstance=(JointName="F_R_Leg_3",ConstraintBone1="F_R_Leg_3",ConstraintBone2="F_R_Leg_1",Pos2=(X=-11.102917,Y=-39.140762,Z=11.792377),PriAxis2=(X=-0.163176,Y=0.902787,Z=0.397932),SecAxis2=(X=-0.059391,Y=0.393618,Z=-0.917354),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=31.376141,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_5" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_5'"
+      DefaultInstance=(JointName="B_L_Leg_4",ConstraintBone1="B_L_Leg_4",ConstraintBone2="B_L_Leg_3",Pos2=(X=37.681122,Y=0.223526,Z=0.000000),PriAxis2=(X=0.846588,Y=-0.532249,Z=-0.000000),SecAxis2=(X=0.532249,Y=0.846588,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=28.486237,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_50" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_50'"
+      DefaultInstance=(JointName="F_R_Leg_4",ConstraintBone1="F_R_Leg_4",ConstraintBone2="F_R_Leg_3",Pos2=(X=-41.264671,Y=-1.864477,Z=-1.438276),PriAxis2=(X=0.926960,Y=0.375161,Z=0.000420),SecAxis2=(X=-0.375161,Y=0.926957,Z=0.002383),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=20.229361,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_51" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_51'"
+      DefaultInstance=(JointName="F_R_Leg_5",ConstraintBone1="F_R_Leg_5",ConstraintBone2="F_R_Leg_4",Pos2=(X=-31.265228,Y=-1.838877,Z=-0.346722),PriAxis2=(X=0.702145,Y=-0.712032,Z=0.001723),SecAxis2=(X=0.712034,Y=0.702143,Z=-0.001699),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=9.908257,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=0.000000,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_52" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_52'"
+      DefaultInstance=(JointName="F_R_Leg_6",ConstraintBone1="F_R_Leg_6",ConstraintBone2="F_R_Leg_5",Pos2=(X=-13.519126,Y=0.031493,Z=-0.000000),PriAxis2=(X=0.965956,Y=0.191771,Z=0.173648),SecAxis2=(X=-0.194729,Y=0.980857,Z=-0.000000),ProfileInstance=(ConeLimit=(Swing1Motion=ACM_Locked,Swing2Motion=ACM_Locked),TwistLimit=(TwistMotion=ACM_Locked)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_54" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_54'"
+      DefaultInstance=(JointName="Spine_1",ConstraintBone1="Spine_1",ConstraintBone2="BR_Root",Pos2=(X=0.000000,Y=-0.000015,Z=0.000000),PriAxis2=(X=0.984808,Y=0.173648,Z=-0.000000),SecAxis2=(X=-0.173648,Y=0.984808,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=9.908257,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Limited,Swing2Motion=ACM_Limited),TwistLimit=(TwistLimitDegrees=9.908257,TwistMotion=ACM_Limited)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_6" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_6'"
+      DefaultInstance=(JointName="B_L_Leg_5",ConstraintBone1="B_L_Leg_5",ConstraintBone2="B_L_Leg_4",Pos2=(X=14.329740,Y=-0.000000,Z=0.000000),PriAxis2=(X=0.967466,Y=0.252999,Z=0.000000),SecAxis2=(X=-0.252999,Y=0.967466,Z=0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=0.000000,Swing1Motion=ACM_Locked,Swing2Motion=ACM_Locked),TwistLimit=(TwistMotion=ACM_Locked)))
+   End Object
+   Begin Object Name="PhysicsConstraintTemplate_7" ExportPath="/Script/Engine.PhysicsConstraintTemplate'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:PhysicsConstraintTemplate_7'"
+      DefaultInstance=(JointName="Tail",ConstraintBone1="Tail",ConstraintBone2="BR_Root",Pos1=(X=0.151303,Y=0.193238,Z=0.000103),PriAxis1=(X=1.000000,Y=-0.000000,Z=0.000000),SecAxis1=(X=-0.000000,Y=1.000000,Z=0.000000),Pos2=(X=-48.671871,Y=9.367405,Z=-0.565505),PriAxis2=(X=-0.699665,Y=0.714471,Z=-0.000000),SecAxis2=(X=0.714471,Y=0.699665,Z=-0.000000),ProfileInstance=(ConeLimit=(Swing1LimitDegrees=9.908257,Swing2LimitDegrees=0.000000,Swing1Motion=ACM_Locked,Swing2Motion=ACM_Locked),TwistLimit=(TwistLimitDegrees=14.862386,TwistMotion=ACM_Locked),bDisableCollision=True))
+   End Object
+   Begin Object Name="SceneThumbnailInfo_0" ExportPath="/Script/UnrealEd.SceneThumbnailInfo'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SceneThumbnailInfo_0'"
+   End Object
+   Begin Object Name="SkeletalBodySetup_0" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_0'"
+      AggGeom=(SphylElems=((Center=(X=11.191914,Y=5.774549,Z=-1.608160),Rotation=(Pitch=2.544772,Yaw=119.533765,Roll=-97.013782),Radius=19.139301,Length=32.969704)))
+      BoneName="B_L_Leg_1"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_1" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_1'"
+      AggGeom=(SphylElems=((Center=(X=26.619051,Y=-1.935196,Z=-4.364728),Rotation=(Pitch=0.986320,Yaw=99.800733,Roll=-95.603153),Radius=10.695032,Length=30.481033)))
+      BoneName="B_L_Leg_2"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_11" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_11'"
+      AggGeom=(SphylElems=((Center=(X=-7.131815,Y=-9.254736,Z=0.160304),Rotation=(Pitch=0.000003,Yaw=-80.310190,Roll=-82.540944),Radius=13.949345,Length=39.783855)))
+      BoneName="B_R_Leg_1"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_12" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_12'"
+      AggGeom=(SphylElems=((Center=(X=-23.355246,Y=-6.831666,Z=-5.742120),Rotation=(Pitch=-0.981890,Yaw=-99.391256,Roll=-95.577935),Radius=11.398969,Length=27.365784)))
+      BoneName="B_R_Leg_2"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_13" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_13'"
+      AggGeom=(SphylElems=((Center=(X=-18.094799,Y=1.618733,Z=-1.046913),Rotation=(Pitch=0.000003,Yaw=-89.659944,Roll=-89.999982),Radius=5.705535,Length=39.746983)))
+      BoneName="B_R_Leg_3"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_14" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_14'"
+      AggGeom=(SphylElems=((Center=(X=-7.352654,Y=0.079789,Z=-0.571426),Rotation=(Pitch=0.000007,Yaw=-89.999816,Roll=-89.999990),Radius=6.934234,Length=8.255445)))
+      BoneName="B_R_Leg_4"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_15" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_15'"
+      AggGeom=(SphylElems=((Center=(X=-3.597273,Y=1.799648,Z=-0.742861),Rotation=(Pitch=-0.000000,Yaw=-157.301785,Roll=-76.951339),Radius=6.670870,Length=9.782089)))
+      BoneName="B_R_Leg_5"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_16" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_16'"
+      AggGeom=(SphylElems=((Center=(X=11.016371,Y=19.158073,Z=-0.265561),Rotation=(Pitch=0.000007,Yaw=94.322690,Roll=-91.533692),Radius=34.198784,Length=0.000000)))
+      BoneName="Spine_1"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_17" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_17'"
+      AggGeom=(SphylElems=((Center=(X=11.839081,Y=19.576202,Z=0.014222),Rotation=(Pitch=-0.000003,Yaw=86.179248,Roll=-89.999995),Radius=36.498943,Length=0.000000)))
+      BoneName="Spine_2"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_18" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_18'"
+      AggGeom=(SphylElems=((Center=(X=0.463206,Y=21.272823,Z=-0.075023),Rotation=(Pitch=0.000003,Yaw=92.276109,Roll=-89.999983),Radius=41.821484,Length=8.449215)))
+      BoneName="Spine_4"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_19" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_19'"
+      AggGeom=(SphylElems=((Center=(X=0.408530,Y=9.614383,Z=-0.105837),Rotation=(Pitch=-0.000426,Yaw=44.944199,Roll=-90.000090),Radius=26.728462,Length=20.810555)))
+      BoneName="Spine_5"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_2" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_2'"
+      AggGeom=(SphylElems=((Center=(X=18.093216,Y=-1.619183,Z=-0.170117),Rotation=(Pitch=0.000003,Yaw=90.339863,Roll=-89.999982),Radius=7.952855,Length=21.496536)))
+      BoneName="B_L_Leg_3"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_20" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_20'"
+      AggGeom=(SphylElems=((Center=(X=8.929268,Y=23.465099,Z=-7.514882),Rotation=(Pitch=-13.360697,Yaw=-179.640849,Roll=-88.976645),Radius=18.255001,Length=15.999999)))
+      BoneName="F_L_Leg_1"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_21" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_21'"
+      AggGeom=(SphylElems=((Center=(X=22.088036,Y=-1.470995,Z=2.090520),Rotation=(Pitch=-0.346230,Yaw=102.581137,Roll=-88.036077),Radius=12.810838,Length=26.623362)))
+      BoneName="F_L_Leg_3"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_22" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_22'"
+      AggGeom=(SphylElems=((Center=(X=14.728697,Y=-0.755856,Z=-0.255350),Rotation=(Pitch=0.000003,Yaw=86.635555,Roll=-90.642391),Radius=7.338622,Length=16.539797)))
+      BoneName="F_L_Leg_4"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_23" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_23'"
+      AggGeom=(SphylElems=((Center=(X=5.541986,Y=-1.102634,Z=0.199970),Rotation=(Pitch=0.000000,Yaw=89.866554,Roll=-89.999992),Radius=6.476122,Length=7.312246)))
+      BoneName="F_L_Leg_5"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_24" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_24'"
+      AggGeom=(SphylElems=((Center=(X=3.317075,Y=-0.950286,Z=-0.235839),Rotation=(Pitch=0.000001,Yaw=31.412494,Roll=-88.999614),Radius=6.294834,Length=9.573362)))
+      BoneName="F_L_Leg_6"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_25" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_25'"
+      AggGeom=(SphylElems=((Center=(X=15.203982,Y=-10.208262,Z=-3.217142),Rotation=(Pitch=0.057729,Yaw=85.514587,Roll=-90.158598),Radius=18.555286,Length=20.346062)))
+      BoneName="Neck_2"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_26" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_26'"
+      AggGeom=(SphylElems=((Center=(X=4.710417,Y=5.356788,Z=-3.487342),Rotation=(Pitch=0.000013,Yaw=103.771207,Roll=-90.000063),Radius=16.136463,Length=22.000631)))
+      BoneName="Neck_5"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_27" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_27'"
+      AggGeom=(SphylElems=((Center=(X=21.466503,Y=7.545972,Z=0.156066),Rotation=(Pitch=0.000000,Yaw=101.464992,Roll=-79.441894),Radius=18.692516,Length=31.738401)))
+      BoneName="Head"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_3" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_3'"
+      AggGeom=(SphylElems=((Center=(X=7.353098,Y=-0.079903,Z=-0.561098),Rotation=(Pitch=-0.000005,Yaw=89.999993,Roll=-89.999993),Radius=6.934542,Length=8.255944)))
+      BoneName="B_L_Leg_4"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_32" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_32'"
+      AggGeom=(SphylElems=((Center=(X=-6.076717,Y=-12.303447,Z=10.728430),Rotation=(Pitch=-1.771496,Yaw=-6.361712,Roll=-85.125317),Radius=23.505001,Length=16.750000)))
+      BoneName="F_R_Leg_1"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_33" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_33'"
+      AggGeom=(SphylElems=((Center=(X=-21.730932,Y=0.388389,Z=-1.986668),Rotation=(Pitch=0.000003,Yaw=-87.412930,Roll=-91.994182),Radius=12.905624,Length=33.852535)))
+      BoneName="F_R_Leg_3"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_34" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_34'"
+      AggGeom=(SphylElems=((Center=(X=-14.716532,Y=-0.755875,Z=-0.257836),Rotation=(Pitch=0.000002,Yaw=-86.633986,Roll=-90.634253),Radius=7.330608,Length=16.528332)))
+      BoneName="F_R_Leg_4"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_35" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_35'"
+      AggGeom=(SphylElems=((Center=(X=-4.879765,Y=1.099922,Z=-0.209480),Rotation=(Pitch=0.000000,Yaw=-90.133458,Roll=-89.999989),Radius=6.478657,Length=7.692543)))
+      BoneName="F_R_Leg_5"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_36" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_36'"
+      AggGeom=(SphylElems=((Center=(X=-3.168324,Y=1.037714,Z=0.237402),Rotation=(Pitch=0.000000,Yaw=31.359674,Roll=-89.043324),Radius=6.294882,Length=9.567964)))
+      BoneName="F_R_Leg_6"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_37" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_37'"
+      AggGeom=(SphylElems=((Center=(X=-14.712896,Y=19.845188,Z=0.000084),Radius=33.000000,Length=8.000000)))
+      BoneName="BR_Root"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_4" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_4'"
+      AggGeom=(SphylElems=((Center=(X=3.598963,Y=-1.802965,Z=-0.386386),Rotation=(Pitch=0.000001,Yaw=-157.207648,Roll=-76.973076),Radius=6.668155,Length=9.783243)))
+      BoneName="B_L_Leg_5"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_5" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_5'"
+      AggGeom=(SphylElems=((Center=(X=3.858786,Y=2.247950,Z=0.000000),Rotation=(Pitch=-0.000005,Yaw=90.000003,Roll=-90.000003),Radius=5.390401,Length=12.662771)))
+      DefaultInstance=(bNotifyRigidBodyCollision=True,LinearDamping=121.436302,AngularDamping=16.265875,MassScale=2.000000)
+      BoneName="Tail"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   Begin Object Name="SkeletalBodySetup_6" ExportPath="/Script/Engine.SkeletalBodySetup'/Game/HorseStarterKit/Horse_Meshes/Horse_Physics.Horse_Physics:SkeletalBodySetup_6'"
+      AggGeom=(SphylElems=((Center=(X=8.267427,Y=0.690374,Z=0.000082),Rotation=(Pitch=-0.000003,Yaw=100.000005,Roll=-90.000003),Radius=2.897475,Length=20.529715)))
+      DefaultInstance=(bNotifyRigidBodyCollision=True,LinearDamping=25.513140,AngularDamping=9.823360,MassScale=3.000000)
+      BoneName="Tail_3"
+      CollisionTraceFlag=CTF_UseSimpleAsComplex
+   End Object
+   PreviewSkeletalMesh="/Game/HorseStarterKit/Horse_Meshes/Horse_W_HairPlanes.Horse_W_HairPlanes"
+   BoundsBodies(0)=0
+   BoundsBodies(1)=1
+   BoundsBodies(2)=2
+   BoundsBodies(3)=3
+   BoundsBodies(4)=4
+   BoundsBodies(5)=5
+   BoundsBodies(6)=6
+   BoundsBodies(7)=7
+   BoundsBodies(8)=8
+   BoundsBodies(9)=9
+   BoundsBodies(10)=10
+   BoundsBodies(11)=11
+   BoundsBodies(12)=12
+   BoundsBodies(13)=13
+   BoundsBodies(14)=14
+   BoundsBodies(15)=15
+   BoundsBodies(16)=16
+   BoundsBodies(17)=17
+   BoundsBodies(18)=18
+   BoundsBodies(19)=19
+   BoundsBodies(20)=20
+   BoundsBodies(21)=21
+   BoundsBodies(22)=22
+   BoundsBodies(23)=23
+   BoundsBodies(24)=24
+   BoundsBodies(25)=25
+   BoundsBodies(26)=26
+   BoundsBodies(27)=27
+   BoundsBodies(28)=28
+   BoundsBodies(29)=29
+   SkeletalBodySetups(0)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_0'"
+   SkeletalBodySetups(1)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_1'"
+   SkeletalBodySetups(2)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_2'"
+   SkeletalBodySetups(3)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_3'"
+   SkeletalBodySetups(4)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_4'"
+   SkeletalBodySetups(5)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_5'"
+   SkeletalBodySetups(6)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_6'"
+   SkeletalBodySetups(7)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_11'"
+   SkeletalBodySetups(8)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_12'"
+   SkeletalBodySetups(9)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_13'"
+   SkeletalBodySetups(10)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_14'"
+   SkeletalBodySetups(11)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_15'"
+   SkeletalBodySetups(12)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_16'"
+   SkeletalBodySetups(13)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_17'"
+   SkeletalBodySetups(14)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_18'"
+   SkeletalBodySetups(15)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_19'"
+   SkeletalBodySetups(16)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_20'"
+   SkeletalBodySetups(17)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_21'"
+   SkeletalBodySetups(18)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_22'"
+   SkeletalBodySetups(19)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_23'"
+   SkeletalBodySetups(20)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_24'"
+   SkeletalBodySetups(21)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_25'"
+   SkeletalBodySetups(22)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_26'"
+   SkeletalBodySetups(23)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_27'"
+   SkeletalBodySetups(24)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_32'"
+   SkeletalBodySetups(25)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_33'"
+   SkeletalBodySetups(26)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_34'"
+   SkeletalBodySetups(27)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_35'"
+   SkeletalBodySetups(28)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_36'"
+   SkeletalBodySetups(29)="/Script/Engine.SkeletalBodySetup'SkeletalBodySetup_37'"
+   ConstraintSetup(0)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_2'"
+   ConstraintSetup(1)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_3'"
+   ConstraintSetup(2)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_4'"
+   ConstraintSetup(3)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_5'"
+   ConstraintSetup(4)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_6'"
+   ConstraintSetup(5)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_7'"
+   ConstraintSetup(6)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_10'"
+   ConstraintSetup(7)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_17'"
+   ConstraintSetup(8)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_18'"
+   ConstraintSetup(9)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_19'"
+   ConstraintSetup(10)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_20'"
+   ConstraintSetup(11)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_21'"
+   ConstraintSetup(12)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_23'"
+   ConstraintSetup(13)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_25'"
+   ConstraintSetup(14)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_26'"
+   ConstraintSetup(15)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_27'"
+   ConstraintSetup(16)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_29'"
+   ConstraintSetup(17)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_30'"
+   ConstraintSetup(18)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_31'"
+   ConstraintSetup(19)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_32'"
+   ConstraintSetup(20)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_34'"
+   ConstraintSetup(21)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_37'"
+   ConstraintSetup(22)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_39'"
+   ConstraintSetup(23)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_47'"
+   ConstraintSetup(24)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_49'"
+   ConstraintSetup(25)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_50'"
+   ConstraintSetup(26)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_51'"
+   ConstraintSetup(27)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_52'"
+   ConstraintSetup(28)="/Script/Engine.PhysicsConstraintTemplate'PhysicsConstraintTemplate_54'"
+   SolverSettings=(CullDistance=1.000000,bUseLinearJointSolver=False)
+   ThumbnailInfo="/Script/UnrealEd.SceneThumbnailInfo'SceneThumbnailInfo_0'"
+End Object

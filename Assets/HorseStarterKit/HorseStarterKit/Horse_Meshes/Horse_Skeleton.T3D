@@ -1,0 +1,11 @@
+Begin Object Class=/Script/Engine.Skeleton Name="Horse_Skeleton" ExportPath="/Script/Engine.Skeleton'/Game/HorseStarterKit/Horse_Meshes/Horse_Skeleton.Horse_Skeleton'"
+   Begin Object Class=/Script/Engine.AnimCurveMetaData Name="AnimCurveMetaData_0" ExportPath="/Script/Engine.AnimCurveMetaData'/Game/HorseStarterKit/Horse_Meshes/Horse_Skeleton.Horse_Skeleton:AnimCurveMetaData_0'"
+   End Object
+   Begin Object Name="AnimCurveMetaData_0" ExportPath="/Script/Engine.AnimCurveMetaData'/Game/HorseStarterKit/Horse_Meshes/Horse_Skeleton.Horse_Skeleton:AnimCurveMetaData_0'"
+      CurveMetaData=(("blendParent1", ()),("joints01", ()))
+   End Object
+   BoneTree(75)=()
+   PreviewSkeletalMesh="/Game/HorseStarterKit/Horse_Meshes/Horse_W_HairPlanes.Horse_W_HairPlanes"
+   AnimationNotifies(0)="Set play mount to false"
+   AssetUserData(0)="/Script/Engine.AnimCurveMetaData'AnimCurveMetaData_0'"
+End Object
