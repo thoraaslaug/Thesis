@@ -1,51 +1,66 @@
+using StarterAssets;
 using UnityEngine;
 
 public class HorseController : MonoBehaviour
 {
-    public Animator animator; // Reference to the horse's Animator
-    public float gallopSpeed = 7f; // Speed when galloping
-    public float acceleration = 5f; // Smooth transition between speeds
+    public Animator animator; // Horse Animator
+    public float gallopSpeed = 7f;
+    public float acceleration = 5f;
 
     private CharacterController controller;
     private float currentSpeed = 0f;
+    private bool isActive = false; // Determines if the horse can move
+    private ThirdPersonController character;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
         if (animator == null)
         {
-            animator = GetComponent<Animator>(); // Auto-assign if missing
+            animator = GetComponent<Animator>();
         }
+
+        // Ensure horse starts in idle mode
+        animator.SetFloat("Speed", 0.0f);
     }
 
     void Update()
     {
-        HandleMovement();
+        if (isActive) // Only handle movement if active
+        {
+            HandleMovement();
+        }
     }
 
     void HandleMovement()
     {
-        float targetSpeed = 0f; // Default to idle speed
+        float targetSpeed = 0f;
 
-        if (Input.GetKey(KeyCode.W)) // Only gallop when W is pressed
+        if (Input.GetKey(KeyCode.D))
         {
             targetSpeed = gallopSpeed;
         }
 
-        // Smoothly transition speed
+        // Smoothly transition to the target speed
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * acceleration);
 
-        // Move the horse forward only when galloping
+        // Move the horse
         Vector3 moveDirection = transform.forward * currentSpeed * Time.deltaTime;
         controller.Move(moveDirection);
 
-        // Update Animator
+        // Update animator
         animator.SetFloat("Speed", currentSpeed);
         animator.SetBool("Galloping", currentSpeed > 0);
     }
-    public float GetCurrentSpeed()
+
+    public void ActivateHorseControl()
     {
-        return currentSpeed; // Returns the current speed of the horse
+        isActive = true;
     }
 
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
 }

@@ -78,7 +78,7 @@ namespace StarterAssets
             }
         }
 
-        public void DismountHorse()
+      /*  public void DismountHorse()
         {
             Debug.Log("Dismounting horse...");
             isMounted = false;
@@ -89,7 +89,7 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDSpeed, 0.0f);
                 Debug.Log($"Animator isRiding = {_animator.GetBool(_animIDRiding)}");
             }
-        }
+        }*/
 
         private void HandleRiding()
         {
@@ -105,19 +105,39 @@ namespace StarterAssets
 
         private void Move()
         {
-            if (isMounted) return; // Prevents ground movement while mounted
+            if (isMounted) return; // Prevent movement while mounted
 
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            Vector2 inputDirection = _input.move;
 
-            float currentSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-            _speed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * SpeedChangeRate);
-
-            if (_hasAnimator)
+            if (inputDirection.x != 0) // Only allow left and right movement
             {
-                _animator.SetFloat(_animIDSpeed, _speed);
-                _animator.SetFloat(_animIDMotionSpeed, 1.0f);
+                Debug.Log($"Player Input: {inputDirection.x}"); // Debug input reception
+
+                float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+
+                _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * SpeedChangeRate);
+
+                Vector3 moveDirection = new Vector3(inputDirection.x, 0.0f, 0.0f);
+
+                CharacterController controller = GetComponent<CharacterController>();
+                    controller.Move(moveDirection * (_speed * Time.deltaTime));
+              
+                
+                if (_hasAnimator)
+                {
+                    _animator.SetFloat(_animIDSpeed, _speed);
+                    _animator.SetFloat(_animIDMotionSpeed, 1.0f);
+                }
+            }
+            else
+            {
+                _speed = 0.0f;
+                if (_hasAnimator)
+                {
+                    _animator.SetFloat(_animIDSpeed, 0.0f);
+                }
             }
         }
+
     }
 }

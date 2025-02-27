@@ -6,39 +6,35 @@ public class MountSystem : MonoBehaviour
 {
     public Transform mountPoint; // Position where the player sits on the horse
     public GameObject player; // Reference to the player character
-    public GameObject horse; // Reference to the horse (horse object with HorseController)
+    public GameObject horse; // Reference to the horse object
 
     public Animator playerAnimator;
     public Animator horseAnimator;
 
     private ThirdPersonController playerController;
     private HorseController horseController;
-    private bool isMounted = false; // Track if player is mounted
+    private bool isMounted = false;
 
     void Start()
     {
+        // Get references to controllers
         playerController = player.GetComponent<ThirdPersonController>();
         horseController = horse.GetComponent<HorseController>();
 
-        // Disable horse movement initially
+        // Start with the horse controller disabled and horse playing idle
         horseController.enabled = false;
+        playerController.enabled = true;
+        horseAnimator.SetFloat("Speed", 0.0f); // Ensures idle animation is playing
     }
 
     void Update()
     {
+        // Check if player is near horse and presses Space to mount
         if (!isMounted && Input.GetKeyDown(KeyCode.Space) && IsPlayerNearHorse())
         {
             Debug.Log("Player is attempting to mount the horse...");
             StartCoroutine(MountHorse());
-        }
-        if (isMounted)
-        {
-            float horseSpeed = horseController.GetCurrentSpeed(); // Get the horse's current speed
-
-            // Sync the player's riding animation with horse movement
-            playerAnimator.SetFloat("Speed", horseSpeed);
-
-            Debug.Log("Horse Speed: " + horseSpeed);
+            //horseController.enabled = true;
         }
     }
 
@@ -50,43 +46,35 @@ public class MountSystem : MonoBehaviour
     IEnumerator MountHorse()
     {
         Debug.Log("Mount sequence started...");
-        isMounted = true;  // Prevent multiple mounts
-        playerController.isMounted = true;
-
-        // Disable player movement
+        isMounted = true;
+    
+        // Disable player movement script to prevent walking mid-mount
         playerController.enabled = false;
-        CharacterController playerControllerComponent = player.GetComponent<CharacterController>();
-        if (playerControllerComponent != null)
+        horseController.ActivateHorseControl();
+
+        // Disable CharacterController to prevent physics glitches
+        CharacterController controller = player.GetComponent<CharacterController>();
+        if (controller != null)
         {
-            playerControllerComponent.enabled = false;
+            controller.enabled = false;
         }
 
-        // Play mounting animation
         playerAnimator.SetTrigger("Mount");
-        Debug.Log("Mount animation triggered...");
+        Debug.Log("Playing Mount animation...");
 
-        // Wait for animation to complete
         yield return new WaitForSeconds(1.5f);
 
-        // Attach player to mount point
+        Debug.Log("Mount animation finished. Player is now riding.");
+
         player.transform.position = mountPoint.position;
         player.transform.rotation = mountPoint.rotation;
         player.transform.SetParent(mountPoint);
 
-        // Enable horse movement
         horseController.enabled = true;
 
-        // Ensure the animator switches to riding animation
         playerAnimator.SetBool("IsRiding", true);
-        Debug.Log("Player is now riding. Animator updated.");
+        playerAnimator.SetFloat("Speed", 0.0f); // Ensure starts in idle riding
 
-        // Re-enable CharacterController AFTER parenting to prevent physics issues
-        if (playerControllerComponent != null)
-        {
-            playerControllerComponent.enabled = true;
-        }
-
-
-        Debug.Log("Mount sequence complete.");
+        Debug.Log("Player is now riding. Horse control enabled.");
     }
 }
