@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horse: {fileID: 1062723009}
-  offset: {x: 0, y: 2, z: 7}
+  offset: {x: 7, y: 2, z: 7}
   followSpeed: 5
   rotationSpeed: 0
 --- !u!114 &1909211889

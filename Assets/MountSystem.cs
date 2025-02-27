@@ -36,6 +36,15 @@ public class MountSystem : MonoBehaviour
             StartCoroutine(MountHorse());
             //horseController.enabled = true;
         }
+        if (isMounted)
+        {
+            float horseSpeed = horseController.GetCurrentSpeed(); // Get the horse's current speed
+
+            // Sync the player's riding animation with horse movement
+            playerAnimator.SetFloat("Speed", horseSpeed);
+
+            Debug.Log("Horse Speed: " + horseSpeed);
+        }
     }
 
     bool IsPlayerNearHorse()
