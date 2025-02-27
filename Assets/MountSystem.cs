@@ -32,7 +32,7 @@ public class MountSystem : MonoBehaviour
         // Check if player is near horse and presses Space to mount
         if (!isMounted && Input.GetKeyDown(KeyCode.Space) && IsPlayerNearHorse())
         {
-            Debug.Log("Player is attempting to mount the horse...");
+            //Debug.Log("Player is attempting to mount the horse...");
             StartCoroutine(MountHorse());
             //horseController.enabled = true;
         }
@@ -43,7 +43,7 @@ public class MountSystem : MonoBehaviour
             // Sync the player's riding animation with horse movement
             playerAnimator.SetFloat("Speed", horseSpeed);
 
-            Debug.Log("Horse Speed: " + horseSpeed);
+          //  Debug.Log("Horse Speed: " + horseSpeed);
         }
     }
 
@@ -54,7 +54,7 @@ public class MountSystem : MonoBehaviour
 
     IEnumerator MountHorse()
     {
-        Debug.Log("Mount sequence started...");
+        //Debug.Log("Mount sequence started...");
         isMounted = true;
     
         // Disable player movement script to prevent walking mid-mount
@@ -69,11 +69,11 @@ public class MountSystem : MonoBehaviour
         }
 
         playerAnimator.SetTrigger("Mount");
-        Debug.Log("Playing Mount animation...");
+        //Debug.Log("Playing Mount animation...");
 
         yield return new WaitForSeconds(1.5f);
 
-        Debug.Log("Mount animation finished. Player is now riding.");
+        //Debug.Log("Mount animation finished. Player is now riding.");
 
         player.transform.position = mountPoint.position;
         player.transform.rotation = mountPoint.rotation;
@@ -84,6 +84,6 @@ public class MountSystem : MonoBehaviour
         playerAnimator.SetBool("IsRiding", true);
         playerAnimator.SetFloat("Speed", 0.0f); // Ensure starts in idle riding
 
-        Debug.Log("Player is now riding. Horse control enabled.");
+        //Debug.Log("Player is now riding. Horse control enabled.");
     }
 }
