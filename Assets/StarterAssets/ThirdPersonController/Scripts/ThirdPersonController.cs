@@ -105,28 +105,32 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (_hasAnimator)
+            {
+                float animSpeed = _animator.GetFloat("Speed");
+               // Debug.Log($"Animator Speed Value: {animSpeed}");
+            }
+
             if (isMounted) return; // Prevent movement while mounted
 
-            Vector2 inputDirection = _input.move;
+            Vector2 inputDirection = _input.move; // Get player input
 
-            if (inputDirection.x != 0) // Only allow left and right movement
+            if (inputDirection.magnitude > 0.1f) // If the player is moving
             {
-                Debug.Log($"Player Input: {inputDirection.x}"); // Debug input reception
-
-                float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+                Debug.Log($"Player Input: {inputDirection.x}, {inputDirection.y}"); // Debug input
+                float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; 
+                _animator.SetBool("IsWalking", true);
 
                 _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * SpeedChangeRate);
 
-                Vector3 moveDirection = new Vector3(inputDirection.x, 0.0f, 0.0f);
+                Vector3 moveDirection = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
 
-                CharacterController controller = GetComponent<CharacterController>();
-                    controller.Move(moveDirection * (_speed * Time.deltaTime));
-              
+                _controller.Move(moveDirection * (_speed * Time.deltaTime));
                 
+
                 if (_hasAnimator)
                 {
-                    _animator.SetFloat(_animIDSpeed, _speed);
-                    _animator.SetFloat(_animIDMotionSpeed, 1.0f);
+                    _animator.SetFloat("Speed", _speed); // Update Animator Speed
                 }
             }
             else
@@ -134,7 +138,8 @@ namespace StarterAssets
                 _speed = 0.0f;
                 if (_hasAnimator)
                 {
-                    _animator.SetFloat(_animIDSpeed, 0.0f);
+                    _animator.SetFloat("Speed", 0.0f); // Reset speed when not moving
+                    _animator.SetBool("IsWalking", false);
                 }
             }
         }

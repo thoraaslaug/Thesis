@@ -80,6 +80,7 @@ public class MountSystem : MonoBehaviour
         player.transform.SetParent(mountPoint);
 
         horseController.enabled = true;
+        playerController.MountHorse();
 
         playerAnimator.SetBool("IsRiding", true);
         playerAnimator.SetFloat("Speed", 0.0f); // Ensure starts in idle riding
