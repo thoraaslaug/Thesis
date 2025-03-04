@@ -37,6 +37,7 @@ namespace StarterAssets
 
         private void Start()
         {
+            QualitySettings.vSyncCount = 0;
             Debug.Log("ThirdPersonController script is running...");
 
             _hasAnimator = TryGetComponent(out _animator);
