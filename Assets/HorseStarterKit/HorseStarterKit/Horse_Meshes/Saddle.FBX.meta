@@ -3,7 +3,12 @@ guid: dfd1609ceae2f754f883d0d138444792
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Saddle_Mat
+    second: {fileID: 2100000, guid: 008ef09aaf612534ba9dd24b2495e0a0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

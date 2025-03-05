@@ -57,6 +57,8 @@ public class HorseController : MonoBehaviour
     public void ActivateHorseControl()
     {
         isActive = true;
+        
+
     }
 
     public float GetCurrentSpeed()

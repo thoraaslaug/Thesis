@@ -31,6 +31,8 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+        
+        private HorseCameraFollow _cameraFollow;
 
         private bool _hasAnimator;
         private float _speed;
@@ -70,13 +72,20 @@ namespace StarterAssets
         {
             Debug.Log("Mounting horse...");
             isMounted = true;
-
+                
             if (_hasAnimator)
             {
                 _animator.SetBool(_animIDRiding, true);
                 _animator.SetFloat(_animIDSpeed, 1.0f);  // Force transition
                 Debug.Log($"Animator isRiding = {_animator.GetBool(_animIDRiding)}");
+               // _cameraFollow.SetMounted(true);
             }
+
+            if (_cameraFollow != null)
+            {
+                _cameraFollow.SetMounted(true);
+            }
+            
         }
 
       /*  public void DismountHorse()

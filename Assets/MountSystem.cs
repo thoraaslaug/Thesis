@@ -14,17 +14,19 @@ public class MountSystem : MonoBehaviour
     private ThirdPersonController playerController;
     private HorseController horseController;
     private bool isMounted = false;
+    private HorseCameraFollow horseCameraFollow;
+    private HorseCameraFollow cameraFollow;
+
 
     void Start()
     {
-        // Get references to controllers
         playerController = player.GetComponent<ThirdPersonController>();
         horseController = horse.GetComponent<HorseController>();
+        cameraFollow = FindFirstObjectByType<HorseCameraFollow>();
 
-        // Start with the horse controller disabled and horse playing idle
         horseController.enabled = false;
         playerController.enabled = true;
-        horseAnimator.SetFloat("Speed", 0.0f); // Ensures idle animation is playing
+        horseAnimator.SetFloat("Speed", 0.0f); 
     }
 
     void Update()
@@ -34,6 +36,10 @@ public class MountSystem : MonoBehaviour
         {
             //Debug.Log("Player is attempting to mount the horse...");
             StartCoroutine(MountHorse());
+            if (cameraFollow != null)
+            {
+                cameraFollow.SetMounted(true);
+            }
             //horseController.enabled = true;
         }
         if (isMounted)
@@ -56,7 +62,7 @@ public class MountSystem : MonoBehaviour
     {
         //Debug.Log("Mount sequence started...");
         isMounted = true;
-    
+        //horseCameraFollow.SetMounted(true);
         // Disable player movement script to prevent walking mid-mount
         playerController.enabled = false;
         horseController.ActivateHorseControl();
