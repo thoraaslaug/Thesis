@@ -118,7 +118,7 @@ namespace StarterAssets
 
             if (inputDirection.magnitude > 0.1f) // If the player is moving
             {
-                Debug.Log($"Player Input: {inputDirection.x}, {inputDirection.y}"); // Debug input
+               // Debug.Log($"Player Input: {inputDirection.x}, {inputDirection.y}"); // Debug input
                 float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; 
                 _animator.SetBool("IsWalking", true);
 
