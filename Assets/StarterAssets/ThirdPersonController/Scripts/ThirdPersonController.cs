@@ -36,6 +36,9 @@ namespace StarterAssets
 
         private bool _hasAnimator;
         private float _speed;
+        
+        private SnowPathDrawer _snowPathDrawer;
+
 
         private void Start()
         {
@@ -45,6 +48,8 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            
+            _snowPathDrawer = GetComponent<SnowPathDrawer>();
 
             AssignAnimationIDs();
         }
@@ -136,6 +141,13 @@ namespace StarterAssets
                 Vector3 moveDirection = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
 
                 _controller.Move(moveDirection * (_speed * Time.deltaTime));
+                
+                if (_snowPathDrawer != null)
+                {
+                    _snowPathDrawer.GetPosition();  // Update path position
+                    _snowPathDrawer.DrawSpot();     // Draw footprint at current position
+                }
+
                 
 
                 if (_hasAnimator)
