@@ -3,32 +3,55 @@ using UnityEngine;
 public class HorseCameraFollow : MonoBehaviour
 {
     public Transform horse; // Assign the horse GameObject in Inspector
-    public Vector3 defaultOffset = new Vector3(0, 3, -6); // Default camera position
-    public Vector3 mountedOffset = new Vector3(0, 2, -4); // Closer zoom when mounted
+    public Vector3 unmountedOffset = new Vector3(0, 5, -10); // Offset before mounting
+    public Vector3 mountedOffset = new Vector3(0, 3, -6); // Offset when mounted and moving
+    public Vector3 mountedIdleOffset = new Vector3(1.5f, 3, -6); // Offset when mounted but idle (X shifted)
     public float followSpeed = 5f; // Smooth follow speed
-    public float rotationSpeed = 5f; // Smooth rotation speed
     public float zoomSpeed = 2f; // Speed of zoom transition
     public Camera cam; // Assign the Camera in Inspector
-    public float defaultFOV = 60f;
-    public float mountedFOV = 50f; // Adjust FOV for a zoom effect
+    public float defaultFOV = 60f; // Slightly zoomed out when idle
+    public float movingFOV = 55f; // Closer zoom when moving
 
-    private bool isMounted = false; // Track if the player is mounted
+    private Vector3 lastHorsePosition;
+    private bool isMounted = false;
+    private bool isMoving = false;
+
+    void Start()
+    {
+        if (horse != null)
+        {
+            lastHorsePosition = horse.position;
+        }
+    }
 
     void LateUpdate()
     {
         if (horse == null) return;
 
-        // Choose the correct offset and FOV based on mount status
-        Vector3 targetOffset = isMounted ? mountedOffset : defaultOffset;
-        float targetFOV = isMounted ? mountedFOV : defaultFOV;
+        // Calculate movement speed
+        float movementSpeed = (horse.position - lastHorsePosition).magnitude / Time.deltaTime;
+        lastHorsePosition = horse.position; // Update last position
 
-        // Smoothly move camera to horse position + offset
-        Vector3 targetPosition = horse.position + horse.TransformDirection(targetOffset);
+        // Check if the horse is moving
+        isMoving = movementSpeed > 0.1f;
+
+        // Determine the correct offset based on mounted state and movement
+        Vector3 targetOffset;
+        if (!isMounted)
+        {
+            targetOffset = unmountedOffset;
+        }
+        else
+        {
+            // Use different X offsets based on movement
+            targetOffset = isMoving ? mountedOffset : mountedIdleOffset;
+        }
+
+        float targetFOV = isMoving ? movingFOV : defaultFOV;
+
+        // Smoothly transition camera position
+        Vector3 targetPosition = horse.position + targetOffset;
         transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
-
-        // Smoothly rotate camera to match horse rotation
-        Quaternion targetRotation = Quaternion.LookRotation(horse.position - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         // Smoothly transition FOV for zoom effect
         if (cam != null)
@@ -41,7 +64,6 @@ public class HorseCameraFollow : MonoBehaviour
     public void SetMounted(bool mounted)
     {
         isMounted = mounted;
-        Debug.Log($"Camera Zoom: isMounted = {isMounted}");
+        Debug.Log($"Camera State Changed: isMounted = {isMounted}");
     }
-
 }

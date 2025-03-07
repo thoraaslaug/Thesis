@@ -37,8 +37,13 @@ namespace StarterAssets
         private bool _hasAnimator;
         private float _speed;
         
+        public float turnSpeed = 10f;
+
+        
         private SnowPathDrawer _snowPathDrawer;
 
+        public AudioSource audioSource;
+        public AudioClip clip; 
 
         private void Start()
         {
@@ -66,6 +71,15 @@ namespace StarterAssets
             }
         }
 
+
+        public void PlayFootstep()
+        {
+            if (audioSource != null && clip != null)
+            {
+                audioSource.pitch = Random.Range(0.9f, 1.1f);
+                audioSource.PlayOneShot(clip);
+            }
+        }
         private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
@@ -141,12 +155,20 @@ namespace StarterAssets
                 Vector3 moveDirection = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
 
                 _controller.Move(moveDirection * (_speed * Time.deltaTime));
-                
-                if (_snowPathDrawer != null)
+
+                if (moveDirection != Vector3.zero)
                 {
-                    _snowPathDrawer.GetPosition();  // Update path position
-                    _snowPathDrawer.DrawSpot();     // Draw footprint at current position
+                    Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
                 }
+               // Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                
+               // if (_snowPathDrawer != null)
+                //{
+                  //  _snowPathDrawer.GetPosition();  // Update path position
+                   // _snowPathDrawer.DrawSpot();     // Draw footprint at current position
+               // }
 
                 
 

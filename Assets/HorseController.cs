@@ -1,16 +1,16 @@
-using StarterAssets;
 using UnityEngine;
 
 public class HorseController : MonoBehaviour
 {
     public Animator animator; // Horse Animator
     public float gallopSpeed = 7f;
+    public float turnSpeed = 10f;
     public float acceleration = 5f;
 
     private CharacterController controller;
     private float currentSpeed = 0f;
     private bool isActive = false; // Determines if the horse can move
-    private ThirdPersonController character;
+    private Vector3 moveDirection = Vector3.zero;
 
     void Start()
     {
@@ -35,18 +35,28 @@ public class HorseController : MonoBehaviour
 
     void HandleMovement()
     {
-        float targetSpeed = 0f;
+        float horizontal = Input.GetAxis("Horizontal"); // A/D or Left/Right
+        float vertical = Input.GetAxis("Vertical"); // W/S or Up/Down
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            targetSpeed = gallopSpeed;
-        }
+        // Normalize movement vector so diagonal movement isn't faster
+        Vector3 inputDirection = new Vector3(horizontal, 0f, vertical).normalized;
+
+        // Determine target speed based on movement input
+        float targetSpeed = (inputDirection.magnitude > 0) ? gallopSpeed : 0f;
 
         // Smoothly transition to the target speed
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * acceleration);
 
         // Move the horse
-        Vector3 moveDirection = transform.forward * currentSpeed * Time.deltaTime;
+        if (inputDirection.magnitude > 0)
+        {
+            // Rotate the horse towards movement direction
+            Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        }
+
+        // Apply movement
+        moveDirection = transform.forward * currentSpeed * Time.deltaTime;
         controller.Move(moveDirection);
 
         // Update animator
@@ -57,8 +67,6 @@ public class HorseController : MonoBehaviour
     public void ActivateHorseControl()
     {
         isActive = true;
-        
-
     }
 
     public float GetCurrentSpeed()
