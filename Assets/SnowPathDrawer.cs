@@ -46,12 +46,12 @@ public class SnowPathDrawer : MonoBehaviour
     {
         if (snowController == null || snowRT == null)
         {
-            Debug.LogError("❌ GetPosition(): SnowController or snowRT is NULL!");
+            Debug.LogError(" GetPosition(): SnowController or snowRT is NULL!");
             return;
         }
 
         float scaleX = snowController.transform.localScale.x;
-        float scaleY = snowController.transform.localScale.z; // Ensure Z is used for height mapping
+        float scaleY = snowController.transform.localScale.z; 
 
         float snowPosX = snowController.transform.position.x;
         float snowPosY = snowController.transform.position.z;
@@ -66,13 +66,12 @@ public class SnowPathDrawer : MonoBehaviour
         int posX = (int)(((playerPosX - snowPosX) / scaleX + 0.5f) * snowRT.width + offsetX);
         int posY = (int)(((playerPosY - snowPosY) / scaleY + 0.5f) * snowRT.height + offsetY);
 
-        // 🔥 Flip Y-axis to fix inversion
+        //  Flip Y-axis
         posY = snowRT.height - posY;
 
-        // 🔥 If X is also inverted, uncomment the next line
+        // If X is also inverted, uncomment the next line
         posX = snowRT.width - posX;
 
-        // Ensure values stay inside texture bounds
         posX = Mathf.Clamp(posX, 0, snowRT.width - 1);
         posY = Mathf.Clamp(posY, 0, snowRT.height - 1);
 
