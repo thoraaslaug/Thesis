@@ -44,6 +44,11 @@ namespace StarterAssets
 
         public AudioSource audioSource;
         public AudioClip clip; 
+        
+        private float gravity = -9.81f;  // Standard gravity value
+        private float verticalVelocity = 0f; // Stores downward movement
+        private float groundCheckDistance = 0.1f; // How close the player has to be to be considered "on the ground"
+
 
         private void Start()
         {
@@ -153,8 +158,22 @@ namespace StarterAssets
                 _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * SpeedChangeRate);
 
                 Vector3 moveDirection = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
-
-                _controller.Move(moveDirection * (_speed * Time.deltaTime));
+                moveDirection.Normalize();
+                
+                if (IsGrounded())
+                {
+                    verticalVelocity = 0f;
+                }
+                else
+                {
+                    verticalVelocity += gravity * Time.deltaTime;
+                }
+                
+                Vector3 movement = moveDirection * (_speed * Time.deltaTime);
+                movement.y = verticalVelocity * Time.deltaTime;
+                //_controller.Move(moveDirection * (_speed * Time.deltaTime));
+                _controller.Move(movement);
+                AdjustToTerrain();
 
                 if (moveDirection != Vector3.zero)
                 {
@@ -184,6 +203,28 @@ namespace StarterAssets
                 {
                     _animator.SetFloat("Speed", 0.0f); // Reset speed when not moving
                     _animator.SetBool("IsWalking", false);
+                }
+            }
+        }
+
+        private bool IsGrounded()
+        {
+            return Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+        }
+
+        void AdjustToTerrain()
+        {
+            Terrain terrain = Terrain.activeTerrain;
+            if (terrain != null)
+            {
+                Vector3 position = transform.position;
+                float terrainHeight = terrain.SampleHeight(position) + terrain.transform.position.y;
+
+                // Ensure we only move up if needed, and smoothly move down
+                if (position.y < terrainHeight)
+                {
+                    position.y = Mathf.Lerp(position.y, terrainHeight, Time.deltaTime * 10f); // Smooth transition
+                    _controller.Move(new Vector3(0, position.y - transform.position.y, 0)); // Move using CharacterController
                 }
             }
         }

@@ -2,17 +2,20 @@ using UnityEngine;
 
 public class HorseController : MonoBehaviour
 {
-    public Animator animator; // Horse Animator
+    public Animator animator; 
     public float gallopSpeed = 7f;
     public float turnSpeed = 10f;
     public float acceleration = 5f;
 
     private CharacterController controller;
     private float currentSpeed = 0f;
-    private bool isActive = false; // Determines if the horse can move
+    private bool isActive = false; 
     private Vector3 moveDirection = Vector3.zero;
-    public AudioSource audioSource;
-    public AudioClip clip;
+
+    [Header("Audio Settings")]
+    public AudioSource gallopAudioSource; // Continuous galloping sound (looped)
+    public AudioSource footstepAudioSource; // Individual footstep sounds
+    public AudioClip footstepClip; // Assign in Inspector
 
     void Start()
     {
@@ -23,55 +26,68 @@ public class HorseController : MonoBehaviour
             animator = GetComponent<Animator>();
         }
 
-        // Ensure horse starts in idle mode
         animator.SetFloat("Speed", 0.0f);
+
+        // Ensure gallopAudioSource is set to loop for continuous galloping sound
+        if (gallopAudioSource != null)
+        {
+            gallopAudioSource.loop = true;
+            gallopAudioSource.playOnAwake = false;
+        }
     }
 
     void Update()
     {
-        if (isActive) // Only handle movement if active
+        if (isActive) 
         {
             HandleMovement();
         }
     }
 
+    // 🎵 Play this via Animation Events for hoofstep sounds
     public void PlayFootstep()
     {
-        if (audioSource != null && clip != null)
+        if (footstepAudioSource != null && footstepClip != null)
         {
-            audioSource.pitch = Random.Range(0.9f, 1.1f);
-            audioSource.PlayOneShot(clip);
+            footstepAudioSource.pitch = Random.Range(0.9f, 1.1f); // Randomize pitch for variation
+            footstepAudioSource.PlayOneShot(footstepClip);
         }
     }
+
     void HandleMovement()
     {
-        float horizontal = Input.GetAxis("Horizontal"); // A/D or Left/Right
-        float vertical = Input.GetAxis("Vertical"); // W/S or Up/Down
+        float horizontal = Input.GetAxis("Horizontal"); 
+        float vertical = Input.GetAxis("Vertical"); 
 
-        // Normalize movement vector so diagonal movement isn't faster
         Vector3 inputDirection = new Vector3(horizontal, 0f, vertical).normalized;
-
-        // Determine target speed based on movement input
         float targetSpeed = (inputDirection.magnitude > 0) ? gallopSpeed : 0f;
 
-        // Smoothly transition to the target speed
         currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * acceleration);
 
-        // Move the horse
         if (inputDirection.magnitude > 0)
         {
-            // Rotate the horse towards movement direction
             Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         }
 
-        // Apply movement
         moveDirection = transform.forward * currentSpeed * Time.deltaTime;
         controller.Move(moveDirection);
-
-        // Update animator
+        
         animator.SetFloat("Speed", currentSpeed);
         animator.SetBool("Galloping", currentSpeed > 0);
+
+        // 🎵 Control galloping sound properly
+        if (gallopAudioSource != null)
+        {
+            if (currentSpeed > 0 && !gallopAudioSource.isPlaying)
+            {
+                gallopAudioSource.Play(); // Start looped galloping sound
+            }
+            else if (currentSpeed <= 0 && gallopAudioSource.isPlaying)
+            {
+                gallopAudioSource.Stop(); // Stop sound when horse stops
+            }
+        }
     }
 
     public void ActivateHorseControl()
