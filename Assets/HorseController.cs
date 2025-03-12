@@ -11,6 +11,8 @@ public class HorseController : MonoBehaviour
     private float currentSpeed = 0f;
     private bool isActive = false; // Determines if the horse can move
     private Vector3 moveDirection = Vector3.zero;
+    public AudioSource audioSource;
+    public AudioClip clip;
 
     void Start()
     {
@@ -33,6 +35,14 @@ public class HorseController : MonoBehaviour
         }
     }
 
+    public void PlayFootstep()
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
+            audioSource.PlayOneShot(clip);
+        }
+    }
     void HandleMovement()
     {
         float horizontal = Input.GetAxis("Horizontal"); // A/D or Left/Right
