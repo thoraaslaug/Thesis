@@ -8,7 +8,7 @@ public class WaterRespawn : MonoBehaviour
     {
         if (other.CompareTag("Player")) // Ensure the Player has the "Player" tag
         {
-            Debug.Log("Player touched water! Respawning...");
+            //Debug.Log("Player touched water! Respawning...");
 
             CharacterController controller = other.GetComponent<CharacterController>();
             if (controller != null)
