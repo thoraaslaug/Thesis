@@ -110,10 +110,10 @@ namespace StarterAssets
                // _cameraFollow.SetMounted(true);
             }
 
-            if (_cameraFollow != null)
+           /* if (_cameraFollow != null)
             {
                 _cameraFollow.SetMounted(true);
-            }
+            }*/
             
         }
 
