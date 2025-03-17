@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -43,7 +44,11 @@ namespace StarterAssets
         private SnowPathDrawer _snowPathDrawer;
 
         public AudioSource audioSource;
-        public AudioClip clip; 
+        public AudioClip clip;
+
+        public HorseController horse;
+        public ThirdPersonController player;
+        public Animator horseAnimator;
         
         private float gravity = -9.81f;  // Standard gravity value
         private float verticalVelocity = 0f; // Stores downward movement
@@ -206,6 +211,63 @@ namespace StarterAssets
                 }
             }
         }
+        public void DismountHorse()
+        {
+            if (!isMounted) return; // Prevent dismounting if already on the ground
+
+            Debug.Log("Dismounting...");
+
+            isMounted = false; // Update state
+
+            player.enabled = true;
+            horse.enabled = false;
+            
+
+            // Enable Animator (if disabled while riding)
+            if (!_animator.enabled)
+            {
+                _animator.enabled = true;
+            }
+
+            // Set animation parameters
+            _animator.SetBool("IsRiding", false); // Exit Riding State
+            _animator.SetTrigger("Dismount"); // Play Dismount Animation
+
+            if (horse != null)
+            {
+                horseAnimator.SetFloat("Speed", 0.0f);
+                horseAnimator.SetBool("Galloping", false);
+            }
+
+            // Disable movement while dismounting
+            _controller.enabled = false;
+
+            // Delay movement until animation completes
+            StartCoroutine(HandleDismount());
+        }
+
+        private IEnumerator HandleDismount()
+        {
+            yield return new WaitForSeconds(1.5f); // Adjust based on animation length
+
+            // Move player to the side after animation
+            Vector3 dismountPosition = transform.position + transform.right * 1.5f;
+            transform.position = dismountPosition;
+
+            // Re-enable CharacterController
+            _controller.enabled = true;
+            
+
+            // Ensure correct animation state
+            _animator.SetFloat("Speed", 0.0f);
+
+            MountSystem mountSystem = horse.GetComponent<MountSystem>();
+            if (mountSystem != null)
+            {
+                mountSystem.isMounted = false;
+            }
+        }
+
 
         private bool IsGrounded()
         {

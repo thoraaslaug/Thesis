@@ -13,7 +13,7 @@ public class MountSystem : MonoBehaviour
 
     private ThirdPersonController playerController;
     private HorseController horseController;
-    private bool isMounted = false;
+    public bool isMounted = false;
     private HorseCameraFollow horseCameraFollow;
     private HorseCameraFollow cameraFollow;
 

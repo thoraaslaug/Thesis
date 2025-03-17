@@ -43,8 +43,6 @@ public class HorseController : MonoBehaviour
             HandleMovement();
         }
     }
-
-    // 🎵 Play this via Animation Events for hoofstep sounds
     public void PlayFootstep()
     {
         if (footstepAudioSource != null && footstepClip != null)
@@ -94,6 +92,12 @@ public class HorseController : MonoBehaviour
     {
         isActive = true;
     }
+    
+    public void DeActivateHorseControl()
+    {
+        isActive = false;
+    }
+
 
     public float GetCurrentSpeed()
     {
