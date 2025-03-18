@@ -1,14 +1,23 @@
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class SnowstormTrigger : MonoBehaviour
 {
-    public VisualEffect snowVFX;  // Assign the VFX Graph object
-    public float normalRate = 100f; // Default particle spawn rate
-    public float stormRate = 1000f; // Increased spawn rate during storm
-    public float normalSpeed = 2f; // Normal falling speed
-    public float stormSpeed = 8f; // Faster falling speed in storm
-    public float transitionTime = 2f; // Time to blend into storm
+    public VisualEffect snowVFX;  
+    public float normalRate = 100f; 
+    public float stormRate = 1000f;
+    public float normalSpeed = 2f;
+    public float stormSpeed = 8f;
+    public float transitionTime = 2f;
+
+    public ThirdPersonController playerController; 
+    public HorseController horseController; // ✅ Reference to HorseController
+
+    public float normalMoveSpeed = 2.0f;
+    public float normalSprintSpeed = 5.335f;
+    public float stormMoveSpeed = 0.8f;
+    public float stormSprintSpeed = 2.0f;
 
     private bool isStormActive = false;
     private float currentRate;
@@ -16,39 +25,35 @@ public class SnowstormTrigger : MonoBehaviour
 
     void Start()
     {
-        if (snowVFX == null)
+        if (snowVFX == null || playerController == null || horseController == null)
         {
+            Debug.LogError("❌ Missing Visual Effect, PlayerController, or HorseController reference!");
             return;
         }
 
-        // Set initial values
         currentRate = normalRate;
         currentSpeed = normalSpeed;
         snowVFX.SetFloat("SpawnRate", currentRate);
         snowVFX.SetFloat("SnowSpeed", currentSpeed);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void StartSnowstorm()
     {
-        if (other.CompareTag("Player") && !isStormActive)
+        if (!isStormActive)
         {
+            Debug.Log("❄ Snowstorm begins! Player and horse struggle.");
             isStormActive = true;
             StopAllCoroutines();
             StartCoroutine(ChangeSnowstorm(stormRate, stormSpeed));
+
+            // Reduce player movement speed
+            playerController.MoveSpeed = stormMoveSpeed;
+            playerController.SprintSpeed = stormSprintSpeed;
+
+            // ✅ Make the horse harder to control
+            horseController.EnterSnowstorm();
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player") && isStormActive)
-        {
-           
-            isStormActive = false;
-            StopAllCoroutines();
-            StartCoroutine(ChangeSnowstorm(normalRate, normalSpeed));
-        }
-    }
-
 
     private System.Collections.IEnumerator ChangeSnowstorm(float targetRate, float targetSpeed)
     {

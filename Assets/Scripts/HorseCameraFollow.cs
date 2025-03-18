@@ -33,29 +33,40 @@ public class HorseCameraFollow : MonoBehaviour
     {
         if (horse == null) return;
 
-        // Calculate movement speed
-        float movementSpeed = (horse.position - lastHorsePosition).magnitude / Time.deltaTime;
+        // Calculate movement direction
+        Vector3 movementDirection = horse.position - lastHorsePosition;
+        float movementSpeed = movementDirection.magnitude / Time.deltaTime;
         lastHorsePosition = horse.position;
 
-        // Check if the horse is moving
+        // Check if horse is moving
         isMoving = movementSpeed > 0.1f;
         float targetFOV = isMoving ? movingFOV : defaultFOV;
 
-        // Adjust offset based on movement
+        // Adjust offset dynamically based on movement direction
         if (isMounted)
         {
-            currentOffset = isMoving ? mountedOffset : mountedIdleOffset;
+            // 🔥 Always center player by inverting X offset when moving left
+            float xOffset = movementDirection.x < 0 ? -Mathf.Abs(mountedOffset.x) : Mathf.Abs(mountedOffset.x);
+            currentOffset = new Vector3(xOffset, mountedOffset.y, mountedOffset.z);
+
+            // If idle, use idle offset (but keep X-centered)
+            if (!isMoving)
+            {
+                currentOffset = new Vector3(0, mountedIdleOffset.y, mountedIdleOffset.z);
+            }
         }
 
         // Smoothly transition camera position
         Vector3 targetPosition = horse.position + currentOffset;
         transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
-        
+
+        // Smoothly transition FOV
         if (cam != null)
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, zoomSpeed * Time.deltaTime);
         }
     }
+
     
  /*   void LateUpdate()
     {

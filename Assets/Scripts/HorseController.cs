@@ -12,10 +12,16 @@ public class HorseController : MonoBehaviour
     private bool isActive = false; 
     private Vector3 moveDirection = Vector3.zero;
 
+    [Header("Snowstorm Settings")]
+    public bool isInSnowstorm = false; // ✅ Tracks if the horse is in a snowstorm
+    public float stormGallopSpeed = 4f; // ✅ Reduced speed in snowstorm
+    public float stormTurnSpeed = 4f; // ✅ Reduced turn responsiveness
+    public float stormAcceleration = 2f; // ✅ Slower acceleration
+
     [Header("Audio Settings")]
-    public AudioSource gallopAudioSource; // Continuous galloping sound (looped)
-    public AudioSource footstepAudioSource; // Individual footstep sounds
-    public AudioClip footstepClip; // Assign in Inspector
+    public AudioSource gallopAudioSource; 
+    public AudioSource footstepAudioSource; 
+    public AudioClip footstepClip; 
 
     void Start()
     {
@@ -28,7 +34,6 @@ public class HorseController : MonoBehaviour
 
         animator.SetFloat("Speed", 0.0f);
 
-        // Ensure gallopAudioSource is set to loop for continuous galloping sound
         if (gallopAudioSource != null)
         {
             gallopAudioSource.loop = true;
@@ -43,11 +48,12 @@ public class HorseController : MonoBehaviour
             HandleMovement();
         }
     }
+
     public void PlayFootstep()
     {
         if (footstepAudioSource != null && footstepClip != null)
         {
-            footstepAudioSource.pitch = Random.Range(0.9f, 1.1f); // Randomize pitch for variation
+            footstepAudioSource.pitch = Random.Range(0.9f, 1.1f); 
             footstepAudioSource.PlayOneShot(footstepClip);
         }
     }
@@ -58,14 +64,19 @@ public class HorseController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical"); 
 
         Vector3 inputDirection = new Vector3(horizontal, 0f, vertical).normalized;
-        float targetSpeed = (inputDirection.magnitude > 0) ? gallopSpeed : 0f;
 
-        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime * acceleration);
+        // ✅ Use slower speed, turn speed, and acceleration if in a snowstorm
+        float targetSpeed = isInSnowstorm ? stormGallopSpeed : gallopSpeed;
+        float targetTurnSpeed = isInSnowstorm ? stormTurnSpeed : turnSpeed;
+        float targetAcceleration = isInSnowstorm ? stormAcceleration : acceleration;
+
+        float finalSpeed = (inputDirection.magnitude > 0) ? targetSpeed : 0f;
+        currentSpeed = Mathf.Lerp(currentSpeed, finalSpeed, Time.deltaTime * targetAcceleration);
 
         if (inputDirection.magnitude > 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, targetTurnSpeed * Time.deltaTime);
         }
 
         moveDirection = transform.forward * currentSpeed * Time.deltaTime;
@@ -74,16 +85,15 @@ public class HorseController : MonoBehaviour
         animator.SetFloat("Speed", currentSpeed);
         animator.SetBool("Galloping", currentSpeed > 0);
 
-        // 🎵 Control galloping sound properly
         if (gallopAudioSource != null)
         {
             if (currentSpeed > 0 && !gallopAudioSource.isPlaying)
             {
-                gallopAudioSource.Play(); // Start looped galloping sound
+                gallopAudioSource.Play(); 
             }
             else if (currentSpeed <= 0 && gallopAudioSource.isPlaying)
             {
-                gallopAudioSource.Stop(); // Stop sound when horse stops
+                gallopAudioSource.Stop(); 
             }
         }
     }
@@ -98,6 +108,17 @@ public class HorseController : MonoBehaviour
         isActive = false;
     }
 
+    public void EnterSnowstorm()
+    {
+        Debug.Log("🌨 Horse is struggling in the snowstorm!");
+        isInSnowstorm = true;
+    }
+
+    public void ExitSnowstorm()
+    {
+        Debug.Log("☀ Horse is moving freely again!");
+        isInSnowstorm = false;
+    }
 
     public float GetCurrentSpeed()
     {
