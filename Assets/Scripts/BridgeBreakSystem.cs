@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+   
 
 public class BridgeBreakSystem : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class BridgeBreakSystem : MonoBehaviour
             if (PreconditionTracker.hasEnteredPrecondition)
             {
                 Debug.Log("Player has been in the precondition area before. Breaking bridge...");
-                StartCoroutine(BreakBridge());
+                BreakBridge();
             }
             else
             {
@@ -22,8 +23,20 @@ public class BridgeBreakSystem : MonoBehaviour
             }
         }
     }
+    
+    private void BreakBridge()
+    {
+        foreach (GameObject part in bridgeParts)
+        {
+            if (part != null)
+            {
+                Debug.Log("Breaking Bridge Part: " + part.name);
+                part.SetActive(false);
+            }
+        }
+    }
 
-    private IEnumerator BreakBridge()
+    /*private IEnumerator BreakBridge()
     {
         while (nextBridgePartIndex < bridgeParts.Length)
         {
@@ -37,5 +50,5 @@ public class BridgeBreakSystem : MonoBehaviour
             nextBridgePartIndex++;
             yield return new WaitForSeconds(breakingDelay);
         }
-    }
+    }*/
 }

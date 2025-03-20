@@ -45,7 +45,7 @@ public class HorseCameraFollow : MonoBehaviour
         // Adjust offset dynamically based on movement direction
         if (isMounted)
         {
-            // 🔥 Always center player by inverting X offset when moving left
+            //  Always center player by inverting X offset when moving left
             float xOffset = movementDirection.x < 0 ? -Mathf.Abs(mountedOffset.x) : Mathf.Abs(mountedOffset.x);
             currentOffset = new Vector3(xOffset, mountedOffset.y, mountedOffset.z);
 

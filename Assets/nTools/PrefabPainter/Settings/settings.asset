@@ -1977,7 +1977,7 @@ MonoBehaviour:
       customPreviewImage: {fileID: 0}
     - name: Grass_A
       settings:
-        brushRadius: 0.26
+        brushRadius: 0.62
         brushSpacing: 0.5
         brushOverlapCheckMode: 0
         brushOverlapDistance: 0.5
@@ -3021,7 +3021,7 @@ MonoBehaviour:
   pinSnapScale: 0
   placeAngleStep: 15
   placeScaleStep: 0.1
-  eraseBrushRadius: 0.34
+  eraseBrushRadius: 7.87
   eraseByLayer: 1
   eraseLayers:
     serializedVersion: 2

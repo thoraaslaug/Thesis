@@ -1,8 +1,8 @@
 Shader "Unlit/IrisCutoutShader"
 {  
- Properties
+  Properties
     {
-        _IrisSize ("Iris Size", Range(0, 1)) = 0.01
+        _IrisSize ("Iris Size", Range(0, 1)) = 0.0000001
     }
     SubShader
     {
@@ -43,9 +43,9 @@ Shader "Unlit/IrisCutoutShader"
                 float2 center = float2(0.5, 0.5); // Center of screen
                 float dist = distance(i.texcoord, center);
 
-                // 🔥 Reveal the inside of the iris and keep the outer area black
+                // 🔥 Create a transparent hole in a black screen
                 float mask = smoothstep(_IrisSize, _IrisSize + 0.02, dist);
-                return fixed4(0, 0, 0, 1 - mask); // This keeps the outside black
+                return fixed4(0, 0, 0, mask); // Transparent inside, black outside
             }
             ENDCG
         }
