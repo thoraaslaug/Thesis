@@ -1,12 +1,13 @@
-using System.Collections;
 using UnityEngine;
-   
+using System.Collections;
 
 public class BridgeBreakSystem : MonoBehaviour
 {
-    public GameObject[] bridgeParts; // Assign bridge pieces in Inspector
-    public float breakingDelay = 0.5f; // Delay before each plank disappears
-    private int nextBridgePartIndex = 0; // Tracks which part to break next
+    public GameObject[] bridgeParts; // Assign the bridge parts in the Inspector
+    public float fallDelay = 0.1f; // Delay before falling starts
+    public float staggerDelay = 0.05f; // Delay between each part falling
+    public float fallSpeed = 2f; // Speed at which parts fall
+    public float fallDistance = 5f; // How far each piece falls down
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,41 +15,41 @@ public class BridgeBreakSystem : MonoBehaviour
         {
             if (PreconditionTracker.hasEnteredPrecondition)
             {
-                Debug.Log("Player has been in the precondition area before. Breaking bridge...");
-                BreakBridge();
-            }
-            else
-            {
-                Debug.Log("Player has NOT entered the required area yet!");
+                StartCoroutine(MakeBridgeFall());
             }
         }
     }
-    
-    private void BreakBridge()
+
+    private IEnumerator MakeBridgeFall()
     {
+        yield return new WaitForSeconds(fallDelay);
+
         foreach (GameObject part in bridgeParts)
         {
             if (part != null)
             {
-                Debug.Log("Breaking Bridge Part: " + part.name);
-                part.SetActive(false);
+                StartCoroutine(FallDown(part));
             }
+            yield return new WaitForSeconds(staggerDelay); // If you want them to fall one by one
         }
     }
 
-    /*private IEnumerator BreakBridge()
+    private IEnumerator FallDown(GameObject part)
     {
-        while (nextBridgePartIndex < bridgeParts.Length)
-        {
-            GameObject part = bridgeParts[nextBridgePartIndex];
-            if (part != null)
-            {
-                Debug.Log("Breaking Bridge Part: " + part.name);
-                part.SetActive(false);
-            }
+        Vector3 startPosition = part.transform.position;
+        Vector3 targetPosition = startPosition + Vector3.down * fallDistance; // Move downward
 
-            nextBridgePartIndex++;
-            yield return new WaitForSeconds(breakingDelay);
+        float elapsedTime = 0f;
+        float duration = fallDistance / fallSpeed; // Controls how long it takes to fall
+
+        while (elapsedTime < duration)
+        {
+            part.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
         }
-    }*/
+
+        // Ensure it lands exactly at the final position
+        part.transform.position = targetPosition;
+    }
 }
