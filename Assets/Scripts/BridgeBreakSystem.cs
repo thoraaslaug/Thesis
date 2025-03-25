@@ -3,18 +3,36 @@ using System.Collections;
 
 public class BridgeBreakSystem : MonoBehaviour
 {
-    public GameObject[] bridgeParts; // Assign the bridge parts in the Inspector
-    public float fallDelay = 0.1f; // Delay before falling starts
-    public float staggerDelay = 0.05f; // Delay between each part falling
-    public float fallSpeed = 2f; // Speed at which parts fall
-    public float fallDistance = 5f; // How far each piece falls down
+    public GameObject[] bridgeParts; // Assign all bridge parts
+    public float fallDelay = 0.1f;
+    public float staggerDelay = 0.05f;
+    public float fallSpeed = 2f;
+    public float fallDistance = 5f;
+    public GameObject firstRock; // Assign one rock to fall first
+
+    private bool hasPlayerEnteredOnce = false;
+    private bool hasBroken = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (PreconditionTracker.hasEnteredPrecondition)
+            // Trigger the first rock only once
+            if (!hasPlayerEnteredOnce)
             {
+                hasPlayerEnteredOnce = true;
+                if (firstRock != null)
+                {
+                    Debug.Log("Player first entered bridge. Dropping one rock.");
+                    StartCoroutine(FallDown(firstRock));
+                }
+            }
+
+            // Trigger full bridge collapse if the condition is met
+            if (PreconditionTracker.hasEnteredPrecondition && !hasBroken)
+            {
+                hasBroken = true;
+                Debug.Log("Precondition met. Breaking full bridge.");
                 StartCoroutine(MakeBridgeFall());
             }
         }
@@ -30,17 +48,17 @@ public class BridgeBreakSystem : MonoBehaviour
             {
                 StartCoroutine(FallDown(part));
             }
-            yield return new WaitForSeconds(staggerDelay); // If you want them to fall one by one
+            yield return new WaitForSeconds(staggerDelay);
         }
     }
 
     private IEnumerator FallDown(GameObject part)
     {
         Vector3 startPosition = part.transform.position;
-        Vector3 targetPosition = startPosition + Vector3.down * fallDistance; // Move downward
+        Vector3 targetPosition = startPosition + Vector3.down * fallDistance;
 
         float elapsedTime = 0f;
-        float duration = fallDistance / fallSpeed; // Controls how long it takes to fall
+        float duration = fallDistance / fallSpeed;
 
         while (elapsedTime < duration)
         {
@@ -49,7 +67,6 @@ public class BridgeBreakSystem : MonoBehaviour
             yield return null;
         }
 
-        // Ensure it lands exactly at the final position
         part.transform.position = targetPosition;
     }
 }
