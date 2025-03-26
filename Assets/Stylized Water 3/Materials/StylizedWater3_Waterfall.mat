@@ -15,6 +15,7 @@ Material:
   - _ADVANCED_SHADING
   - _DISTANCE_NORMALS
   - _NORMALMAP
+  - _REFRACTION
   - _RIVER
   - _SURFACE_FOAM_SINGLE
   - _TRANSLUCENCY
@@ -138,8 +139,8 @@ Material:
     - _Cutoff: 0.5
     - _Depth: 2.07
     - _DepthExp: 1
-    - _DepthHorizontal: 0.01
-    - _DepthVertical: 2.31
+    - _DepthHorizontal: 8
+    - _DepthVertical: 16
     - _DisableDepthTexture: 0
     - _DistanceFoamTiling: 0.2
     - _DistanceNormalsOn: 1
@@ -216,16 +217,16 @@ Material:
     - _ReflectionLighting: 0
     - _ReflectionStrength: 1
     - _RefractionChromaticAberration: 1
-    - _RefractionOn: 0
+    - _RefractionOn: 1
     - _RefractionStrength: 1
     - _RiverModeOn: 1
     - _ScreenSpaceReflectionsEnabled: 0
     - _ShadingMode: 1
     - _ShadowStrength: 1
-    - _SlopeAngleFalloff: 90
-    - _SlopeAngleThreshold: 0
+    - _SlopeAngleFalloff: 42.8
+    - _SlopeAngleThreshold: 34
     - _SlopeFoam: 0.73
-    - _SlopeSpeed: 6
+    - _SlopeSpeed: 3
     - _SlopeStretch: 0.491
     - _SlopeStretching: 0.71
     - _SlopeThreshold: 0.25
@@ -259,7 +260,7 @@ Material:
     - _WaveMaxLayers: 16
     - _WaveNormalStr: 6
     - _WaveSpeed: 1
-    - _WaveSteepness: 5
+    - _WaveSteepness: 0.43
     - _WaveTint: 0
     - _WavesOn: 1
     - _WorkflowMode: 1
@@ -278,7 +279,7 @@ Material:
     - _FoamTiling: {r: 0.1, g: 0.05, b: 0, a: 0}
     - _HorizonColor: {r: 0, g: 0, b: 0, a: 0}
     - _IntersectionColor: {r: 1, g: 1, b: 1, a: 0.46666667}
-    - _NormalTiling: {r: 0.2, g: 0.2, b: 0, a: 0}
+    - _NormalTiling: {r: 5, g: 5, b: 0, a: 0}
     - _ShallowColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WaveDirection: {r: 2, g: 1, b: 2, a: 1}

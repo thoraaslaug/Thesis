@@ -30,7 +30,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Cutoff: 0.6919414
-    - _IrisSize: 0.94894105
+    - _IrisSize: 1
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
