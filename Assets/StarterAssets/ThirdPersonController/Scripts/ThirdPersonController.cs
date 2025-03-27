@@ -221,6 +221,8 @@ namespace StarterAssets
 
             player.enabled = true;
             horse.enabled = false;
+            _input.move = Vector2.zero; // reset input just in case
+            _input.enabled = false;   
             
 
             // Enable Animator (if disabled while riding)
@@ -248,17 +250,18 @@ namespace StarterAssets
 
         private IEnumerator HandleDismount()
         {
-            yield return new WaitForSeconds(1.5f); // Adjust based on animation length
+            yield return new WaitForSeconds(1.5f); // Match your dismount animation time
 
-            // Move player to the side after animation
+            // Move the player slightly to the side
             Vector3 dismountPosition = transform.position + transform.right * 1.5f;
             transform.position = dismountPosition;
 
-            // Re-enable CharacterController
+            // Re-enable character controller
             _controller.enabled = true;
-            
 
-            // Ensure correct animation state
+            // Re-enable player input ✅
+            _input.enabled = true;
+
             _animator.SetFloat("Speed", 0.0f);
 
             MountSystem mountSystem = horse.GetComponent<MountSystem>();
@@ -267,6 +270,7 @@ namespace StarterAssets
                 mountSystem.isMounted = false;
             }
         }
+
 
 
         private bool IsGrounded()
