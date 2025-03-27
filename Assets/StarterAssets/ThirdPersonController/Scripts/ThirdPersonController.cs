@@ -250,16 +250,13 @@ namespace StarterAssets
 
         private IEnumerator HandleDismount()
         {
-            yield return new WaitForSeconds(1.5f); // Match your dismount animation time
+            yield return new WaitForSeconds(1.5f);
 
             // Move the player slightly to the side
-            Vector3 dismountPosition = transform.position + transform.right * 1.5f;
-            transform.position = dismountPosition;
+            //Vector3 dismountPosition = transform.position + transform.right * 1.5f;
+           // transform.position = dismountPosition;
 
-            // Re-enable character controller
             _controller.enabled = true;
-
-            // Re-enable player input ✅
             _input.enabled = true;
 
             _animator.SetFloat("Speed", 0.0f);
