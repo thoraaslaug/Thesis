@@ -3,12 +3,12 @@ using System.Collections;
 
 public class BridgeBreakSystem : MonoBehaviour
 {
-    public GameObject[] bridgeParts; // Assign all bridge parts
+    public GameObject[] bridgeParts;
     public float fallDelay = 0.1f;
     public float staggerDelay = 0.05f;
     public float fallSpeed = 2f;
     public float fallDistance = 5f;
-    public GameObject firstRock; // Assign one rock to fall first
+    public GameObject firstRock;
 
     private bool hasPlayerEnteredOnce = false;
     private bool hasBroken = false;
@@ -17,7 +17,6 @@ public class BridgeBreakSystem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Trigger the first rock only once
             if (!hasPlayerEnteredOnce)
             {
                 hasPlayerEnteredOnce = true;
@@ -28,11 +27,17 @@ public class BridgeBreakSystem : MonoBehaviour
                 }
             }
 
-            // Trigger full bridge collapse if the condition is met
             if (PreconditionTracker.hasEnteredPrecondition && !hasBroken)
             {
                 hasBroken = true;
                 Debug.Log("Precondition met. Breaking full bridge.");
+
+                CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
+                if (cameraShake != null)
+                {
+                    StartCoroutine(cameraShake.Shake(0.5f, 0.3f));
+                }
+
                 StartCoroutine(MakeBridgeFall());
             }
         }

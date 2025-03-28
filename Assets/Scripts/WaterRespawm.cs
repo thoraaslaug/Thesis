@@ -1,35 +1,73 @@
 using UnityEngine;
+using System.Collections;
+using StarterAssets;
 
 public class WaterRespawn : MonoBehaviour
 {
-    public Transform spawnPoint; // Assign this in the Inspector
+    public Transform spawnPoint;
     public ParticleSystem particles;
+
+    public GameObject player;
+    public GameObject female;
+    public Camera mainCamera;
+    public ScreenFade screenFade;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Ensure the Player has the "Player" tag
+        if (other.CompareTag("Player"))
         {
-            //Debug.Log("Player touched water! Respawning...");
+            StartCoroutine(HandleFallSequence(other.gameObject));
+        }
+    }
 
-            CharacterController controller = other.GetComponent<CharacterController>();
-            if (controller != null)
+    private IEnumerator HandleFallSequence(GameObject playerObj)
+    {
+        // Play splash effect
+        if (particles != null)
+        {
+            particles.transform.position = playerObj.transform.position;
+            particles.Play();
+        }
+
+        // Fade to black
+        yield return screenFade.FadeToBlack(1f);
+
+        // Disable player
+        ThirdPersonController playerController = playerObj.GetComponent<ThirdPersonController>();
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+        }
+
+        CharacterController controller = playerObj.GetComponent<CharacterController>();
+        if (controller != null)
+        {
+            controller.enabled = false;
+        }
+
+        playerObj.SetActive(false);
+
+        // Enable female character and controller
+        if (female != null)
+        {
+            female.SetActive(true);
+
+            ThirdPersonController femaleController = female.GetComponent<ThirdPersonController>();
+            if (femaleController != null)
             {
-                controller.enabled = false; // Disable before teleporting
-                other.transform.position = spawnPoint.position;
-                particles.Clear();
-                controller.enabled = true; // Re-enable after moving
-            }
-            else
-            {
-                other.transform.position = spawnPoint.position; // Fallback if no CharacterController
-                
+                femaleController.enabled = true;
             }
 
-            // Reset Velocity if Rigidbody exists
-            Rigidbody rb = other.GetComponent<Rigidbody>();
-            if (rb != null)
+            // Switch camera follow to female
+            HorseCameraFollow camFollow = mainCamera.GetComponent<HorseCameraFollow>();
+            if (camFollow != null)
             {
-                rb.linearVelocity = Vector3.zero; // Stop movement momentum
+                camFollow.SwitchToFemale();
             }
         }
+
+        // Fade from black
+        yield return new WaitForSeconds(0.3f);
+        yield return screenFade.FadeFromBlack(1f);
     }
 }
