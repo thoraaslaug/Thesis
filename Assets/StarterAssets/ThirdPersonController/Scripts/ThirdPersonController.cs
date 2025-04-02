@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Playables;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -53,7 +54,11 @@ namespace StarterAssets
         private float gravity = -9.81f;  // Standard gravity value
         private float verticalVelocity = 0f; // Stores downward movement
         private float groundCheckDistance = 0.1f; // How close the player has to be to be considered "on the ground"
+        public PlayableDirector kissTimeline;
 
+        public GameObject timelineDummy; // assign in inspector
+        private GameObject activeDummy;
+        public GameObject hair;
 
         private void Start()
         {
@@ -250,12 +255,34 @@ namespace StarterAssets
 
         private IEnumerator HandleDismount()
         {
-            yield return new WaitForSeconds(1.5f);
+            // Move and reposition player
+            Vector3 dismountPosition = transform.position + transform.right * 1.5f;
+            transform.position = dismountPosition;
 
-            // Move the player slightly to the side
-            //Vector3 dismountPosition = transform.position + transform.right * 1.5f;
-           // transform.position = dismountPosition;
+            // Align dummy with player and activate it
+            timelineDummy.transform.position = transform.position;
+            timelineDummy.transform.rotation = transform.rotation;
+            timelineDummy.SetActive(true);
 
+            // Hide player mesh / disable input
+            GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+            hair.SetActive(false);
+            _controller.enabled = false;
+            _input.enabled = false;
+
+            // Play timeline
+            kissTimeline.Play();
+
+            // Wait until timeline is done
+            while (kissTimeline.state == PlayState.Playing)
+                yield return null;
+
+            // Deactivate dummy
+            timelineDummy.SetActive(false);
+
+            // Restore player visuals and control
+            GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+            hair.SetActive(true);
             _controller.enabled = true;
             _input.enabled = true;
 
@@ -263,11 +290,8 @@ namespace StarterAssets
 
             MountSystem mountSystem = horse.GetComponent<MountSystem>();
             if (mountSystem != null)
-            {
                 mountSystem.isMounted = false;
-            }
         }
-
 
 
         private bool IsGrounded()
