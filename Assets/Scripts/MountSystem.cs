@@ -86,6 +86,7 @@ public class MountSystem : MonoBehaviour
 
         horseController.enabled = true;
         playerController.MountHorse();
+        cameraFollow.SetMounted(true);
 
         playerAnimator.SetBool("IsRiding", true);
         playerAnimator.SetFloat("Speed", 0.0f); // Ensure starts in idle riding
