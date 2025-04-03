@@ -35,7 +35,7 @@ public class BridgeBreakSystem : MonoBehaviour
                 CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
                 if (cameraShake != null)
                 {
-                    StartCoroutine(cameraShake.Shake(5f, 0.3f));
+                    StartCoroutine(cameraShake.Shake(10f, 0.5f));
                 }
 
                 StartCoroutine(MakeBridgeFall());

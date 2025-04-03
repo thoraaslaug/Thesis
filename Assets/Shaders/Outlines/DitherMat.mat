@@ -23,6 +23,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _CameraOpaqueTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,9 +46,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Dither_scale: 0.5
-    - _Step_Threshold: 0.03
+    - _Step_Threshold: -0.19
     m_Colors:
     - _ColorA: {r: 0, g: 0, b: 0, a: 0}
     - _ColorB: {r: 0.88354397, g: 0.8950374, b: 0.8962264, a: 0.77254903}
+    - _ScrollSpeed: {r: 0.1, g: 0.05, b: 0, a: 0}
+    - _Vector2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -37,7 +37,7 @@ MonoBehaviour:
   m_Name: DitherEffectRenderFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  injectionPoint: 600
+  injectionPoint: 300
   material: {fileID: 2100000, guid: 9c046afc6a55dfd4caadd00e21011c44, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 1
   m_RenderingMode: 2
   m_DepthPrimingMode: 0
-  m_CopyDepthMode: 1
+  m_CopyDepthMode: 2
   m_DepthAttachmentFormat: 0
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0

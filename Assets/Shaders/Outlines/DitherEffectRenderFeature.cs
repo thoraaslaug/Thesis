@@ -44,6 +44,10 @@ public class DitherEffectRenderFeature : ScriptableRendererFeature
            }
 
            var source = resourceData.activeColorTexture;
+           m_BlitMaterial.SetVector("_ScrollSpeed", customEffect.scrollSpeed.value);
+
+           //m_BlitMaterial.SetFloat("_RotationSpeed", customEffect.rotationSpeed.value);
+
            
            var destionationDesc = renderGraph.GetTextureDesc(source);
            destionationDesc.name = $"CameraColor-{m_PassName}";
@@ -72,6 +76,8 @@ public class DitherEffectRenderFeature : ScriptableRendererFeature
 
         // Configures where the render pass should be injected.
         m_ScriptablePass.renderPassEvent = injectionPoint;
+        //m_ScriptablePass.renderPassEvent = RenderPassEvent.AfterRenderingTransparents;
+
     }
 
     // Here you can inject one or multiple render passes in the renderer.

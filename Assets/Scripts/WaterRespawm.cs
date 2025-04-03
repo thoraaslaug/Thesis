@@ -31,9 +31,11 @@ public class WaterRespawn : MonoBehaviour
 
         // Fade to black
         yield return screenFade.FadeToBlack(1f);
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Interior");
 
         // Disable player
-        ThirdPersonController playerController = playerObj.GetComponent<ThirdPersonController>();
+       /* ThirdPersonController playerController = playerObj.GetComponent<ThirdPersonController>();
         if (playerController != null)
         {
             playerController.enabled = false;
@@ -64,7 +66,7 @@ public class WaterRespawn : MonoBehaviour
             {
                 camFollow.SwitchToFemale();
             }
-        }
+        }*/
 
         // Fade from black
         yield return new WaitForSeconds(0.3f);

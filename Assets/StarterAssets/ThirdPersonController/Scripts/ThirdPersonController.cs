@@ -276,7 +276,10 @@ namespace StarterAssets
             // Wait until timeline is done
             while (kissTimeline.state == PlayState.Playing)
                 yield return null;
-
+            
+            
+            transform.position = timelineDummy.transform.position;
+            transform.rotation = timelineDummy.transform.rotation;
             // Deactivate dummy
             timelineDummy.SetActive(false);
 
