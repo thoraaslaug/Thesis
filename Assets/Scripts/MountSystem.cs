@@ -16,6 +16,11 @@ public class MountSystem : MonoBehaviour
     public bool isMounted = false;
     private HorseCameraFollow horseCameraFollow;
     private HorseCameraFollow cameraFollow;
+    public Transform reinsLeftEnd;
+    public Transform reinsRightEnd;
+    public Transform riderLeftHand;
+    public Transform riderRightHand;
+    public Transform reinsResetParent;
 
 
     void Start()
@@ -83,6 +88,7 @@ public class MountSystem : MonoBehaviour
         player.transform.position = mountPoint.position;
         player.transform.rotation = mountPoint.rotation;
         player.transform.SetParent(mountPoint);
+        AttachReinsToHands();
 
         horseController.enabled = true;
         playerController.MountHorse();
@@ -92,5 +98,23 @@ public class MountSystem : MonoBehaviour
         playerAnimator.SetFloat("Speed", 0.0f); // Ensure starts in idle riding
 
         //Debug.Log("Player is now riding. Horse control enabled.");
+    }
+    
+    void AttachReinsToHands()
+    {
+        if (reinsLeftEnd && riderLeftHand)
+            reinsLeftEnd.SetParent(riderLeftHand, worldPositionStays: false);
+
+        if (reinsRightEnd && riderRightHand)
+            reinsRightEnd.SetParent(riderRightHand, worldPositionStays: false);
+    }
+    
+    public void DetachReins()
+    {
+        if (reinsLeftEnd && reinsResetParent)
+            reinsLeftEnd.SetParent(reinsResetParent, worldPositionStays: true);
+
+        if (reinsRightEnd && reinsResetParent)
+            reinsRightEnd.SetParent(reinsResetParent, worldPositionStays: true);
     }
 }
