@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 823f6b206953b674a9a64f9e3ec57752
+AssetOrigin:
+  serializedVersion: 1
+  productId: 287769
+  packageName: Stylized Water 3
+  packageVersion: 3.0.5
+  assetPath: Assets/Stylized Water 3/Shaders/StylizedWater3_Standard.watershader3
+  uploadId: 737768
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -52,20 +59,16 @@ ScriptedImporter:
   - Assets/Stylized Water 3/Shaders/Libraries/Lighting.hlsl
   - Assets/Stylized Water 3/Shaders/Libraries/Reflections.hlsl
   - Assets/Stylized Water 3/Shaders/Libraries/Refraction.hlsl
-  - Assets/Stylized Water 3/Shaders/Underwater/UnderwaterFog.hlsl
-  - Assets/Stylized Water 3/Shaders/Underwater/UnderwaterShading.hlsl
-  - Assets/Stylized Water 3/Shaders/Underwater/UnderwaterMask.hlsl
   - Assets/Stylized Water 3/Shaders/Libraries/Normals.hlsl
   - Assets/Stylized Water 3/Shaders/Libraries/Foam.hlsl
   - Assets/Stylized Water 3/Shaders/Libraries/Caustics.hlsl
-  - Assets/Stylized Water 3/Shaders/DynamicEffects/DynamicEffects.hlsl
   - Assets/Stylized Water 3/Shaders/Libraries/Vertex.hlsl
   - Assets/Stylized Water 3/Shaders/Libraries/Tesselation.hlsl
   - Assets/Stylized Water 3/Shaders/Passes/ForwardPass.hlsl
   - Assets/Stylized Water 3/Shaders/Passes/HeightPrePass.hlsl
   configurationState:
-    underwaterRendering: 1
-    dynamicEffects: 1
+    underwaterRendering: 0
+    dynamicEffects: 0
     fogIntegration:
       name: Default Unity
       asset: 1
@@ -73,14 +76,6 @@ ScriptedImporter:
       url: 
       underwaterCompatible: 1
       thumbnailBytes: 
-      thumbnail: {fileID: 7123690520299862052, guid: 0000000000000000d000000000000000,
-        type: 0}
+      thumbnail: {fileID: 7123690520299862052, guid: 0000000000000000d000000000000000, type: 0}
       installed: 1
       includeWithPragmas: 1
-AssetOrigin:
-  serializedVersion: 1
-  productId: 287769
-  packageName: Stylized Water 3
-  packageVersion: 3.0.5
-  assetPath: Assets/Stylized Water 3/Shaders/StylizedWater3_Standard.watershader3
-  uploadId: 737768

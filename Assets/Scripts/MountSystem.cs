@@ -88,7 +88,8 @@ public class MountSystem : MonoBehaviour
         player.transform.position = mountPoint.position;
         player.transform.rotation = mountPoint.rotation;
         player.transform.SetParent(mountPoint);
-        AttachReinsToHands();
+        cameraFollow.SwitchToHorse();
+        //AttachReinsToHands();
 
         horseController.enabled = true;
         playerController.MountHorse();
@@ -100,7 +101,7 @@ public class MountSystem : MonoBehaviour
         //Debug.Log("Player is now riding. Horse control enabled.");
     }
     
-    void AttachReinsToHands()
+   /* void AttachReinsToHands()
     {
         if (reinsLeftEnd && riderLeftHand)
             reinsLeftEnd.SetParent(riderLeftHand, worldPositionStays: false);
@@ -116,5 +117,5 @@ public class MountSystem : MonoBehaviour
 
         if (reinsRightEnd && reinsResetParent)
             reinsRightEnd.SetParent(reinsResetParent, worldPositionStays: true);
-    }
+    }*/
 }

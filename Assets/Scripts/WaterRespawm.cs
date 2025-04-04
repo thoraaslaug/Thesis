@@ -22,17 +22,46 @@ public class WaterRespawn : MonoBehaviour
 
     private IEnumerator HandleFallSequence(GameObject playerObj)
     {
-        // Play splash effect
+        // 🌊 Splash effect
         if (particles != null)
         {
             particles.transform.position = playerObj.transform.position;
             particles.Play();
         }
 
-        // Fade to black
+        // 🕶️ Fade to black once
         yield return screenFade.FadeToBlack(1f);
+
+        if (BridgeBreakSystem.HasBroken)
+        {
+            // 🌁 Bridge broke → load next scene
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Interior");
+            yield break;
+        }
+        else
+        {
+            // ❗ Disable CharacterController before teleporting
+            CharacterController controller = player.GetComponent<CharacterController>();
+            if (controller != null) controller.enabled = false;
+
+            // 🧭 Move the player
+            player.transform.position = spawnPoint.position;
+            player.transform.rotation = spawnPoint.rotation;
+
+            yield return new WaitForSeconds(0.2f); // Short wait to ensure position is applied
+
+            // ✅ Re-enable CharacterController
+            if (controller != null) controller.enabled = true;
+
+            // 🌅 Fade from black
+            yield return screenFade.FadeFromBlack(1f);
+        }
+    }
+
+
+        // Fade to black
         
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Interior");
+        
 
         // Disable player
        /* ThirdPersonController playerController = playerObj.GetComponent<ThirdPersonController>();
@@ -69,7 +98,6 @@ public class WaterRespawn : MonoBehaviour
         }*/
 
         // Fade from black
-        yield return new WaitForSeconds(0.3f);
-        yield return screenFade.FadeFromBlack(1f);
-    }
+       // yield return new WaitForSeconds(0.3f);
+        //yield return screenFade.FadeFromBlack(1f);
 }

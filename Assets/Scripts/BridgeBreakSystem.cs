@@ -11,7 +11,7 @@ public class BridgeBreakSystem : MonoBehaviour
     public GameObject firstRock;
 
     private bool hasPlayerEnteredOnce = false;
-    private bool hasBroken = false;
+    public static bool HasBroken { get; private set; }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -27,9 +27,9 @@ public class BridgeBreakSystem : MonoBehaviour
                 }
             }
 
-            if (PreconditionTracker.hasEnteredPrecondition && !hasBroken)
+            if (PreconditionTracker.hasEnteredPrecondition && !HasBroken)
             {
-                hasBroken = true;
+                HasBroken = true;
                 Debug.Log("Precondition met. Breaking full bridge.");
 
                 CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();

@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class CameraZoomTrigger : MonoBehaviour
+
+public class CameraZoomTriggerr : MonoBehaviour
 {
     public HorseCameraFollow cameraFollow; // Assign in Inspector
     public Vector3 zoomOutOffset = new Vector3(0, 8, -15); // New zoomed-out camera offset
