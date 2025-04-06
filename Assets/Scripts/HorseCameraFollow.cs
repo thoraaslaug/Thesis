@@ -30,15 +30,24 @@ public class HorseCameraFollow : MonoBehaviour
 
     void Start()
     {
-        currentTarget = player;
-        lastHorsePosition = horse.position;
-        currentOffset = unmountedOffset;
-        if (horse != null)
+        if (GameState.followFemaleOnReturn)
         {
-            lastHorsePosition = horse.position;
-        }
+            currentTarget = female;
+            isMounted = false;
+            currentOffset = unmountedOffset;
 
-        currentOffset = unmountedOffset;
+            Debug.Log("📸 Returned to Scene A — following female!");
+        
+            // Optional: Reset flag to avoid affecting later loads
+            GameState.followFemaleOnReturn = false;
+        }
+        else
+        {
+            currentTarget = player;
+            currentOffset = unmountedOffset;
+            isMounted = false;
+            Debug.Log("📸 Scene A normal start — following player!");
+        }
     }
     public void SwitchToHorse()
     {

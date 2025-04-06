@@ -21,17 +21,52 @@ public class MountSystem : MonoBehaviour
     public Transform riderLeftHand;
     public Transform riderRightHand;
     public Transform reinsResetParent;
+    public Transform respawnNearFemalePoint;
+
 
 
     void Start()
-    {
+    {    
         playerController = player.GetComponent<ThirdPersonController>();
-        horseController = horse.GetComponent<HorseController>();
-        cameraFollow = FindFirstObjectByType<HorseCameraFollow>();
+             horseController = horse.GetComponent<HorseController>();
+             cameraFollow = FindFirstObjectByType<HorseCameraFollow>();
+     
+             //horseController.enabled = false;
+             //playerController.enabled = true;
+             horseAnimator.SetFloat("Speed", 0.0f); 
+        // 🐎 Move player & horse near female if returning
+        
+        if (GameState.returnWithHorse)
+        {
+            //player.transform.position = respawnNearFemalePoint.position;
+            //player.transform.rotation = respawnNearFemalePoint.rotation;
 
-        horseController.enabled = false;
-        playerController.enabled = true;
-        horseAnimator.SetFloat("Speed", 0.0f); 
+            horse.transform.position = respawnNearFemalePoint.position + new Vector3(1.5f, 0f, 0f);
+            horse.transform.rotation = respawnNearFemalePoint.rotation;
+            player.transform.position = mountPoint.position;
+            player.transform.rotation = mountPoint.rotation;
+            player.transform.SetParent(mountPoint);
+            playerAnimator.SetBool("IsRiding", true);
+            playerAnimator.SetFloat("Speed", 0.0f);
+            playerAnimator.Play("Ride"); // 👈 force this
+
+
+            GameState.returnWithHorse = false; // Reset flag
+            
+        } 
+        else
+        {
+            // 🚨 Make sure the player starts unmounted!
+            //playerController = player.GetComponent<ThirdPersonController>();
+
+            player.transform.SetParent(null);
+            isMounted = false;
+            horseController.enabled = false;
+            playerController.enabled = true;
+        }
+
+        // Existing setup
+    
     }
 
     void Update()
@@ -49,10 +84,15 @@ public class MountSystem : MonoBehaviour
         }
         if (isMounted)
         {
-            float horseSpeed = horseController.GetCurrentSpeed(); // Get the horse's current speed
+            if (horseController != null)
+            {
+                float horseSpeed = horseController.GetCurrentSpeed();
+                playerAnimator.SetFloat("Speed", horseSpeed);
+            }
+            //float horseSpeed = horseController.GetCurrentSpeed(); // Get the horse's current speed
 
             // Sync the player's riding animation with horse movement
-            playerAnimator.SetFloat("Speed", horseSpeed);
+           // playerAnimator.SetFloat("Speed", horseSpeed);
 
           //  Debug.Log("Horse Speed: " + horseSpeed);
         }
@@ -65,13 +105,16 @@ public class MountSystem : MonoBehaviour
 
     IEnumerator MountHorse()
     {
-        //Debug.Log("Mount sequence started...");
         isMounted = true;
-        // Disable player movement script to prevent walking mid-mount
+
+        Debug.Log("🐎 MountHorse DEBUG:");
+        Debug.Log("playerController: " + (playerController != null));
+        Debug.Log("mountPoint: " + (mountPoint != null));
+        Debug.Log("player: " + (player != null));
+        Debug.Log("playerAnimator: " + (playerAnimator != null));
         playerController.enabled = false;
         horseController.ActivateHorseControl();
 
-        // Disable CharacterController to prevent physics glitches
         CharacterController controller = player.GetComponent<CharacterController>();
         if (controller != null)
         {
@@ -79,27 +122,31 @@ public class MountSystem : MonoBehaviour
         }
 
         playerAnimator.SetTrigger("Mount");
-        //Debug.Log("Playing Mount animation...");
 
         yield return new WaitForSeconds(1.5f);
-
-        //Debug.Log("Mount animation finished. Player is now riding.");
 
         player.transform.position = mountPoint.position;
         player.transform.rotation = mountPoint.rotation;
         player.transform.SetParent(mountPoint);
-        cameraFollow.SwitchToHorse();
-        //AttachReinsToHands();
+
+        // ✅ SAFETY CHECK
+        if (cameraFollow != null)
+        {
+            cameraFollow.SwitchToHorse();
+            cameraFollow.SetMounted(true);
+        }
+        else
+        {
+            Debug.LogWarning("📸 cameraFollow is null! Cannot switch camera.");
+        }
 
         horseController.enabled = true;
         playerController.MountHorse();
-        cameraFollow.SetMounted(true);
 
         playerAnimator.SetBool("IsRiding", true);
-        playerAnimator.SetFloat("Speed", 0.0f); // Ensure starts in idle riding
-
-        //Debug.Log("Player is now riding. Horse control enabled.");
+        playerAnimator.SetFloat("Speed", 0.0f);
     }
+
     
    /* void AttachReinsToHands()
     {
