@@ -236,7 +236,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 2
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -279,7 +279,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 31e58b1cd8d256549813345dcc7ae005, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 922fff42862e1d44598d3e0b84c12c94, type: 2}
 --- !u!114 &178423220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,25 +295,25 @@ MonoBehaviour:
   _sun: {fileID: 364991878}
   _showSnowInSceneView: 1
   _addSnowToGrass: 0
-  _profile: {fileID: 11400000, guid: edf30a4e77097734da2d83d4b83ffd62, type: 2}
+  _profile: {fileID: 11400000, guid: 9d6a0367ca062594dadb3b3c725b058d, type: 2}
   _minimumAltitude: -10
   _minimumAltitudeVegetationOffset: 0
-  _snowTint: {r: 1, g: 1, b: 1, a: 1}
-  _altitudeScatter: 20
-  _altitudeBlending: 25
-  _useZenithalCoverage: 1
+  _snowTint: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  _altitudeScatter: 0
+  _altitudeBlending: 0
+  _useZenithalCoverage: 0
   _showCoverageGizmo: 0
   _coverageExtension: 1
   _coverageResolution: 2
   _groundCoverage: 0
   _groundCoverageRandomization: 0.5
-  _slopeThreshold: 0.7
-  _slopeSharpness: 0.5
-  _slopeNoise: 0.5
+  _slopeThreshold: 0.772
+  _slopeSharpness: 0.212
+  _slopeNoise: 0
   _snowNormalsStrength: 1
   _noiseTexScale: 0.1
-  _coverageMask: 0
-  _coverageMaskTexture: {fileID: 0}
+  _coverageMask: 1
+  _coverageMaskTexture: {fileID: 2800000, guid: b891785d4c724714482aa5ec0735521e, type: 2}
   _coverageMaskWorldSize: {x: 2000, y: 0, z: 2000}
   _coverageMaskWorldCenter: {x: 0, y: 0, z: 0}
   _coverageMaskFillOutside: 1
@@ -330,28 +330,28 @@ MonoBehaviour:
   _footprintsDuration: 60
   _footprintsScale: 1
   _footprintsObscurance: 0.1
-  _snowfall: 1
-  _snowfallIntensity: 0.1
-  _snowfallSpeed: 1
-  _snowfallWind: 0
+  _snowfall: 0
+  _snowfallIntensity: 0.172
+  _snowfallSpeed: 1.78
+  _snowfallWind: 0.384
   _snowfallDistance: 100
   _snowfallUseIllumination: 0
   _snowdustIntensity: 0
   _snowdustVerticalOffset: 0.5
-  _maxExposure: 0.85
-  _smoothness: 0.9
-  _snowAmount: 1
+  _maxExposure: 2
+  _smoothness: 0.4
+  _snowAmount: 2
   _cameraFrost: 1
-  _cameraFrostIntensity: 0.35
-  _cameraFrostSpread: 1.2
-  _cameraFrostDistortion: 0.25
-  _cameraFrostTintColor: {r: 1, g: 1, b: 1, a: 1}
+  _cameraFrostIntensity: 0.061
+  _cameraFrostSpread: 2.38
+  _cameraFrostDistortion: 0.166
+  _cameraFrostTintColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   _layerMask:
     serializedVersion: 2
     m_Bits: 8
   _zenithalMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4294967295
   _defaultExclusionLayer: 27
   _exclusionBias: 0.99
   _exclusionDoubleSided: 0
@@ -369,11 +369,11 @@ MonoBehaviour:
   _terrainMarksRotationThreshold: 3
   terrainMarksTextureSize: 2048
   _billboardCoverage: 1.4
-  _grassCoverage: 0.75
+  _grassCoverage: 0.164
   _groundCheck: 0
   _characterController: {fileID: 0}
   _groundDistance: 1
-  _maskEditorEnabled: 0
+  _maskEditorEnabled: 1
   _maskTextureResolution: 1024
   _maskBrushMode: 1
   _maskBrushWidth: 20
@@ -531,8 +531,8 @@ Transform:
   m_GameObject: {fileID: 281455457}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -4.91, y: 1.6548, z: 0.02}
-  m_LocalScale: {x: -2.0273924, y: -1.5885983, z: -24.273335}
+  m_LocalPosition: {x: -4.91, y: 1.6903, z: 0.02}
+  m_LocalScale: {x: -2.0273924, y: -1.5885983, z: -26.526552}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333222268}
@@ -560,7 +560,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df34128d9182b38499d272888c8e0a2f, type: 2}
+  - {fileID: -876546973899608171, guid: 8ab7ee1df80e46d418b90c8f0ec717c6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -770,7 +770,7 @@ PrefabInstance:
     - target: {fileID: -4683669308469848369, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 148ec870eb2468841ba5a2acc40a547a, type: 2}
+      objectReference: {fileID: -876546973899608171, guid: 8ab7ee1df80e46d418b90c8f0ec717c6, type: 3}
     - target: {fileID: -3542852092398272455, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: m_LocalScale.y
       value: 92.347
@@ -784,20 +784,32 @@ PrefabInstance:
       value: -0.0011655
       objectReference: {fileID: 0}
     - target: {fileID: -3274006528333456403, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: -22.688784
+      objectReference: {fileID: 0}
+    - target: {fileID: -3274006528333456403, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.91
+      objectReference: {fileID: 0}
+    - target: {fileID: -3274006528333456403, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.1435
       objectReference: {fileID: 0}
     - target: {fileID: -3274006528333456403, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.94
       objectReference: {fileID: 0}
     - target: {fileID: -2093772787462966335, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 19.1638
+      objectReference: {fileID: 0}
+    - target: {fileID: -2093772787462966335, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.89
+      value: -4.883
       objectReference: {fileID: 0}
     - target: {fileID: -2093772787462966335, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.95
+      value: -2.9048
       objectReference: {fileID: 0}
     - target: {fileID: -1461304994638716399, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -810,7 +822,7 @@ PrefabInstance:
     - target: {fileID: -1120989108687609925, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: df34128d9182b38499d272888c8e0a2f, type: 2}
+      objectReference: {fileID: -876546973899608171, guid: 8ab7ee1df80e46d418b90c8f0ec717c6, type: 3}
     - target: {fileID: -804731622281664130, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -834,7 +846,7 @@ PrefabInstance:
     - target: {fileID: 6745302439343835087, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: df34128d9182b38499d272888c8e0a2f, type: 2}
+      objectReference: {fileID: -876546973899608171, guid: 8ab7ee1df80e46d418b90c8f0ec717c6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -7640558969779515294, guid: 729f925f66e35ee49bd9118d5fb530ec, type: 3}
@@ -994,7 +1006,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1247,8 +1259,8 @@ Transform:
   m_GameObject: {fileID: 413382188}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -4.89, y: 1.5939, z: 0.01}
-  m_LocalScale: {x: 1.3886015, y: 20.5113, z: 1.8290117}
+  m_LocalPosition: {x: -4.9088, y: 1.5941, z: -0.1116}
+  m_LocalScale: {x: 1.3886015, y: 23.55887, z: 1.8330355}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333222268}
@@ -1276,7 +1288,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df34128d9182b38499d272888c8e0a2f, type: 2}
+  - {fileID: -876546973899608171, guid: 8ab7ee1df80e46d418b90c8f0ec717c6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6268,6 +6280,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lamp_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d6f579e310590e4eabda23af327de58, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1197828747699778618, guid: 3d6f579e310590e4eabda23af327de58, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -6517,8 +6533,8 @@ Transform:
   m_GameObject: {fileID: 676322913}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.07701369, z: -0, w: 0.9970301}
-  m_LocalPosition: {x: 87.0911, y: 23.351189, z: 23.3692}
-  m_LocalScale: {x: 0.16023642, y: 10.856689, z: 11.21292}
+  m_LocalPosition: {x: 87.0911, y: 23.0993, z: 23.4234}
+  m_LocalScale: {x: 0.16023642, y: 11.360439, z: 11.728669}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -8469,6 +8485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Point_Light
       objectReference: {fileID: 0}
+    - target: {fileID: 4952131365919966842, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6040056879142927025, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
       propertyPath: m_LocalPosition.x
       value: 108.935936
@@ -9223,6 +9243,10 @@ PrefabInstance:
     - target: {fileID: 8829451551789304542, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
       propertyPath: m_Name
       value: VFX_Fire_01_Big
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829451551789304542, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9994,8 +10018,8 @@ Transform:
   m_GameObject: {fileID: 1829265912}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -4.89, y: -2.1998096, z: 2.84}
-  m_LocalScale: {x: 1.3886015, y: 20.5113, z: 1.6372856}
+  m_LocalPosition: {x: -4.8932, y: -2.1998096, z: 2.8196}
+  m_LocalScale: {x: 1.3886015, y: 22.136305, z: 1.6372856}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333222268}
@@ -10023,7 +10047,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df34128d9182b38499d272888c8e0a2f, type: 2}
+  - {fileID: -876546973899608171, guid: 8ab7ee1df80e46d418b90c8f0ec717c6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10080,8 +10104,8 @@ Transform:
   m_GameObject: {fileID: 1870898670}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -4.91, y: -2.145301, z: 2.85}
-  m_LocalScale: {x: -2.0273924, y: -1.5885983, z: -21.728882}
+  m_LocalPosition: {x: -4.91, y: -2.1382, z: 2.85}
+  m_LocalScale: {x: -2.0273924, y: -1.5885983, z: -23.474504}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333222268}
@@ -10109,7 +10133,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df34128d9182b38499d272888c8e0a2f, type: 2}
+  - {fileID: -876546973899608171, guid: 8ab7ee1df80e46d418b90c8f0ec717c6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10241,8 +10265,8 @@ Transform:
   m_GameObject: {fileID: 1913947430}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.07701369, z: -0, w: 0.9970301}
-  m_LocalPosition: {x: 88.56, y: 43.1, z: 8.71}
-  m_LocalScale: {x: 0.186387, y: 13.451554, z: 11.255626}
+  m_LocalPosition: {x: 88.56, y: 42.5368, z: 8.2982}
+  m_LocalScale: {x: 0.186387, y: 14.577449, z: 12.795577}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -10349,8 +10373,8 @@ Transform:
   m_GameObject: {fileID: 1946328537}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.066584006, z: -0, w: 0.9977808}
-  m_LocalPosition: {x: 91.67, y: 22.639988, z: -5.55}
-  m_LocalScale: {x: 0.1899763, y: 12.158016, z: 10.06176}
+  m_LocalPosition: {x: 91.67, y: 23.0054, z: -5.8253}
+  m_LocalScale: {x: 0.1899763, y: 12.888713, z: 10.616162}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}

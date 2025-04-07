@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumAltitude: -10
   minimumAltitudeVegetationOffset: 0
-  snowTint: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  snowTint: {r: 1, g: 1, b: 1, a: 1}
   altitudeScatter: 0
   altitudeBlending: 0
   useZenithalCoverage: 1
