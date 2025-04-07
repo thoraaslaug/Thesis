@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumAltitude: -10
   minimumAltitudeVegetationOffset: 0
-  snowTint: {r: 1, g: 1, b: 1, a: 1}
-  altitudeScatter: 20
-  altitudeBlending: 25
+  snowTint: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+  altitudeScatter: 0
+  altitudeBlending: 0
   useZenithalCoverage: 1
   coverageExtension: 1
   coverageResolution: 2
   groundCoverage: 0
   groundCoverageRandomization: 0.5
-  slopeThreshold: 0.7
-  slopeSharpness: 0.5
-  slopeNoise: 0.5
+  slopeThreshold: 0.772
+  slopeSharpness: 0.212
+  slopeNoise: 0
   snowNormalsTex: {fileID: 2800000, guid: 6e97ae521a24e404ebf8f4e3315de047, type: 3}
   noiseTex: {fileID: 0}
   snowNormalsStrength: 1
@@ -41,22 +41,22 @@ MonoBehaviour:
   occlusionIntensity: 1.5
   glitterStrength: 0.75
   snowfall: 1
-  snowfallIntensity: 0.1
-  snowfallSpeed: 1
-  snowfallWind: 0
+  snowfallIntensity: 0.172
+  snowfallSpeed: 1.78
+  snowfallWind: 0.384
   snowfallDistance: 100
   snowfallUseIllumination: 0
-  snowdustIntensity: 0
+  snowdustIntensity: 0.028
   snowdustVerticalOffset: 0.5
-  maxExposure: 0.85
-  smoothness: 0.9
+  maxExposure: 2
+  smoothness: 0.4
   preserveGI: 0
-  snowAmount: 1
+  snowAmount: 1.488
   cameraFrost: 1
   cameraFrostIntensity: 0.35
   cameraFrostSpread: 1.2
   cameraFrostDistortion: 0.25
-  cameraFrostTintColor: {r: 1, g: 1, b: 1, a: 1}
+  cameraFrostTintColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -64,4 +64,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   billboardCoverage: 1.4
-  grassCoverage: 0.75
+  grassCoverage: 0.564

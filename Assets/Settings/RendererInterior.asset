@@ -36,7 +36,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125d117be237bd84ebae5254bfd33a3a, type: 3}
   m_Name: DitherEffectRenderFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   injectionPoint: 300
   material: {fileID: 2100000, guid: ad67bde05432b5143b05527546f78499, type: 2}
 --- !u!114 &11400000

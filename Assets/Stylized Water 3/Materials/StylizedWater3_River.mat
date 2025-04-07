@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 9e31b00c02a7d5a4799112d646d0d5c0, type: 3}
+        m_Texture: {fileID: 2800000, guid: d63a31f28f34eae4ebc27e00a9799433, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMapLarge:
@@ -61,11 +61,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMapSlope:
-        m_Texture: {fileID: 2800000, guid: 2dbfdcaafc3a3d24a88e1050e8a012b7, type: 3}
+        m_Texture: {fileID: 2800000, guid: efd0d88edbb048d489c41da8174e6a35, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CausticsTex:
-        m_Texture: {fileID: 2800000, guid: 2dbfdcaafc3a3d24a88e1050e8a012b7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4a228663f34027f4689410ae3c8974cc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -73,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FoamTex:
-        m_Texture: {fileID: 2800000, guid: 1e603f0d765c9734493840159afc213e, type: 3}
+        m_Texture: {fileID: 2800000, guid: a201b1cea6ea07c41a8190e44033bfb0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FoamTexDynamic:
@@ -81,7 +81,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _IntersectionNoise:
-        m_Texture: {fileID: 2800000, guid: 9e31b00c02a7d5a4799112d646d0d5c0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9534f81a954a3d14c95686d6a41fb760, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -176,7 +176,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HorizonDistance: 7.7
+    - _HorizonDistance: 10.9
     - _IntersectionClipping: 0.166
     - _IntersectionDistortion: 0.195
     - _IntersectionFalloff: 0.355
@@ -271,7 +271,7 @@ Material:
     - _ZClip: 1
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+    - _BaseColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Direction: {r: 0, g: -1, b: 0, a: 0}
     - _DistanceFoamFadeDist: {r: 100, g: 350, b: 0, a: 0}
@@ -282,8 +282,8 @@ Material:
     - _FoamTiling: {r: 5, g: 5, b: 0, a: 0}
     - _HorizonColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 0}
     - _IntersectionColor: {r: 1, g: 1, b: 1, a: 0.46666667}
-    - _NormalTiling: {r: 0.01, g: 0.01, b: 0, a: 0}
-    - _ShallowColor: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0}
+    - _NormalTiling: {r: 0.05, g: 0.05, b: 0, a: 0}
+    - _ShallowColor: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WaveDirection: {r: 2, g: 1, b: 2, a: 1}
     - _WaveFadeDistance: {r: 0, g: 49.999985, b: 0, a: 0}
