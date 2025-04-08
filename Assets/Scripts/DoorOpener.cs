@@ -19,12 +19,21 @@ public class DoorOpener : MonoBehaviour
 
     public PlayableDirector timeline;
     public ScreenFade screenFade;
+    private bool hasStartedNarration = false;
 
 
     void Update()
     {
-        if (!hasOpened && dayNightSystem != null)
+        
+        if (!hasStartedNarration && dayNightSystem != null)
         {
+            StartInterorNarration();
+            hasStartedNarration = true;
+        }
+        
+       /* if (!hasOpened && dayNightSystem != null)
+        {
+            
             float daysPassed = dayNightSystem.currentTime / (dayNightSystem.dayLengthMinutes * 60f);
             if (daysPassed >= openAfterDays)
             {
@@ -37,7 +46,7 @@ public class DoorOpener : MonoBehaviour
 
 
             }
-        }
+        }*/
 
         if (opening)
         {
@@ -46,6 +55,35 @@ public class DoorOpener : MonoBehaviour
             door.transform.localEulerAngles = new Vector3(currentRot.x, newY, currentRot.z);
         }
     }
+    
+    void StartInterorNarration()
+    {
+        string[] narrationLines = new string[]
+        {
+            "I said yes...",
+            "He’ll ride through anything for me… I know he will.",
+            "It’s colder tonight than I expected.",
+            "The lamp is lit. He’ll see it.",
+            "I keep listening for hoofbeats… but the snow eats every sound.",
+            "Just get here safe… please, just get here safe."
+        };
+
+        var narrationManager = FindObjectOfType<NarrationTextManager>();
+        if (narrationManager != null)
+        {
+            narrationManager.onNarrationComplete = OpenDoorAfterNarration;
+            narrationManager.StartNarration(narrationLines);
+        }
+    }
+    void OpenDoorAfterNarration()
+    {
+        opening = true;
+        hasOpened = true;
+        Debug.Log("🕯️ Narration finished — opening door...");
+        timeline.Play();
+    }
+    
+
     
     
   /*  private IEnumerator WaitForTimelineAndFade()

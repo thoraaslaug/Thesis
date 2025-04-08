@@ -8,6 +8,7 @@ public class NarrationTextManager : MonoBehaviour
     public float textDuration = 3f;
     public float fadeDuration = 1f;
     public TextPopUpManager popupManager; // assign in inspector if needed
+    public System.Action onNarrationComplete;
 
 
     public void StartNarration(string[] lines)
@@ -30,6 +31,11 @@ public class NarrationTextManager : MonoBehaviour
 
         narrationText.text = "";
         narrationText.alpha = 0f;
+
+        if (onNarrationComplete != null)
+        {
+            onNarrationComplete.Invoke();
+        }
     }
 
     private IEnumerator ShowLine(string line)
