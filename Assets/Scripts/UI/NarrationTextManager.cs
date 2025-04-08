@@ -7,9 +7,16 @@ public class NarrationTextManager : MonoBehaviour
     public TextMeshProUGUI narrationText;
     public float textDuration = 3f;
     public float fadeDuration = 1f;
+    public TextPopUpManager popupManager; // assign in inspector if needed
+
 
     public void StartNarration(string[] lines)
     {
+        if (popupManager != null)
+        {
+            popupManager.HideMessage(); // 👈 Clear any prompt text
+        }
+
         StartCoroutine(PlayNarration(lines));
     }
 

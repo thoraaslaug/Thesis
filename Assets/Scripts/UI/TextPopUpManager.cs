@@ -31,4 +31,11 @@ public class TextPopUpManager : MonoBehaviour
 
         messageText.text = "";
     }
+    
+    public void HideMessage()
+    {
+        StopAllCoroutines();
+        messageText.text = "";
+        messageText.alpha = 0f;
+    }
 }

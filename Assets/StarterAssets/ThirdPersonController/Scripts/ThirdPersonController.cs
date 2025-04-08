@@ -276,7 +276,8 @@ namespace StarterAssets
             // Wait until timeline is done
             while (kissTimeline.state == PlayState.Playing)
                 yield return null;
-            
+            StartReturnRideNarration();
+
             
             transform.position = timelineDummy.transform.position;
             transform.rotation = timelineDummy.transform.rotation;
@@ -294,6 +295,29 @@ namespace StarterAssets
             MountSystem mountSystem = horse.GetComponent<MountSystem>();
             if (mountSystem != null)
                 mountSystem.isMounted = false;
+        }
+        
+        void StartReturnRideNarration()
+        {
+            string[] returnLines = new string[]
+            {
+                "She said yes…",
+                "The snow feels heavier now, I can barely see",
+                "I must keep moving",
+                "My hands are numb. No matter. She'll be waiting for me, I'll be back on Christmas Eve.",
+                "It’s darker than I remember… the bridge, the sky… the world.",
+                "I will see her again. I will see her again..."
+            };
+
+            var narration = FindObjectOfType<NarrationTextManager>();
+            if (narration != null)
+            {
+                narration.StartNarration(returnLines);
+            }
+            else
+            {
+                Debug.LogWarning("NarrationTextManager not found in scene.");
+            }
         }
 
 

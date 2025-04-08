@@ -67,7 +67,7 @@ public class HorseController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal"); 
         float vertical = Input.GetAxis("Vertical"); 
        
-        if (!hasStartedNarration && !isWaitingToStartNarration && vertical > 0)
+        if (!hasStartedNarration && !isWaitingToStartNarration && currentSpeed > 0.1f)
         {
             isWaitingToStartNarration = true;
             narrationTimer = 2f; // Wait for 2 seconds
@@ -130,9 +130,9 @@ public class HorseController : MonoBehaviour
         string[] narrationLines = new string[]
         {
             "Tonight, she will hear my voice again.",
-            "This cold cannot reach me — not when I'm riding to her.",
+            "This cold cannot reach me... not when I'm riding to her.",
             "I wonder if she’s still wearing the apron I gave her.",
-            "She'll be surprised to see me — but she will come."
+            "She'll be surprised to see me...but she will come."
         };
 
         var narrationManager = FindObjectOfType<NarrationTextManager>();
