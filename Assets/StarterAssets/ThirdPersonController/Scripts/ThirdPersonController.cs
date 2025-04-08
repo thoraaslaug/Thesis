@@ -59,6 +59,8 @@ namespace StarterAssets
         public GameObject timelineDummy; // assign in inspector
         private GameObject activeDummy;
         public GameObject hair;
+        private static bool hasPlayedReturnRideNarration = false;
+
 
         private void Start()
         {
@@ -141,7 +143,7 @@ namespace StarterAssets
 
             if (_hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, 1.0f);
+               // _animator.SetFloat(_animIDSpeed, 1.0f);
                 _animator.SetBool(_animIDRiding, true);
                 Debug.Log($"Animator Speed: {_animator.GetFloat(_animIDSpeed)}");
             }
@@ -276,9 +278,13 @@ namespace StarterAssets
             // Wait until timeline is done
             while (kissTimeline.state == PlayState.Playing)
                 yield return null;
-            StartReturnRideNarration();
-
             
+            if (!GameState.hasPlayedReturnRideNarration)
+            {
+                StartReturnRideNarration();
+                hasPlayedReturnRideNarration = true;
+            }
+           // StartReturnRideNarration();
             transform.position = timelineDummy.transform.position;
             transform.rotation = timelineDummy.transform.rotation;
             // Deactivate dummy
@@ -294,7 +300,7 @@ namespace StarterAssets
 
             MountSystem mountSystem = horse.GetComponent<MountSystem>();
             if (mountSystem != null)
-                mountSystem.isMounted = false;
+                mountSystem.DismountMale();
         }
         
         void StartReturnRideNarration()

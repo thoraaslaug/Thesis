@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HorseController : MonoBehaviour
 {
@@ -17,6 +18,12 @@ public class HorseController : MonoBehaviour
     public float stormGallopSpeed = 4f; // ✅ Reduced speed in snowstorm
     public float stormTurnSpeed = 4f; // ✅ Reduced turn responsiveness
     public float stormAcceleration = 2f; // ✅ Slower acceleration
+    
+    [Header("Bridge Settings")]
+    public bool isOnBridge = false; // ✅ Tracks if the horse is in a snowstorm
+    public float bridgeGallop = 1f; // ✅ Reduced speed in snowstorm
+    public float bridgeTurn = 0.2f; // ✅ Reduced turn responsiveness
+    public float bridgeAcceleration = 0.1f; // ✅ Slower acceleration
 
     [Header("Audio Settings")]
     public AudioSource gallopAudioSource; 
@@ -65,40 +72,59 @@ public class HorseController : MonoBehaviour
     void HandleMovement()
     {
         float horizontal = Input.GetAxis("Horizontal"); 
-        float vertical = Input.GetAxis("Vertical"); 
-       
-        if (!hasStartedNarration && !isWaitingToStartNarration && currentSpeed > 0.1f)
+        float vertical = Input.GetAxis("Vertical");
+        
+        if (SceneManager.GetActiveScene().name == "SampleScene" && !GameState.hasStartedRideNarration)
         {
-            isWaitingToStartNarration = true;
-            narrationTimer = 2f; // Wait for 2 seconds
-        }
-
-        // Countdown until narration starts
-        if (isWaitingToStartNarration)
-        {
-            narrationTimer -= Time.deltaTime;
-            if (narrationTimer <= 0f)
+            if (!GameState.hasStartedRideNarration)
             {
-                StartRideNarration();
-                hasStartedNarration = true;
-                isWaitingToStartNarration = false;
+                if (!isWaitingToStartNarration && currentSpeed > 0.1f)
+                {
+                    isWaitingToStartNarration = true;
+                    narrationTimer = 2f;
+                }
+
+                if (isWaitingToStartNarration)
+                {
+                    narrationTimer -= Time.deltaTime;
+                    if (narrationTimer <= 0f)
+                    {
+                        StartRideNarration();
+                        GameState.hasStartedRideNarration = true;
+                        isWaitingToStartNarration = false;
+                    }
+                }
             }
         }
 
         Vector3 inputDirection = new Vector3(horizontal, 0f, vertical).normalized;
 
         // ✅ Use slower speed, turn speed, and acceleration if in a snowstorm
-        float targetSpeed = isInSnowstorm ? stormGallopSpeed : gallopSpeed;
-        float targetTurnSpeed = isInSnowstorm ? stormTurnSpeed : turnSpeed;
-        float targetAcceleration = isInSnowstorm ? stormAcceleration : acceleration;
+        float activeSpeed = gallopSpeed;
+        float activeTurnSpeed = turnSpeed;
+        float activeAcceleration = acceleration;
 
-        float finalSpeed = (inputDirection.magnitude > 0) ? targetSpeed : 0f;
-        currentSpeed = Mathf.Lerp(currentSpeed, finalSpeed, Time.deltaTime * targetAcceleration);
+        if (isOnBridge)
+        {
+            activeSpeed = bridgeGallop;
+            activeTurnSpeed = bridgeTurn;
+            activeAcceleration = bridgeAcceleration;
+        }
+        else if (isInSnowstorm)
+        {
+            activeSpeed = stormGallopSpeed;
+            activeTurnSpeed = stormTurnSpeed;
+            activeAcceleration = stormAcceleration;
+        }
 
+        float finalSpeed = (inputDirection.magnitude > 0) ? activeSpeed : 0f;
+        currentSpeed = Mathf.Lerp(currentSpeed, finalSpeed, Time.deltaTime * activeAcceleration);
+
+// Apply turning
         if (inputDirection.magnitude > 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, targetTurnSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, activeTurnSpeed * Time.deltaTime);
         }
 
         moveDirection = transform.forward * currentSpeed * Time.deltaTime;
@@ -118,6 +144,10 @@ public class HorseController : MonoBehaviour
                 gallopAudioSource.Stop(); 
             }
         }
+        if (currentSpeed < 0.05f)
+        {
+            currentSpeed = 0f;
+        }
     }
 
     public void ActivateHorseControl()
@@ -129,10 +159,10 @@ public class HorseController : MonoBehaviour
     {
         string[] narrationLines = new string[]
         {
-            "Tonight, she will hear my voice again.",
+            "Tonight, I will hear her voice again.",
             "This cold cannot reach me... not when I'm riding to her.",
             "I wonder if she’s still wearing the apron I gave her.",
-            "She'll be surprised to see me...but she will come."
+            "She'll be surprised to see me...but she will accept my invitation."
         };
 
         var narrationManager = FindObjectOfType<NarrationTextManager>();
@@ -151,6 +181,12 @@ public class HorseController : MonoBehaviour
     {
         Debug.Log("🌨 Horse is struggling in the snowstorm!");
         isInSnowstorm = true;
+    }
+    
+    public void EnterBridge()
+    {
+        Debug.Log("🌨 Horse is struggling on the bridge!");
+        isOnBridge = true;
     }
 
     public void ExitSnowstorm()

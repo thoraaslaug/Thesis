@@ -58,6 +58,10 @@ public class DoorOpener : MonoBehaviour
     
     void StartInterorNarration()
     {
+        if (GameState.hasStartedInteriorNarration) return; // ✅ Already played, exit
+
+        GameState.hasStartedInteriorNarration = true; // ✅ Mark it as played
+
         string[] narrationLines = new string[]
         {
             "I said yes...",
@@ -129,7 +133,8 @@ public class DoorOpener : MonoBehaviour
         yield return screenFade.FadeToBlack(1f);
         GameState.followFemaleOnReturn = true;
         GameState.returnWithHorse = true;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        Debug.Log("Setting GameState.returnWithHorse = true");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("FemaleScene");
 
     }
 

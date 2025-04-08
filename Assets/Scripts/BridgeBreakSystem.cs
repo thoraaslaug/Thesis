@@ -17,6 +17,8 @@ public class BridgeBreakSystem : MonoBehaviour
 
     private GameObject player;
     private HashSet<GameObject> droppedParts = new HashSet<GameObject>();
+    public AudioSource horse;
+    public HorseController horseController;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -39,7 +41,8 @@ public class BridgeBreakSystem : MonoBehaviour
             {
                 HasBroken = true;
                 Debug.Log("Precondition met. Breaking bridge behind player.");
-
+                horseController.EnterBridge();
+                horse.Play();
                 CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
                 if (cameraShake != null)
                 {

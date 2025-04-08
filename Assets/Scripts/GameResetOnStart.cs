@@ -6,17 +6,20 @@ public class GameStateResetOnStart : MonoBehaviour
 {
     void Awake()
     {
-        // Only reset if we're not returning with the horse
-        if (!GameState.returnWithHorse && !GameState.followFemaleOnReturn)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "SampleScene")
         {
             GameState.returnWithHorse = false;
             GameState.followFemaleOnReturn = false;
-            Debug.Log("🧼 GameState reset on start (normal)");
+            GameState.hasStartedRideNarration = false;
+            GameState.hasPlayedReturnRideNarration = false;
+            GameState.hasStartedInteriorNarration = false;
+            Debug.Log("🧼 GameState reset in IntroScene.");
         }
         else
         {
-            Debug.Log("↩️ Returning from cutscene — skipping GameState reset");
+            Debug.Log("↩️ Scene is not IntroScene — skipping GameState reset.");
         }
     }
+
 
 }

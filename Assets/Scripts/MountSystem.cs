@@ -1,147 +1,164 @@
 using System.Collections;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MountSystem : MonoBehaviour
 {
-    public Transform mountPoint; // Position where the player sits on the horse
-    public GameObject player; // Reference to the player character
-    public GameObject horse; // Reference to the horse object
-
+    [Header("Mount Setup")]
+    public Transform mountPoint; // Male
+    public Transform rearMountPoint; // Female
+    public GameObject player;
+    public GameObject female;
+    public GameObject horse;
+    public Vector3 maleOffsetRight = new Vector3(-0.2f, 0f, 0f);
+    public Vector3 maleOffsetLeft = new Vector3(0.2f, 0f, 0f);
+    public Vector3 femaleOffsetRight = new Vector3(-0.3f, 0f, 0f);
+    public Vector3 femaleOffsetLeft = new Vector3(0.3f, 0f, 0f);
+    
+    [Header("Animators")]
     public Animator playerAnimator;
+    public Animator femaleAnimator;
     public Animator horseAnimator;
 
+    [Header("Controllers")]
     private ThirdPersonController playerController;
+    private ThirdPersonController femaleController;
     private HorseController horseController;
-    public bool isMounted = false;
-    private HorseCameraFollow horseCameraFollow;
     private HorseCameraFollow cameraFollow;
-    public Transform reinsLeftEnd;
-    public Transform reinsRightEnd;
-    public Transform riderLeftHand;
-    public Transform riderRightHand;
-    public Transform reinsResetParent;
-    public Transform respawnNearFemalePoint;
+
+    [Header("Mount State Flags")]
+    public bool isMounted = false;
+    private bool femaleMounted = false;
     private bool hasShownMountMessage = false;
+    private bool frontOccupied = false;
+    private bool rearOccupied = false;
 
-
+    [Header("Optional Extras")]
+    public Transform respawnNearFemalePoint;
+    public Transform reinsLeftEnd, reinsRightEnd, riderLeftHand, riderRightHand, reinsResetParent;
+    public bool triggerNarrationOnStart = true;
+    private bool hasStartedSceneNarration = false;
 
     void Start()
-    {    
+    {
         playerController = player.GetComponent<ThirdPersonController>();
-             horseController = horse.GetComponent<HorseController>();
-             cameraFollow = FindFirstObjectByType<HorseCameraFollow>();
-     
-             //horseController.enabled = false;
-             //playerController.enabled = true;
-             horseAnimator.SetFloat("Speed", 0.0f); 
-        // 🐎 Move player & horse near female if returning
-        
+        femaleController = female.GetComponent<ThirdPersonController>();
+        horseController = horse.GetComponent<HorseController>();
+        cameraFollow = FindFirstObjectByType<HorseCameraFollow>();
+
+        horseAnimator.SetFloat("Speed", 0.0f);
+
+        // 🎬 Scene-based narration
+        string currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene == "FemaleScene" && !hasStartedSceneNarration)
+        {
+            hasStartedSceneNarration = true;
+            string[] lines = {
+                "He really came for me...",
+                "After all that snow... I didn’t think—",
+                "It’s strange though... he hasn’t said a word.",
+                "I suppose... I should go with him."
+            };
+
+            var narration = FindObjectOfType<NarrationTextManager>();
+            if (narration != null)
+                narration.StartNarration(lines);
+        }
+
+        // 🔁 Setup based on GameState
         if (GameState.returnWithHorse)
         {
-            //player.transform.position = respawnNearFemalePoint.position;
-            //player.transform.rotation = respawnNearFemalePoint.rotation;
-
             horse.transform.position = respawnNearFemalePoint.position + new Vector3(1.5f, 0f, 0f);
             horse.transform.rotation = respawnNearFemalePoint.rotation;
             player.transform.position = mountPoint.position;
             player.transform.rotation = mountPoint.rotation;
             player.transform.SetParent(mountPoint);
+
             playerAnimator.SetBool("IsRiding", true);
             playerAnimator.SetFloat("Speed", 0.0f);
-            playerAnimator.Play("Ride"); // 👈 force this
+            playerAnimator.Play("Ride");
 
-
-            GameState.returnWithHorse = false; // Reset flag
-            
-        } 
+            frontOccupied = true;
+            isMounted = true;
+            GameState.returnWithHorse = false;
+        }
         else
         {
-            // 🚨 Make sure the player starts unmounted!
-            //playerController = player.GetComponent<ThirdPersonController>();
-
             player.transform.SetParent(null);
             isMounted = false;
             horseController.enabled = false;
             playerController.enabled = true;
         }
-
-        // Existing setup
-    
     }
 
+    void LateUpdate()
+    {
+        AdjustMountOffsetBasedOnFacing();
+    }
     void Update()
     {
-        bool isNearHorse = Vector3.Distance(player.transform.position, horse.transform.position) < 2f;
+        Debug.Log("🌀 MountSystem is running Update()");
+        float distanceToHorse = Vector3.Distance(player.transform.position, horse.transform.position);
+        float distanceToFemale = Vector3.Distance(female.transform.position, horse.transform.position);
 
-        if (!isMounted && isNearHorse)
+        // 🧍 Male mounts (only if front is free)
+        if (!isMounted && distanceToHorse < 2f && !frontOccupied)
         {
+            Debug.Log("📍 Entered male mount check");
             if (!hasShownMountMessage)
             {
-                FindObjectOfType<TextPopUpManager>().ShowMessage("Press Space to mount horse");
+                FindObjectOfType<TextPopUpManager>()?.ShowMessage("Press Space to mount horse");
                 hasShownMountMessage = true;
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
-            {
                 StartCoroutine(MountHorse());
-            }
         }
-        else
+
+        // 👩 Female mounts only if male is already on horse
+        if (!femaleMounted && frontOccupied && distanceToFemale < 2f && !rearOccupied)
         {
-            hasShownMountMessage = false;
+            if (Input.GetKeyDown(KeyCode.Space))
+                StartCoroutine(FemaleMountsHorse());
         }
 
         if (isMounted && horseController != null)
         {
-            float horseSpeed = horseController.GetCurrentSpeed();
-            playerAnimator.SetFloat("Speed", horseSpeed);
+            float speed = horseController.GetCurrentSpeed();
+            playerAnimator.SetFloat("Speed", speed);
         }
-    }
 
-    bool IsPlayerNearHorse()
-    {        
-        return Vector3.Distance(player.transform.position, horse.transform.position) < 2f;
-
+        if (femaleMounted && horseController != null)
+        {
+            float speed = horseController.GetCurrentSpeed();
+            femaleAnimator.SetFloat("Speed", speed);
+        }
     }
 
     IEnumerator MountHorse()
     {
         isMounted = true;
+        frontOccupied = true;
 
-       /* Debug.Log("🐎 MountHorse DEBUG:");
-        Debug.Log("playerController: " + (playerController != null));
-        Debug.Log("mountPoint: " + (mountPoint != null));
-        Debug.Log("player: " + (player != null));
-        Debug.Log("playerAnimator: " + (playerAnimator != null));*/
         playerController.enabled = false;
-        horseController.ActivateHorseControl();
-
         CharacterController controller = player.GetComponent<CharacterController>();
-        if (controller != null)
-        {
-            controller.enabled = false;
-        }
+        if (controller != null) controller.enabled = false;
 
         playerAnimator.SetTrigger("Mount");
-
         yield return new WaitForSeconds(1.5f);
 
         player.transform.position = mountPoint.position;
         player.transform.rotation = mountPoint.rotation;
         player.transform.SetParent(mountPoint);
 
-        // ✅ SAFETY CHECK
         if (cameraFollow != null)
         {
             cameraFollow.SwitchToHorse();
             cameraFollow.SetMounted(true);
         }
-        else
-        {
-            Debug.LogWarning("📸 cameraFollow is null! Cannot switch camera.");
-        }
 
+        horseController.ActivateHorseControl();
         horseController.enabled = true;
         playerController.MountHorse();
 
@@ -149,22 +166,68 @@ public class MountSystem : MonoBehaviour
         playerAnimator.SetFloat("Speed", 0.0f);
     }
 
-    
-   /* void AttachReinsToHands()
+    IEnumerator FemaleMountsHorse()
     {
-        if (reinsLeftEnd && riderLeftHand)
-            reinsLeftEnd.SetParent(riderLeftHand, worldPositionStays: false);
+        femaleMounted = true;
+        rearOccupied = true;
 
-        if (reinsRightEnd && riderRightHand)
-            reinsRightEnd.SetParent(riderRightHand, worldPositionStays: false);
+        CharacterController controller = female.GetComponent<CharacterController>();
+        if (controller != null) controller.enabled = false;
+
+        femaleAnimator.SetTrigger("Mount");
+        yield return new WaitForSeconds(1.5f);
+
+        female.transform.position = rearMountPoint.position;
+        female.transform.rotation = rearMountPoint.rotation;
+        female.transform.SetParent(rearMountPoint);
+
+        if (cameraFollow != null)
+        {
+            cameraFollow.SwitchToHorse();
+            cameraFollow.SetMounted(true);
+        }
+
+        horseController.enabled = true;
+        horseController.ActivateHorseControl();
+
+        femaleController.MountHorse();
+
+        femaleAnimator.SetBool("IsRiding", true);
+        femaleAnimator.SetFloat("Speed", 0.0f);
+
+        Debug.Log("👩 Female mounted the horse behind the male.");
     }
     
-    public void DetachReins()
+    public void DismountMale()
     {
-        if (reinsLeftEnd && reinsResetParent)
-            reinsLeftEnd.SetParent(reinsResetParent, worldPositionStays: true);
+        isMounted = false;
+        frontOccupied = false;
+        Debug.Log("🧍 Male dismounted and mount flags reset.");
+    }
 
-        if (reinsRightEnd && reinsResetParent)
-            reinsRightEnd.SetParent(reinsResetParent, worldPositionStays: true);
-    }*/
+    public void DismountFemale()
+    {
+        femaleMounted = false;
+        rearOccupied = false;
+        Debug.Log("👩 Female dismounted and mount flags reset.");
+    }
+    
+    void AdjustMountOffsetBasedOnFacing()
+    {
+        bool facingRight = horse.transform.forward.x > 0;
+
+        // Male offset
+        if (mountPoint != null)
+        {
+            mountPoint.localPosition = facingRight ? maleOffsetRight : maleOffsetLeft;
+        }
+
+        // Female offset
+        if (rearMountPoint != null)
+        {
+            rearMountPoint.localPosition = facingRight ? femaleOffsetRight : femaleOffsetLeft;
+        }
+    }
+
+
 }
