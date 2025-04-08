@@ -17,7 +17,7 @@ MonoBehaviour:
   snowTint: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   altitudeScatter: 0
   altitudeBlending: 0
-  useZenithalCoverage: 0
+  useZenithalCoverage: 1
   coverageExtension: 1
   coverageResolution: 2
   groundCoverage: 0
@@ -30,8 +30,8 @@ MonoBehaviour:
   snowNormalsStrength: 1
   noiseTexScale: 0.1
   distanceSlopeThreshold: 0.7
-  coverageMask: 0
-  coverageMaskTexture: {fileID: 0}
+  coverageMask: 1
+  coverageMaskTexture: {fileID: 2800000, guid: b891785d4c724714482aa5ec0735521e, type: 2}
   coverageMaskWorldSize: {x: 2000, y: 0, z: 2000}
   coverageMaskWorldCenter: {x: 0, y: 0, z: 0}
   snowQuality: 30
@@ -40,26 +40,26 @@ MonoBehaviour:
   occlusion: 0
   occlusionIntensity: 1.5
   glitterStrength: 0.75
-  snowfall: 1
+  snowfall: 0
   snowfallIntensity: 0.172
   snowfallSpeed: 1.78
   snowfallWind: 0.384
   snowfallDistance: 100
   snowfallUseIllumination: 0
-  snowdustIntensity: 0.028
+  snowdustIntensity: 0
   snowdustVerticalOffset: 0.5
   maxExposure: 2
   smoothness: 0.4
   preserveGI: 0
-  snowAmount: 1.488
+  snowAmount: 2
   cameraFrost: 1
-  cameraFrostIntensity: 0.35
-  cameraFrostSpread: 1.2
-  cameraFrostDistortion: 0.25
+  cameraFrostIntensity: 0.061
+  cameraFrostSpread: 2.38
+  cameraFrostDistortion: 0.166
   cameraFrostTintColor: {r: 0.6132076, g: 0.6132076, b: 0.6132076, a: 1}
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   zenithalMask:
     serializedVersion: 2
     m_Bits: 4294967295

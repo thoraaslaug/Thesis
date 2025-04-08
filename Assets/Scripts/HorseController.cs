@@ -22,6 +22,10 @@ public class HorseController : MonoBehaviour
     public AudioSource gallopAudioSource; 
     public AudioSource footstepAudioSource; 
     public AudioClip footstepClip; 
+    private bool hasStartedNarration = false;
+    private float narrationTimer = 0f;
+    private bool isWaitingToStartNarration = false;
+
 
     void Start()
     {
@@ -62,6 +66,24 @@ public class HorseController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal"); 
         float vertical = Input.GetAxis("Vertical"); 
+       
+        if (!hasStartedNarration && !isWaitingToStartNarration && vertical > 0)
+        {
+            isWaitingToStartNarration = true;
+            narrationTimer = 2f; // Wait for 2 seconds
+        }
+
+        // Countdown until narration starts
+        if (isWaitingToStartNarration)
+        {
+            narrationTimer -= Time.deltaTime;
+            if (narrationTimer <= 0f)
+            {
+                StartRideNarration();
+                hasStartedNarration = true;
+                isWaitingToStartNarration = false;
+            }
+        }
 
         Vector3 inputDirection = new Vector3(horizontal, 0f, vertical).normalized;
 
@@ -101,6 +123,23 @@ public class HorseController : MonoBehaviour
     public void ActivateHorseControl()
     {
         isActive = true;
+    }
+    
+    void StartRideNarration()
+    {
+        string[] narrationLines = new string[]
+        {
+            "Tonight, she will hear my voice again.",
+            "This cold cannot reach me — not when I'm riding to her.",
+            "I wonder if she’s still wearing the apron I gave her.",
+            "She'll be surprised to see me — but she will come."
+        };
+
+        var narrationManager = FindObjectOfType<NarrationTextManager>();
+        if (narrationManager != null)
+        {
+            narrationManager.StartNarration(narrationLines);
+        }
     }
     
     public void DeActivateHorseControl()

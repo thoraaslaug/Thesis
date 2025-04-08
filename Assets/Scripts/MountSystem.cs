@@ -22,6 +22,7 @@ public class MountSystem : MonoBehaviour
     public Transform riderRightHand;
     public Transform reinsResetParent;
     public Transform respawnNearFemalePoint;
+    private bool hasShownMountMessage = false;
 
 
 
@@ -71,47 +72,48 @@ public class MountSystem : MonoBehaviour
 
     void Update()
     {
-        // Check if player is near horse and presses Space to mount
-        if (!isMounted && Input.GetKeyDown(KeyCode.Space) && IsPlayerNearHorse())
+        bool isNearHorse = Vector3.Distance(player.transform.position, horse.transform.position) < 2f;
+
+        if (!isMounted && isNearHorse)
         {
-            //Debug.Log("Player is attempting to mount the horse...");
-            StartCoroutine(MountHorse());
-            //if (cameraFollow != null)
-            //{
-             //   cameraFollow.SetMounted(true);
-            //}
-            //horseController.enabled = true;
-        }
-        if (isMounted)
-        {
-            if (horseController != null)
+            if (!hasShownMountMessage)
             {
-                float horseSpeed = horseController.GetCurrentSpeed();
-                playerAnimator.SetFloat("Speed", horseSpeed);
+                FindObjectOfType<TextPopUpManager>().ShowMessage("Press Space to mount horse");
+                hasShownMountMessage = true;
             }
-            //float horseSpeed = horseController.GetCurrentSpeed(); // Get the horse's current speed
 
-            // Sync the player's riding animation with horse movement
-           // playerAnimator.SetFloat("Speed", horseSpeed);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartCoroutine(MountHorse());
+            }
+        }
+        else
+        {
+            hasShownMountMessage = false;
+        }
 
-          //  Debug.Log("Horse Speed: " + horseSpeed);
+        if (isMounted && horseController != null)
+        {
+            float horseSpeed = horseController.GetCurrentSpeed();
+            playerAnimator.SetFloat("Speed", horseSpeed);
         }
     }
 
     bool IsPlayerNearHorse()
-    {
+    {        
         return Vector3.Distance(player.transform.position, horse.transform.position) < 2f;
+
     }
 
     IEnumerator MountHorse()
     {
         isMounted = true;
 
-        Debug.Log("🐎 MountHorse DEBUG:");
+       /* Debug.Log("🐎 MountHorse DEBUG:");
         Debug.Log("playerController: " + (playerController != null));
         Debug.Log("mountPoint: " + (mountPoint != null));
         Debug.Log("player: " + (player != null));
-        Debug.Log("playerAnimator: " + (playerAnimator != null));
+        Debug.Log("playerAnimator: " + (playerAnimator != null));*/
         playerController.enabled = false;
         horseController.ActivateHorseControl();
 

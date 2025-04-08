@@ -1,9 +1,19 @@
+using System;
+using GlobalSnowEffect;
 using UnityEngine;
 
 public class PreconditionTracker : MonoBehaviour
 {
     public static bool hasEnteredPrecondition = false; // Shared across scripts
     public SnowstormTrigger snowstormTrigger; // Reference to the Snowstorm System
+    public GameObject bridgeNoSnow;
+    public GameObject bridgeSnow;
+
+    private void Start()
+    {
+        bridgeNoSnow.SetActive(true);
+        bridgeSnow.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +26,8 @@ public class PreconditionTracker : MonoBehaviour
             if (snowstormTrigger != null)
             {
                 snowstormTrigger.StartSnowstorm();
+                bridgeNoSnow.SetActive(false);
+                bridgeSnow.SetActive(true);
             }
             else
             {

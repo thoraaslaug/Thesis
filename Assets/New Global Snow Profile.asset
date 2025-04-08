@@ -41,7 +41,7 @@ MonoBehaviour:
   occlusionIntensity: 1.5
   glitterStrength: 0.75
   snowfall: 1
-  snowfallIntensity: 0.172
+  snowfallIntensity: 0.308
   snowfallSpeed: 1.78
   snowfallWind: 0.384
   snowfallDistance: 100

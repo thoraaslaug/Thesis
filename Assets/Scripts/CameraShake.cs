@@ -1,24 +1,44 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class CameraShake : MonoBehaviour
 {
-    public IEnumerator Shake(float duration, float magnitude)
+    public bool isShaking = false;
+    private Vector3 shakeOffset = Vector3.zero;
+
+    public float magnitude = 0.5f;
+    public float duration = 1f;
+
+    private float elapsed = 0f;
+
+    public void StartShake(float dur, float mag)
     {
-        Vector3 originalPos = transform.localPosition;
-        float elapsed = 0.0f;
+        duration = dur;
+        magnitude = mag;
+        elapsed = 0f;
+        isShaking = true;
+    }
 
-        while (elapsed < duration)
+    void LateUpdate()
+    {
+        if (isShaking)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-
-            transform.localPosition = originalPos + new Vector3(x, y, 0);
-
             elapsed += Time.deltaTime;
-            yield return null;
-        }
 
-        transform.localPosition = originalPos;
+            if (elapsed >= duration)
+            {
+                isShaking = false;
+                shakeOffset = Vector3.zero;
+            }
+            else
+            {
+                float x = Random.Range(-1f, 1f) * magnitude;
+                float y = Random.Range(-1f, 1f) * magnitude;
+                shakeOffset = new Vector3(x, y, 0f);
+            }
+
+            // Add offset to camera's current position
+            transform.localPosition += shakeOffset;
+        }
     }
 }

@@ -26,6 +26,9 @@ public class HorseCameraFollow : MonoBehaviour
     public CameraZoomTriggerr trigger;
     private bool isZoomOverridden = false;
     private Vector3 overriddenOffset;
+    
+    public Vector3 shakeOffset = Vector3.zero;
+
 
 
     void Start()
@@ -66,6 +69,10 @@ public class HorseCameraFollow : MonoBehaviour
     public Transform GetCurrentTarget()
     {
         return currentTarget;
+    }
+    public void SetShakeOffset(Vector3 offset)
+    {
+        shakeOffset = offset;
     }
     
    

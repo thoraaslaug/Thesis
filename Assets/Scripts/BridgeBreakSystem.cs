@@ -1,22 +1,29 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class BridgeBreakSystem : MonoBehaviour
 {
     public GameObject[] bridgeParts;
-    public float fallDelay = 0.1f;
-    public float staggerDelay = 0.05f;
+    public float dropCheckInterval = 0.2f;
     public float fallSpeed = 2f;
     public float fallDistance = 5f;
-    public GameObject firstRock;
+    public float dropBehindDistance = 1.5f;
 
+    public GameObject firstRock;
     private bool hasPlayerEnteredOnce = false;
     public static bool HasBroken { get; private set; }
+
+    private GameObject player;
+    private HashSet<GameObject> droppedParts = new HashSet<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            player = other.gameObject;
+
             if (!hasPlayerEnteredOnce)
             {
                 hasPlayerEnteredOnce = true;
@@ -24,37 +31,61 @@ public class BridgeBreakSystem : MonoBehaviour
                 {
                     Debug.Log("Player first entered bridge. Dropping one rock.");
                     StartCoroutine(FallDown(firstRock));
+                    droppedParts.Add(firstRock);
                 }
             }
 
             if (PreconditionTracker.hasEnteredPrecondition && !HasBroken)
             {
                 HasBroken = true;
-                Debug.Log("Precondition met. Breaking full bridge.");
+                Debug.Log("Precondition met. Breaking bridge behind player.");
 
                 CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
                 if (cameraShake != null)
                 {
-                    StartCoroutine(cameraShake.Shake(10f, 0.5f));
+                    //StartCoroutine(cameraShake.Shake(10f, 0.5f));
+                    cameraShake.StartShake(15f, 0.5f);
                 }
 
-                StartCoroutine(MakeBridgeFall());
+                StartCoroutine(DropRocksBehindPlayer());
             }
         }
     }
 
-    private IEnumerator MakeBridgeFall()
+    private IEnumerator DropRocksBehindPlayer()
     {
-        yield return new WaitForSeconds(fallDelay);
-
-        foreach (GameObject part in bridgeParts)
+        while (true)
         {
-            if (part != null)
+            GameObject nextRock = GetNextRockBehindPlayer();
+            if (nextRock != null)
             {
-                StartCoroutine(FallDown(part));
+                StartCoroutine(FallDown(nextRock));
+                droppedParts.Add(nextRock);
             }
-            yield return new WaitForSeconds(staggerDelay);
+
+            yield return new WaitForSeconds(dropCheckInterval);
         }
+    }
+
+    private GameObject GetNextRockBehindPlayer()
+    {
+        Vector3 playerPos = player.transform.position;
+
+        // Get undropped parts behind player (relative to Z or forward direction)
+        var candidates = bridgeParts
+            .Where(part => part != null && !droppedParts.Contains(part))
+            .OrderBy(part => Vector3.Distance(part.transform.position, playerPos))
+            .ToList();
+
+        foreach (var part in candidates)
+        {
+            if (Vector3.Distance(part.transform.position, playerPos) <= dropBehindDistance)
+            {
+                return part;
+            }
+        }
+
+        return null;
     }
 
     private IEnumerator FallDown(GameObject part)
