@@ -25,7 +25,7 @@ public class PreconditionTracker : MonoBehaviour
             // Start the snowstorm
             if (snowstormTrigger != null)
             {
-                snowstormTrigger.StartSnowstorm();
+                //snowstormTrigger.StartSnowstorm();
                 bridgeNoSnow.SetActive(false);
                 bridgeSnow.SetActive(true);
             }

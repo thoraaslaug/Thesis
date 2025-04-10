@@ -60,6 +60,7 @@ namespace StarterAssets
         private GameObject activeDummy;
         public GameObject hair;
         private static bool hasPlayedReturnRideNarration = false;
+        public SnowstormTrigger snowstormTrigger;
 
 
         private void Start()
@@ -289,6 +290,7 @@ namespace StarterAssets
             transform.rotation = timelineDummy.transform.rotation;
             // Deactivate dummy
             timelineDummy.SetActive(false);
+            snowstormTrigger.StartSnowstorm();
 
             // Restore player visuals and control
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;

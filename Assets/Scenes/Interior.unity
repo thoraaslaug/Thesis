@@ -450,7 +450,7 @@ MonoBehaviour:
   _noiseTexScale: 0.1
   _coverageMask: 1
   _coverageMaskTexture: {fileID: 2800000, guid: b891785d4c724714482aa5ec0735521e, type: 2}
-  _coverageMaskWorldSize: {x: 2000, y: 0, z: 2000}
+  _coverageMaskWorldSize: {x: 500, y: 0, z: 500}
   _coverageMaskWorldCenter: {x: 0, y: 0, z: 0}
   _coverageMaskFillOutside: 1
   _snowQuality: 30
@@ -496,8 +496,8 @@ MonoBehaviour:
   _preserveGI: 0
   _minimumGIAmbient: 0.2
   _terrainMarks: 0
-  _terrainMarksDuration: 180
-  _terrainMarksDefaultSize: 0.25
+  _terrainMarksDuration: 176
+  _terrainMarksDefaultSize: 0.808
   _terrainMarksRoofMinDistance: 0.5
   _terrainMarksAutoFPS: 0
   _terrainMarksViewDistance: 200
@@ -510,9 +510,9 @@ MonoBehaviour:
   _characterController: {fileID: 0}
   _groundDistance: 1
   _maskEditorEnabled: 1
-  _maskTextureResolution: 1024
+  _maskTextureResolution: 413
   _maskBrushMode: 1
-  _maskBrushWidth: 20
+  _maskBrushWidth: 128
   _maskBrushFuzziness: 0.5
   _maskBrushOpacity: 0.25
   snowNormalsTex: {fileID: 2800000, guid: 6e97ae521a24e404ebf8f4e3315de047, type: 3}
@@ -6550,6 +6550,7 @@ MonoBehaviour:
   kissTimeline: {fileID: 0}
   timelineDummy: {fileID: 0}
   hair: {fileID: 0}
+  snowstormTrigger: {fileID: 0}
 --- !u!114 &602687584
 MonoBehaviour:
   m_ObjectHideFlags: 0

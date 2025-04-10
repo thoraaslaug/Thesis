@@ -50,16 +50,16 @@ public class BridgeBreakSystem : MonoBehaviour
                     cameraShake.StartShake(15f, 0.5f);
                 }
 
-                StartCoroutine(DropRocksBehindPlayer());
+                StartCoroutine(DropRocksInFrontOfPlayer());
             }
         }
     }
 
-    private IEnumerator DropRocksBehindPlayer()
+    private IEnumerator DropRocksInFrontOfPlayer()
     {
         while (true)
         {
-            GameObject nextRock = GetNextRockBehindPlayer();
+            GameObject nextRock = GetNextRockInFrontOfPlayer();
             if (nextRock != null)
             {
                 StartCoroutine(FallDown(nextRock));
@@ -70,19 +70,26 @@ public class BridgeBreakSystem : MonoBehaviour
         }
     }
 
-    private GameObject GetNextRockBehindPlayer()
+    private GameObject GetNextRockInFrontOfPlayer()
     {
         Vector3 playerPos = player.transform.position;
 
-        // Get undropped parts behind player (relative to Z or forward direction)
+        // Get undropped parts in FRONT of the player (relative to their forward direction)
         var candidates = bridgeParts
             .Where(part => part != null && !droppedParts.Contains(part))
-            .OrderBy(part => Vector3.Distance(part.transform.position, playerPos))
+            .OrderBy(part =>
+            {
+                Vector3 toPart = part.transform.position - playerPos;
+                return Vector3.Dot(toPart, player.transform.forward); // Higher = more in front
+            })
             .ToList();
 
         foreach (var part in candidates)
         {
-            if (Vector3.Distance(part.transform.position, playerPos) <= dropBehindDistance)
+            Vector3 toPart = part.transform.position - playerPos;
+            float forwardDot = Vector3.Dot(toPart.normalized, player.transform.forward);
+
+            if (forwardDot > 0.5f) // Only parts generally in front
             {
                 return part;
             }
@@ -90,6 +97,7 @@ public class BridgeBreakSystem : MonoBehaviour
 
         return null;
     }
+
 
     private IEnumerator FallDown(GameObject part)
     {
