@@ -21,7 +21,7 @@ public class HorseController : MonoBehaviour
     
     [Header("Bridge Settings")]
     public bool isOnBridge = false; // ✅ Tracks if the horse is in a snowstorm
-    public float bridgeGallop = 1f; // ✅ Reduced speed in snowstorm
+    public float bridgeGallop = 0.4f; // ✅ Reduced speed in snowstorm
     public float bridgeTurn = 0.2f; // ✅ Reduced turn responsiveness
     public float bridgeAcceleration = 0.1f; // ✅ Slower acceleration
 
@@ -159,7 +159,7 @@ public class HorseController : MonoBehaviour
     {
         string[] narrationLines = new string[]
         {
-            "Tonight, I will hear her voice again.",
+            "Tonight, I will see her again.",
             "This cold cannot reach me... not when I'm riding to her.",
             "I wonder if she’s still wearing the apron I gave her.",
             "She'll be surprised to see me...but she will accept my invitation."

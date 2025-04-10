@@ -64,7 +64,7 @@ public class DoorOpener : MonoBehaviour
 
         string[] narrationLines = new string[]
         {
-            "I said yes...",
+            "The days have passed so slowly",
             "He’ll ride through anything for me… I know he will.",
             "It’s colder tonight than I expected.",
             "The lamp is lit. He’ll see it.",
