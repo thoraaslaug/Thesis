@@ -151,6 +151,7 @@ public class MountSystem : MonoBehaviour
         player.transform.position = mountPoint.position;
         player.transform.rotation = mountPoint.rotation;
         player.transform.SetParent(mountPoint);
+        AttachReinsToHands();
 
         if (cameraFollow != null)
         {
@@ -228,6 +229,32 @@ public class MountSystem : MonoBehaviour
             rearMountPoint.localPosition = facingRight ? femaleOffsetRight : femaleOffsetLeft;
         }
     }
+    
+    void AttachReinsToHands()
+    {
+        if (reinsLeftEnd && riderLeftHand)
+            reinsLeftEnd.SetParent(riderLeftHand, worldPositionStays: true);
+        reinsLeftEnd.localPosition = Vector3.zero;         // or a fine-tuned offset
+        reinsLeftEnd.localRotation = Quaternion.identity;  // or a custom rotation if needed
+        
+        if (reinsRightEnd && riderRightHand)
+            reinsRightEnd.SetParent(riderRightHand, worldPositionStays: true);
+        reinsRightEnd.localPosition = Vector3.zero;
+        reinsRightEnd.localRotation = Quaternion.identity;
+        
 
+        Debug.Log("🪢 Reins attached to rider hands.");
+    }
+
+    public void DetachReins()
+    {
+        if (reinsLeftEnd && reinsResetParent)
+            reinsLeftEnd.SetParent(reinsResetParent, true);
+
+        if (reinsRightEnd && reinsResetParent)
+            reinsRightEnd.SetParent(reinsResetParent, true);
+
+        Debug.Log("🔓 Reins detached from rider.");
+    }
 
 }
