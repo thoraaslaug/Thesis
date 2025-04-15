@@ -21,6 +21,8 @@ public class DoorOpener : MonoBehaviour
     public ScreenFade screenFade;
     private bool hasStartedNarration = false;
 
+    public AudioSource source;
+
 
     void Update()
     {
@@ -53,6 +55,7 @@ public class DoorOpener : MonoBehaviour
             Vector3 currentRot = door.transform.localEulerAngles;
             float newY = Mathf.LerpAngle(currentRot.y, openRot, speed * Time.deltaTime);
             door.transform.localEulerAngles = new Vector3(currentRot.x, newY, currentRot.z);
+            
         }
     }
     
@@ -81,6 +84,7 @@ public class DoorOpener : MonoBehaviour
     }
     void OpenDoorAfterNarration()
     {
+        source.Play();
         opening = true;
         hasOpened = true;
         Debug.Log("🕯️ Narration finished — opening door...");
