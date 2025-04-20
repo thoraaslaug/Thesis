@@ -39,9 +39,12 @@ public class MountSystem : MonoBehaviour
     public Transform reinsLeftEnd, reinsRightEnd, riderLeftHand, riderRightHand, reinsResetParent;
     public bool triggerNarrationOnStart = true;
     private bool hasStartedSceneNarration = false;
-
+    
     void Start()
     {
+        
+       // string currentScene = SceneManager.GetActiveScene().name; // ✅ now inside Start()
+
         playerController = player.GetComponent<ThirdPersonController>();
         femaleController = female.GetComponent<ThirdPersonController>();
         horseController = horse.GetComponent<HorseController>();
@@ -65,6 +68,25 @@ public class MountSystem : MonoBehaviour
             if (narration != null)
                 narration.StartNarration(lines);
         }
+        
+       /* if (currentScene == "FemaleScene")
+        {
+            Debug.Log("🔧 ThirdScene setup: man starts already on horse");
+
+            horse.transform.position = respawnNearFemalePoint.position + new Vector3(1.5f, 0f, 0f);
+            horse.transform.rotation = respawnNearFemalePoint.rotation;
+            player.transform.position = mountPoint.position;
+            player.transform.rotation = mountPoint.rotation;
+            player.transform.SetParent(mountPoint);
+
+            playerAnimator.SetBool("IsRiding", true);
+            playerAnimator.SetFloat("Speed", 0.0f);
+            playerAnimator.Play("Ride");
+
+            frontOccupied = true;
+            isMounted = true;
+            GameState.returnWithHorse = false;
+        }*/
 
         // 🔁 Setup based on GameState
         if (GameState.returnWithHorse)
@@ -82,14 +104,34 @@ public class MountSystem : MonoBehaviour
             frontOccupied = true;
             isMounted = true;
             GameState.returnWithHorse = false;
-        }
-        else
+            
+            return; 
+        } else if (currentScene == "FemaleScene")
         {
+            Debug.Log("🎄 ThirdScene setup: man starts already on horse");
+
+            horse.transform.position = respawnNearFemalePoint.position + new Vector3(1.5f, 0f, 0f);
+            horse.transform.rotation = respawnNearFemalePoint.rotation;
+            player.transform.position = mountPoint.position;
+            player.transform.rotation = mountPoint.rotation;
+            player.transform.SetParent(mountPoint);
+
+            playerAnimator.SetBool("IsRiding", true);
+            playerAnimator.SetFloat("Speed", 0.0f);
+            playerAnimator.Play("Ride");
+
+            frontOccupied = true;
+            isMounted = true;
+
+            horseController.enabled = false; // Let the player mount and enable later
+            playerController.enabled = false;
+
+            return; // ✅ Prevent override
+        }
             player.transform.SetParent(null);
             isMounted = false;
             horseController.enabled = false;
             playerController.enabled = true;
-        }
     }
 
     void LateUpdate()
