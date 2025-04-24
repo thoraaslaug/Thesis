@@ -3,40 +3,75 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using StarterAssets;
 
 public class KissTrigger : MonoBehaviour
 {
+    [Header("Audio & Camera")]
     public AudioSource kissAudio;
     public CinemachineVirtualCamera vcamKissZoom;
 
-    public Volume postProcessingVolume; // Assign in inspector
+    [Header("Post Processing")]
+    public Volume postProcessingVolume;
     private DepthOfField dof;
 
+    [Header("Lighting")]
     public Color slowMoColor = Color.gray;
     public Color normalColor = Color.white;
     private Color originalAmbientColor;
+    public Light moonLight;
+
+    [Header("Hair Swaps")]
+    public GameObject normalHair;
+    public GameObject deadHair;
+
+    [Header("Characters")]
+    public GameObject man;
+    public GameObject woman;
+    public GameObject horse;
+
+    private Animator manAnimator;
+    private Animator womanAnimator;
+    private Animator horseAnimator;
+
+    private StarterAssetsInputs inputMan;
+    private StarterAssetsInputs inputWoman;
 
     private bool hasPlayed = false;
     
-    public Light moonLight; // Assign in Inspector
-
-    public GameObject normalHair;
-    public GameObject deadHair;
+    public HorseController horseController;
 
 
     private void Start()
     {
-        normalHair.SetActive(true);
-        deadHair.SetActive(false);
-        moonLight.enabled = false;
-        // Get reference to the Depth of Field override
+        // Assign components
         if (postProcessingVolume != null)
-        {
             postProcessingVolume.profile.TryGet(out dof);
+
+        originalAmbientColor = RenderSettings.ambientLight;
+
+        if (moonLight != null)
+            moonLight.enabled = false;
+
+        if (normalHair != null) normalHair.SetActive(true);
+        if (deadHair != null) deadHair.SetActive(false);
+
+        if (man != null)
+        {
+            manAnimator = man.GetComponent<Animator>();
+            inputMan = man.GetComponent<StarterAssetsInputs>();
         }
 
-        // Store original ambient light color
-        originalAmbientColor = RenderSettings.ambientLight;
+        if (woman != null)
+        {
+            womanAnimator = woman.GetComponent<Animator>();
+            inputWoman = woman.GetComponent<StarterAssetsInputs>();
+        }
+
+        if (horse != null)
+        {
+            horseAnimator = horse.GetComponent<Animator>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,48 +79,64 @@ public class KissTrigger : MonoBehaviour
         if (!hasPlayed && other.CompareTag("Player"))
         {
             hasPlayed = true;
+
             kissAudio.Play();
 
-            // Zoom in camera
-            vcamKissZoom.Priority = 20;
+            // Camera
+            if (vcamKissZoom != null)
+                vcamKissZoom.Priority = 20;
 
-            // Slow motion
-            Time.timeScale = 0.4f;
-            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            // Freeze all animations
+            if (horseController != null) horseController.enabled = false;
+            if (manAnimator) manAnimator.enabled = false;
+            if (womanAnimator) womanAnimator.enabled = false;
+            if (horseAnimator) horseAnimator.enabled = false;
 
-            // Turn off Depth of Field
-            if (dof != null)
-                dof.active = false;
+            // Disable input
+            if (inputMan) inputMan.enabled = false;
+            if (inputWoman) inputWoman.enabled = false;
 
-            // Darken the world
+            // Post Processing & Lighting
+            if (dof != null) dof.active = false;
             RenderSettings.ambientLight = slowMoColor;
-            moonLight.enabled = true;
-            normalHair.SetActive(false);
-            deadHair.SetActive(true);
+            if (moonLight != null) moonLight.enabled = true;
 
-            StartCoroutine(ResetSceneAfterAudio(kissAudio.clip.length));
+            // Swap hair
+            if (normalHair != null) normalHair.SetActive(false);
+            if (deadHair != null) deadHair.SetActive(true);
+
+            StartCoroutine(ResetAfterAudio(kissAudio.clip.length));
         }
     }
 
-    IEnumerator ResetSceneAfterAudio(float duration)
+    private IEnumerator ResetAfterAudio(float duration)
     {
         yield return new WaitForSecondsRealtime(duration);
 
-        // Reset camera priority
-        vcamKissZoom.Priority = 5;
+        // Unfreeze animations
+        if (horseController != null) horseController.enabled = true;
 
-        // Reset time scale
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = 0.02f;
+        if (manAnimator) manAnimator.enabled = true;
+        if (womanAnimator) womanAnimator.enabled = true;
+        if (horseAnimator) horseAnimator.enabled = true;
 
-        // Turn Depth of Field back on
-        if (dof != null)
-            dof.active = true;
+        // Re-enable input
+        if (inputMan) inputMan.enabled = true;
+        if (inputWoman) inputWoman.enabled = true;
 
-        // Reset ambient lighting
-        RenderSettings.ambientLight = originalAmbientColor;
-        moonLight.enabled = false;
-        normalHair.SetActive(true);
-        deadHair.SetActive(false);
+        // Reset camera
+        if (vcamKissZoom != null)
+            vcamKissZoom.Priority = 5;
+
+        // Reset lighting
+        RenderSettings.ambientLight = normalColor;
+        if (moonLight != null) moonLight.enabled = false;
+
+        // Re-enable DOF
+        if (dof != null) dof.active = true;
+
+        // Reset hair
+        if (normalHair != null) normalHair.SetActive(true);
+        if (deadHair != null) deadHair.SetActive(false);
     }
 }
