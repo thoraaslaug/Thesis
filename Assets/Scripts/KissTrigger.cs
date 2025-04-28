@@ -81,6 +81,11 @@ public class KissTrigger : MonoBehaviour
             hasPlayed = true;
 
             kissAudio.Play();
+            var poemDisplay = FindObjectOfType<PoemDisplayManager>();
+            if (poemDisplay != null)
+            {
+                poemDisplay.StartPoem();
+            }
 
             // Camera
             if (vcamKissZoom != null)

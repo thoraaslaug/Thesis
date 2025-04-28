@@ -1392,7 +1392,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: bd782fc20a4ab784c833df73417be22c, type: 2}
-  m_InitialState: 0
+  m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -6817,7 +6817,7 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602687581}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: b9785e68c99f53b44816b8c2734a44ba, type: 2}
   m_InitialState: 1
@@ -7949,15 +7949,10 @@ PrefabInstance:
     - target: {fileID: 4450398156153000505, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: d202044cd3d97e34eaa377f145de2520, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4450398156153000505, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'index_03_l'\n\tTransform 'lowerarm_l'\n\tTransform
-        'root'\n\tTransform 'pinky_03_l'\n\tTransform 'neck_01'\n\tTransform 'pinky_03_r'\n\tTransform
-        'clavicle_l'\n\tTransform 'ring_02_l'\n\tTransform 'ball_l'\n\tTransform
-        'hand_l'\n\tand more ..."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4596388409898002964, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_Friction
@@ -10092,7 +10087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5546478219645340906, guid: de3b4ee280c37b54e9cede5bd8699bce, type: 3}
       propertyPath: m_Pitch
-      value: 1.0481241
+      value: 1.0848955
       objectReference: {fileID: 0}
     - target: {fileID: 5546478219645340906, guid: de3b4ee280c37b54e9cede5bd8699bce, type: 3}
       propertyPath: m_Enabled
