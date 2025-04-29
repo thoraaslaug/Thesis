@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-
 using Unity.Cinemachine;
 
 #if ENABLE_INPUT_SYSTEM
@@ -19,13 +18,11 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
-        [Header("Player Settings")]
-        public float MoveSpeed = 2.0f;
+        [Header("Player Settings")] public float MoveSpeed = 2.0f;
         public float SprintSpeed = 5.335f;
         public float SpeedChangeRate = 10.0f;
 
-        [Header("Riding System")]
-        public bool isMounted = false;
+        [Header("Riding System")] public bool isMounted = false;
 
         // Animator Hash IDs
         private int _animIDSpeed;
@@ -39,15 +36,15 @@ namespace StarterAssets
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
-        
+
         private HorseCameraFollow _cameraFollow;
 
         private bool _hasAnimator;
         private float _speed;
-        
+
         public float turnSpeed = 10f;
 
-        
+
         private SnowPathDrawer _snowPathDrawer;
 
         public AudioSource audioSource;
@@ -56,8 +53,8 @@ namespace StarterAssets
         public HorseController horse;
         public ThirdPersonController player;
         public Animator horseAnimator;
-        
-        private float gravity = -9.81f;  // Standard gravity value
+
+        private float gravity = -9.81f; // Standard gravity value
         private float verticalVelocity = 0f; // Stores downward movement
         private float groundCheckDistance = 0.1f; // How close the player has to be to be considered "on the ground"
         public PlayableDirector kissTimeline;
@@ -83,23 +80,20 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-            
-            
-            
+
+            horseTimeLine.SetActive(true);
+
             _snowPathDrawer = GetComponent<SnowPathDrawer>();
             if (postProcessingVolume != null)
             {
                 postProcessingVolume.profile.TryGet(out dof);
             }
+
             AssignAnimationIDs();
         }
 
         private void Update()
         {
-            if (_input != null)
-                        {
-                            Debug.Log($"Input Move: {_input.move}");
-                        }
             if (isMounted)
             {
                 HandleRiding();
@@ -119,6 +113,7 @@ namespace StarterAssets
                 audioSource.PlayOneShot(clip);
             }
         }
+
         private void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
@@ -130,35 +125,34 @@ namespace StarterAssets
         {
             Debug.Log("Mounting horse...");
             isMounted = true;
-            
-                
+
+
             if (_hasAnimator)
             {
                 _animator.SetBool(_animIDRiding, true);
-                _animator.SetFloat(_animIDSpeed, 1.0f);  // Force transition
+                _animator.SetFloat(_animIDSpeed, 1.0f); // Force transition
                 Debug.Log($"Animator isRiding = {_animator.GetBool(_animIDRiding)}");
-               // _cameraFollow.SetMounted(true);
+                // _cameraFollow.SetMounted(true);
             }
 
-           /* if (_cameraFollow != null)
-            {
-                _cameraFollow.SetMounted(true);
-            }*/
-            
+            /* if (_cameraFollow != null)
+             {
+                 _cameraFollow.SetMounted(true);
+             }*/
         }
 
-      /*  public void DismountHorse()
-        {
-            Debug.Log("Dismounting horse...");
-            isMounted = false;
+        /*  public void DismountHorse()
+          {
+              Debug.Log("Dismounting horse...");
+              isMounted = false;
 
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDRiding, false);
-                _animator.SetFloat(_animIDSpeed, 0.0f);
-                Debug.Log($"Animator isRiding = {_animator.GetBool(_animIDRiding)}");
-            }
-        }*/
+              if (_hasAnimator)
+              {
+                  _animator.SetBool(_animIDRiding, false);
+                  _animator.SetFloat(_animIDSpeed, 0.0f);
+                  Debug.Log($"Animator isRiding = {_animator.GetBool(_animIDRiding)}");
+              }
+          }*/
 
         private void HandleRiding()
         {
@@ -166,7 +160,7 @@ namespace StarterAssets
 
             if (_hasAnimator)
             {
-               // _animator.SetFloat(_animIDSpeed, 1.0f);
+                // _animator.SetFloat(_animIDSpeed, 1.0f);
                 _animator.SetBool(_animIDRiding, true);
                 Debug.Log($"Animator Speed: {_animator.GetFloat(_animIDSpeed)}");
             }
@@ -177,7 +171,7 @@ namespace StarterAssets
             if (_hasAnimator)
             {
                 float animSpeed = _animator.GetFloat("Speed");
-               // Debug.Log($"Animator Speed Value: {animSpeed}");
+                // Debug.Log($"Animator Speed Value: {animSpeed}");
             }
 
             if (isMounted) return; // Prevent movement while mounted
@@ -186,15 +180,15 @@ namespace StarterAssets
 
             if (inputDirection.magnitude > 0.1f) // If the player is moving
             {
-               // Debug.Log($"Player Input: {inputDirection.x}, {inputDirection.y}"); // Debug input
-                float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed; 
+                // Debug.Log($"Player Input: {inputDirection.x}, {inputDirection.y}"); // Debug input
+                float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
                 _animator.SetBool("IsWalking", true);
 
                 _speed = Mathf.Lerp(_speed, targetSpeed, Time.deltaTime * SpeedChangeRate);
 
                 Vector3 moveDirection = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
                 moveDirection.Normalize();
-                
+
                 if (IsGrounded())
                 {
                     verticalVelocity = 0f;
@@ -203,7 +197,7 @@ namespace StarterAssets
                 {
                     verticalVelocity += gravity * Time.deltaTime;
                 }
-                
+
                 Vector3 movement = moveDirection * (_speed * Time.deltaTime);
                 movement.y = verticalVelocity * Time.deltaTime;
                 //_controller.Move(moveDirection * (_speed * Time.deltaTime));
@@ -213,18 +207,18 @@ namespace StarterAssets
                 if (moveDirection != Vector3.zero)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+                    transform.rotation =
+                        Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
                 }
-               // Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
+                // Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
                 //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-                
-               // if (_snowPathDrawer != null)
-                //{
-                  //  _snowPathDrawer.GetPosition();  // Update path position
-                   // _snowPathDrawer.DrawSpot();     // Draw footprint at current position
-               // }
 
-                
+                // if (_snowPathDrawer != null)
+                //{
+                //  _snowPathDrawer.GetPosition();  // Update path position
+                // _snowPathDrawer.DrawSpot();     // Draw footprint at current position
+                // }
+
 
                 if (_hasAnimator)
                 {
@@ -241,6 +235,7 @@ namespace StarterAssets
                 }
             }
         }
+
         public void DismountHorse()
         {
             if (!isMounted) return; // Prevent dismounting if already on the ground
@@ -252,7 +247,7 @@ namespace StarterAssets
             player.enabled = true;
             horse.enabled = false;
             _input.move = Vector2.zero; // reset input just in case
-            _input.enabled = false;   
+            _input.enabled = false;
             //mountSystem.DetachReins();
 
             // Enable Animator (if disabled while riding)
@@ -278,16 +273,72 @@ namespace StarterAssets
             StartCoroutine(HandleDismount());
         }
 
-       /* private IEnumerator HandleDismount()
+        /* private IEnumerator HandleDismount()
+         {
+             // Move and reposition player
+             Vector3 dismountPosition = transform.position + transform.right * 1.5f;
+             transform.position = dismountPosition;
+
+             // Align dummy with player and activate it
+             timelineDummy.transform.position = transform.position;
+             timelineDummy.transform.rotation = transform.rotation;
+             timelineDummy.SetActive(true);
+
+             // Hide player mesh / disable input
+             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+             hair.SetActive(false);
+             _controller.enabled = false;
+             _input.enabled = false;
+
+             // Play timeline
+             kissTimeline.Play();
+
+             // Wait until timeline is done
+             while (kissTimeline.state == PlayState.Playing)
+                 yield return null;
+
+             if (!GameState.hasPlayedReturnRideNarration)
+             {
+                 StartReturnRideNarration();
+                 hasPlayedReturnRideNarration = true;
+             }
+            // StartReturnRideNarration();
+             transform.position = timelineDummy.transform.position;
+             transform.rotation = timelineDummy.transform.rotation;
+             // Deactivate dummy
+             timelineDummy.SetActive(false);
+             snowstormTrigger.StartSnowstorm();
+
+             // Restore player visuals and control
+             GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+             hair.SetActive(true);
+             _controller.enabled = true;
+             _input.enabled = true;
+
+             _animator.SetFloat("Speed", 0.0f);
+
+             MountSystem mountSystem = horse.GetComponent<MountSystem>();
+             if (mountSystem != null)
+                 mountSystem.DismountMale();
+         }*/
+
+        private IEnumerator HandleDismount()
         {
+            // Disable horse so player doesn't walk through it
+            if (horseTimeLine != null)
+                horseTimeLine.SetActive(false);
+
             // Move and reposition player
             Vector3 dismountPosition = transform.position + transform.right * 1.5f;
             transform.position = dismountPosition;
 
             // Align dummy with player and activate it
-            timelineDummy.transform.position = transform.position;
-            timelineDummy.transform.rotation = transform.rotation;
+            timelineDummy.transform.position = player.transform.position;
+            timelineDummy.transform.rotation = player.transform.rotation;
             timelineDummy.SetActive(true);
+
+            if (dof != null)
+                dof.active = false;
 
             // Hide player mesh / disable input
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
@@ -295,121 +346,53 @@ namespace StarterAssets
             _controller.enabled = false;
             _input.enabled = false;
 
+            // Switch camera priorities
+            if (timelineCamera != null) timelineCamera.Priority = 20;
+            if (gameplayCamera != null) gameplayCamera.Priority = 5;
+
             // Play timeline
             kissTimeline.Play();
 
             // Wait until timeline is done
             while (kissTimeline.state == PlayState.Playing)
                 yield return null;
+
+            // Restore camera
+            if (timelineCamera != null) timelineCamera.Priority = 5;
+            if (gameplayCamera != null) gameplayCamera.Priority = 20;
+
             
-            if (!GameState.hasPlayedReturnRideNarration)
-            {
-                StartReturnRideNarration();
-                hasPlayedReturnRideNarration = true;
-            }
-           // StartReturnRideNarration();
+
+            // Move player to timeline dummy position
             transform.position = timelineDummy.transform.position;
             transform.rotation = timelineDummy.transform.rotation;
-            // Deactivate dummy
             timelineDummy.SetActive(false);
-            snowstormTrigger.StartSnowstorm();
+
+       
 
             // Restore player visuals and control
             GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
             hair.SetActive(true);
             _controller.enabled = true;
             _input.enabled = true;
-
+                if (dof != null)
+                dof.active = true;
             _animator.SetFloat("Speed", 0.0f);
 
             MountSystem mountSystem = horse.GetComponent<MountSystem>();
             if (mountSystem != null)
                 mountSystem.DismountMale();
-        }*/
-       
-       private IEnumerator HandleDismount()
-{
-    
-     //this.mountSystem.DetachReins();
 
-    // Move and reposition player
-    Vector3 dismountPosition = transform.position + transform.right * 1.5f;
-    transform.position = dismountPosition;
-   // horseTimeLine.SetActive(false);
+            // Optional narration trigger
+            if (!GameState.hasPlayedReturnRideNarration)
+            {
+                StartReturnRideNarration();
+                hasPlayedReturnRideNarration = true;
+            }
 
-    // Align dummy with player and activate it
-    timelineDummy.transform.position = transform.position;
-    timelineDummy.transform.rotation = transform.rotation;
-    timelineDummy.SetActive(true);
-    if (dof != null)
-        dof.active = false;
+            snowstormTrigger.StartSnowstorm();
+        }
 
-    // Hide player mesh / disable input
-    GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-    hair.SetActive(false);
-    _controller.enabled = false;
-    _input.enabled = false;
-
-    // 🎥 Switch to timeline camera
-    if (timelineCamera != null)
-        timelineCamera.Priority = 20;
-
-    if (gameplayCamera != null)
-        gameplayCamera.Priority = 5;
-
-    // Optional slow-mo (uncomment if desired)
-    //Time.timeScale = 0.4f;
-    //Time.fixedDeltaTime = 0.02f * Time.timeScale;
-
-    // Play timeline
-    kissTimeline.Play();
-
-    // Wait until timeline is done
-    while (kissTimeline.state == PlayState.Playing)
-        yield return null;
-
-    // Optional: Restore time
-    //Time.timeScale = 1f;
-    //Time.fixedDeltaTime = 0.02f;
-
-    // ✅ Restore main camera after timeline
-    if (timelineCamera != null)
-        timelineCamera.Priority = 5;
-
-    if (gameplayCamera != null)
-        gameplayCamera.Priority = 20;
-    if (dof != null)
-        dof.active = true;
-
-    // Return player to dummy position
-    transform.position = timelineDummy.transform.position;
-    transform.rotation = timelineDummy.transform.rotation;
-    timelineDummy.SetActive(false);
-    //horseTimeLine.SetActive(true);
-
-
-    // Restore player visuals and control
-    GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-    hair.SetActive(true);
-    _controller.enabled = true;
-    _input.enabled = true;
-
-    _animator.SetFloat("Speed", 0.0f);
-
-    MountSystem mountSystem = horse.GetComponent<MountSystem>();
-    if (mountSystem != null)
-        mountSystem.DismountMale();
-
-    // ⛄ Trigger narration + snowstorm
-    if (!GameState.hasPlayedReturnRideNarration)
-    {
-        StartReturnRideNarration();
-        hasPlayedReturnRideNarration = true;
-    }
-
-    snowstormTrigger.StartSnowstorm();
-}
-        
         void StartReturnRideNarration()
         {
             string[] returnLines = new string[]
@@ -451,11 +434,12 @@ namespace StarterAssets
                 if (position.y < terrainHeight)
                 {
                     position.y = Mathf.Lerp(position.y, terrainHeight, Time.deltaTime * 10f); // Smooth transition
-                    _controller.Move(new Vector3(0, position.y - transform.position.y, 0)); // Move using CharacterController
+                    _controller.Move(new Vector3(0, position.y - transform.position.y,
+                        0)); // Move using CharacterController
                 }
             }
         }
-        
+
         public void DismountFromHorseImmediately()
         {
             if (!isMounted) return;
@@ -467,9 +451,9 @@ namespace StarterAssets
             // Stop riding animation
             if (_hasAnimator)
             {
-                _animator.SetBool(_animIDRiding, false);   // Stop riding
-                _animator.SetFloat(_animIDSpeed, 0.0f);     // Reset Speed
-                _animator.SetTrigger("Dismount");           // Play Dismount if you want (optional)
+                _animator.SetBool(_animIDRiding, false); // Stop riding
+                _animator.SetFloat(_animIDSpeed, 0.0f); // Reset Speed
+                _animator.SetTrigger("Dismount"); // Play Dismount if you want (optional)
             }
 
             // Re-enable full control
@@ -482,7 +466,5 @@ namespace StarterAssets
                 horseAnimator.SetBool("Galloping", false);
             }
         }
-
-
     }
 }
