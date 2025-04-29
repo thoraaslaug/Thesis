@@ -125,6 +125,8 @@ public class MountSystem : MonoBehaviour
 
             horseController.enabled = false; // Let the player mount and enable later
             playerController.enabled = false;
+            AttachReinsToHands();
+
 
             return; // ✅ Prevent override
         }
