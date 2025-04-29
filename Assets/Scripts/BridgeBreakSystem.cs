@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
 
 public class BridgeBreakSystem : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class BridgeBreakSystem : MonoBehaviour
     public HorseController horseController;
 
     [Header("Cinemachine Camera Shake")]
-    public Cinemachine.CinemachineImpulseSource impulseSource;
+    public CinemachineImpulseSource impulseSource;
 
     private bool hasPlayerEnteredOnce = false;
     public static bool HasBroken { get; private set; }

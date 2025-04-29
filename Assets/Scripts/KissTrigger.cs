@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using Cinemachine;
+//using Cinemachine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using StarterAssets;
+using Unity.Cinemachine;
 
 public class KissTrigger : MonoBehaviour
 {

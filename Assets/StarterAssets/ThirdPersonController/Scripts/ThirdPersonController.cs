@@ -1,8 +1,12 @@
 ﻿using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+
+using Unity.Cinemachine;
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -57,8 +61,8 @@ namespace StarterAssets
         private float verticalVelocity = 0f; // Stores downward movement
         private float groundCheckDistance = 0.1f; // How close the player has to be to be considered "on the ground"
         public PlayableDirector kissTimeline;
-        public Cinemachine.CinemachineVirtualCamera timelineCamera;  // 🎥 Assign in Inspector
-        public Cinemachine.CinemachineVirtualCamera gameplayCamera;  // 🎮 main camera
+        public CinemachineCamera timelineCamera;
+        public CinemachineCamera gameplayCamera;
 
         public GameObject timelineDummy; // assign in inspector
         private GameObject activeDummy;
@@ -78,6 +82,8 @@ namespace StarterAssets
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
             
+            
+            
             _snowPathDrawer = GetComponent<SnowPathDrawer>();
             if (postProcessingVolume != null)
             {
@@ -88,6 +94,10 @@ namespace StarterAssets
 
         private void Update()
         {
+            if (_input != null)
+                        {
+                            Debug.Log($"Input Move: {_input.move}");
+                        }
             if (isMounted)
             {
                 HandleRiding();
@@ -440,6 +450,34 @@ namespace StarterAssets
                 }
             }
         }
+        
+        public void DismountFromHorseImmediately()
+        {
+            if (!isMounted) return;
+
+            Debug.Log("Immediate Dismount.");
+
+            isMounted = false;
+
+            // Stop riding animation
+            if (_hasAnimator)
+            {
+                _animator.SetBool(_animIDRiding, false);   // Stop riding
+                _animator.SetFloat(_animIDSpeed, 0.0f);     // Reset Speed
+                _animator.SetTrigger("Dismount");           // Play Dismount if you want (optional)
+            }
+
+            // Re-enable full control
+            if (_controller != null) _controller.enabled = true;
+            if (_input != null) _input.enabled = true;
+
+            if (horse != null)
+            {
+                horseAnimator.SetFloat("Speed", 0.0f);
+                horseAnimator.SetBool("Galloping", false);
+            }
+        }
+
 
     }
 }

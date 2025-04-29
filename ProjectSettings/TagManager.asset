@@ -4,9 +4,15 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Stair
+  - WallRun
+  - Climb
+  - Fly
   - CinemachineTarget
   - SnowTagGround
   - Rock
+  - Animal
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -23,22 +29,22 @@ TagManager:
   - 
   - 
   - 
+  - BodyPart
+  - 
+  - 
+  - 
+  - 
+  - Animal
+  - 
+  - 
+  - Enemy
   - 
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Item
   - 
   m_SortingLayers:
   - name: Default
