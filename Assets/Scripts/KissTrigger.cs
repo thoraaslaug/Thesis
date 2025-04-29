@@ -10,7 +10,7 @@ public class KissTrigger : MonoBehaviour
 {
     [Header("Audio & Camera")]
     public AudioSource kissAudio;
-    public CinemachineVirtualCamera vcamKissZoom;
+    public CinemachineCamera vcamKissZoom;
 
     [Header("Post Processing")]
     public Volume postProcessingVolume;

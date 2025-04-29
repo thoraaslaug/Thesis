@@ -73,6 +73,8 @@ namespace StarterAssets
         public Volume postProcessingVolume; // Assign in inspector
         private DepthOfField dof;
 
+        public GameObject horseTimeLine;
+
         private void Start()
         {
             QualitySettings.vSyncCount = 0;
@@ -333,6 +335,7 @@ namespace StarterAssets
     // Move and reposition player
     Vector3 dismountPosition = transform.position + transform.right * 1.5f;
     transform.position = dismountPosition;
+   // horseTimeLine.SetActive(false);
 
     // Align dummy with player and activate it
     timelineDummy.transform.position = transform.position;
@@ -382,6 +385,8 @@ namespace StarterAssets
     transform.position = timelineDummy.transform.position;
     transform.rotation = timelineDummy.transform.rotation;
     timelineDummy.SetActive(false);
+    //horseTimeLine.SetActive(true);
+
 
     // Restore player visuals and control
     GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
