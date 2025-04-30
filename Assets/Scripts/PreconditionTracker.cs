@@ -17,6 +17,8 @@ public class PreconditionTracker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Something entered: {other.gameObject.tag}");
+
         if (other.CompareTag("Player") && !hasEnteredPrecondition)
         {
             Debug.Log("✅ Player has entered the precondition area. Snowstorm begins!");

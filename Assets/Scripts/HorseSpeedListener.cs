@@ -109,7 +109,34 @@ public class HorseStopZone : MonoBehaviour
         if (mesh) mesh.enabled = true;
         //if (hair) hair.SetActive(true);
         if (input) input.enabled = true;
+       
+        var rider = player.GetComponent<MRider>();
+        var animal = player.GetComponent<MAnimal>();
 
+// Restore Rider input
+        if (rider?.RiderInput != null)
+        {
+            rider.RiderInput.MoveCharacter = true;
+            rider.RiderInput.Enable(true);
+            Debug.Log("✅ Rider input restored");
+        }
+
+// Wake up animal
+        if (animal != null)
+        {
+            //animal.SetSleep(false);               // Wake up animal
+            animal.InputSource?.Enable(true);     // Re-enable inputs
+            animal.ResetController();             // Reset full control state
+            Debug.Log("✅ Animal awake and input enabled");
+        }
+
+// Remount rider if needed
+        if (rider != null && rider.Montura == null && rider.MountStored != null)
+        {
+            rider.Set_StoredMount(rider.MountStored.gameObject);
+            rider.MountAnimal();
+            Debug.Log("✅ Rider remounted after timeline");
+        }
         // Restore camera
         if (timelineCamera) timelineCamera.Priority = 5;
         if (gameplayCamera) gameplayCamera.Priority = 20;
@@ -117,12 +144,12 @@ public class HorseStopZone : MonoBehaviour
         if (!GameState.hasPlayedReturnRideNarration)
         {
             StartReturnRideNarration();
-            hasPlayedReturnRideNarration = true;
+            hasPlayedReturnRideNarration = true; 
             PreconditionTracker.hasEnteredPrecondition = true;
             Debug.Log("bridge should break");
 
-            if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
-            if (bridgeSnow != null) bridgeSnow.SetActive(true);
+            //if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
+            //if (bridgeSnow != null) bridgeSnow.SetActive(true);
         }
 
         snowstormTrigger.StartSnowstorm();
