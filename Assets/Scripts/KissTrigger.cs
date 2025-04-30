@@ -1,148 +1,188 @@
 using System.Collections;
 using UnityEngine;
-//using Cinemachine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using StarterAssets;
 using Unity.Cinemachine;
+using MalbersAnimations.Controller;
 
-public class KissTrigger : MonoBehaviour
+namespace MalbersAnimations.HAP
 {
-    [Header("Audio & Camera")]
-    public AudioSource kissAudio;
-    public CinemachineCamera vcamKissZoom;
-
-    [Header("Post Processing")]
-    public Volume postProcessingVolume;
-    private DepthOfField dof;
-
-    [Header("Lighting")]
-    public Color slowMoColor = Color.gray;
-    public Color normalColor = Color.white;
-    private Color originalAmbientColor;
-    public Light moonLight;
-
-    [Header("Hair Swaps")]
-    public GameObject normalHair;
-    public GameObject deadHair;
-
-    [Header("Characters")]
-    public GameObject man;
-    public GameObject woman;
-    public GameObject horse;
-
-    private Animator manAnimator;
-    private Animator womanAnimator;
-    private Animator horseAnimator;
-
-    private StarterAssetsInputs inputMan;
-    private StarterAssetsInputs inputWoman;
-
-    private bool hasPlayed = false;
-    
-    public HorseController horseController;
-
-
-    private void Start()
+    public class KissTrigger : MonoBehaviour
     {
-        // Assign components
-        if (postProcessingVolume != null)
-            postProcessingVolume.profile.TryGet(out dof);
+        [Header("Audio & Camera")] public AudioSource kissAudio;
+        public CinemachineCamera vcamKissZoom;
 
-        originalAmbientColor = RenderSettings.ambientLight;
+        [Header("Post Processing")] public Volume postProcessingVolume;
+        private DepthOfField dof;
 
-        if (moonLight != null)
-            moonLight.enabled = false;
+        [Header("Lighting")] public Color slowMoColor = Color.gray;
+        public Color normalColor = Color.white;
+        private Color originalAmbientColor;
+        public Light moonLight;
 
-        if (normalHair != null) normalHair.SetActive(true);
-        if (deadHair != null) deadHair.SetActive(false);
+        [Header("Hair Swaps")] public GameObject normalHair;
+        public GameObject deadHair;
 
-        if (man != null)
+        [Header("Characters")] public GameObject man;
+        public GameObject woman;
+        public GameObject horse;
+
+        private Animator manAnimator;
+        private Animator womanAnimator;
+        private Animator horseAnimator;
+
+        private StarterAssetsInputs inputMan;
+        private StarterAssetsInputs inputWoman;
+
+        [Header("Malbers Horse")] public MAnimal malbersHorse; // Reference to Malbers' MAnimal script
+        private bool originalGravity;
+        private bool hasPlayed = false;
+        
+        //public Animator horseAnimator;
+        public Rigidbody horseRigidbody;
+
+        private void Start()
         {
-            manAnimator = man.GetComponent<Animator>();
-            inputMan = man.GetComponent<StarterAssetsInputs>();
-        }
+            if (postProcessingVolume != null)
+                postProcessingVolume.profile.TryGet(out dof);
 
-        if (woman != null)
-        {
-            womanAnimator = woman.GetComponent<Animator>();
-            inputWoman = woman.GetComponent<StarterAssetsInputs>();
-        }
+            originalAmbientColor = RenderSettings.ambientLight;
 
-        if (horse != null)
-        {
-            horseAnimator = horse.GetComponent<Animator>();
-        }
-    }
+            if (moonLight != null)
+                moonLight.enabled = false;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!hasPlayed && other.CompareTag("Player"))
-        {
-            hasPlayed = true;
+            if (normalHair != null) normalHair.SetActive(true);
+            if (deadHair != null) deadHair.SetActive(false);
 
-            kissAudio.Play();
-            var poemDisplay = FindObjectOfType<PoemDisplayManager>();
-            if (poemDisplay != null)
+            if (man != null)
             {
-                poemDisplay.StartPoem();
+                manAnimator = man.GetComponent<Animator>();
+                inputMan = man.GetComponent<StarterAssetsInputs>();
             }
 
-            // Camera
-            if (vcamKissZoom != null)
-                vcamKissZoom.Priority = 20;
+            if (woman != null)
+            {
+                womanAnimator = woman.GetComponent<Animator>();
+                inputWoman = woman.GetComponent<StarterAssetsInputs>();
+            }
 
-            // Freeze all animations
-            if (horseController != null) horseController.enabled = false;
-            if (manAnimator) manAnimator.enabled = false;
-            if (womanAnimator) womanAnimator.enabled = false;
-            if (horseAnimator) horseAnimator.enabled = false;
+            if (horse != null)
+            {
+                horseAnimator = horse.GetComponent<Animator>();
+            }
 
-            // Disable input
-            if (inputMan) inputMan.enabled = false;
-            if (inputWoman) inputWoman.enabled = false;
-
-            // Post Processing & Lighting
-            if (dof != null) dof.active = false;
-            RenderSettings.ambientLight = slowMoColor;
-            if (moonLight != null) moonLight.enabled = true;
-
-            // Swap hair
-            if (normalHair != null) normalHair.SetActive(false);
-            if (deadHair != null) deadHair.SetActive(true);
-
-            StartCoroutine(ResetAfterAudio(kissAudio.clip.length));
+            if (malbersHorse != null)
+            {
+                originalGravity = malbersHorse.enabled;
+            }
         }
-    }
+        
+        public void OnHorseMovementLocked(bool isLocked)
+        {
+            if (horseAnimator != null)
+                horseAnimator.enabled = !isLocked;
 
-    private IEnumerator ResetAfterAudio(float duration)
-    {
-        yield return new WaitForSecondsRealtime(duration);
+            if (horseRigidbody != null)
+            {
+                if (isLocked)
+                {
+                    horseRigidbody.linearVelocity = Vector3.zero;
+                    horseRigidbody.angularVelocity = Vector3.zero;
+                    horseRigidbody.isKinematic = true; // stops physics from continuing motion
+                }
+                else
+                {
+                    horseRigidbody.isKinematic = false; // restore normal physics
+                }
+            }
+        }
 
-        // Unfreeze animations
-        if (horseController != null) horseController.enabled = true;
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!hasPlayed && other.CompareTag("Player"))
+            {
+                hasPlayed = true;
+                kissAudio.Play();
 
-        if (manAnimator) manAnimator.enabled = true;
-        if (womanAnimator) womanAnimator.enabled = true;
-        if (horseAnimator) horseAnimator.enabled = true;
+                var poemDisplay = FindObjectOfType<PoemDisplayManager>();
+                if (poemDisplay != null)
+                    poemDisplay.StartPoem();
 
-        // Re-enable input
-        if (inputMan) inputMan.enabled = true;
-        if (inputWoman) inputWoman.enabled = true;
+                // Camera zoom
+                if (vcamKissZoom != null)
+                    vcamKissZoom.Priority = 20;
 
-        // Reset camera
-        if (vcamKissZoom != null)
-            vcamKissZoom.Priority = 5;
+                // Freeze characters
+                if (inputMan) inputMan.enabled = false;
+                if (inputWoman) inputWoman.enabled = false;
+                if (manAnimator) manAnimator.enabled = false;
+                if (womanAnimator) womanAnimator.enabled = false;
+                if (horseAnimator) horseAnimator.enabled = false;
 
-        // Reset lighting
-        RenderSettings.ambientLight = normalColor;
-        if (moonLight != null) moonLight.enabled = false;
+                // Freeze Malbers horse
+                if (malbersHorse != null)
+                {
+                    malbersHorse.LockMovement = true;
+                    malbersHorse.LockInput = true;
+                    malbersHorse.StopMoving();
+                }
+                /*  malbersHorse.Gravity = false;
 
-        // Re-enable DOF
-        if (dof != null) dof.active = true;
+                  if (malbersHorse.AI != null)
+                      malbersHorse.AI.enabled = false;
+              }*/
 
-        // Reset hair
-        if (normalHair != null) normalHair.SetActive(true);
-        if (deadHair != null) deadHair.SetActive(false);
+                // Post Processing & lighting
+                if (dof != null) dof.active = false;
+                RenderSettings.ambientLight = slowMoColor;
+                if (moonLight != null) moonLight.enabled = true;
+
+                // Hair swap
+                if (normalHair != null) normalHair.SetActive(false);
+                if (deadHair != null) deadHair.SetActive(true);
+
+                StartCoroutine(ResetAfterAudio(kissAudio.clip.length));
+            }
+        }
+
+        private IEnumerator ResetAfterAudio(float duration)
+        {
+            yield return new WaitForSecondsRealtime(duration);
+
+            // Re-enable characters
+            if (inputMan) inputMan.enabled = true;
+            if (inputWoman) inputWoman.enabled = true;
+            if (manAnimator) manAnimator.enabled = true;
+            if (womanAnimator) womanAnimator.enabled = true;
+            if (horseAnimator) horseAnimator.enabled = true;
+
+            // Re-enable horse
+            if (malbersHorse != null)
+            {
+                malbersHorse.LockMovement = false;
+                malbersHorse.LockInput = false;
+                //  malbersHorse.Gravity = originalGravity;
+
+                /*if (malbersHorse.AI != null)
+                    malbersHorse.AI.enabled = true;
+            }*/
+
+                // Reset camera
+                if (vcamKissZoom != null)
+                    vcamKissZoom.Priority = 5;
+
+                // Reset lighting
+                RenderSettings.ambientLight = normalColor;
+                if (moonLight != null) moonLight.enabled = false;
+
+                // Restore post-processing
+                if (dof != null) dof.active = true;
+
+                // Hair reset
+                if (normalHair != null) normalHair.SetActive(true);
+                if (deadHair != null) deadHair.SetActive(false);
+            }
+        }
     }
 }

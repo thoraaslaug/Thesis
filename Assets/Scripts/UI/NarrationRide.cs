@@ -24,7 +24,7 @@ public class NarrationRide : MonoBehaviour
         }
     }
 
-    void ShowNextLine()
+    public void ShowNextLine()
     {
         if (rideLines.Length == 0 || currentLineIndex >= rideLines.Length)
             return;
@@ -36,7 +36,7 @@ public class NarrationRide : MonoBehaviour
         currentLineIndex++;
     }
 
-    private IEnumerator ShowLineRoutine(string line)
+    public IEnumerator ShowLineRoutine(string line)
     {
         narrationPlaying = true;
 
