@@ -180,9 +180,7 @@ public class HorseStopZone : MonoBehaviour
             Debug.Log("Current State ID: " + (animal.ActiveState != null ? animal.ActiveState.ID.name : "None"));
 
             StartReturnRideNarration();
-            hasPlayedReturnRideNarration = true; 
-            PreconditionTracker.hasEnteredPrecondition = true;
-            Debug.Log("bridge should break");
+            hasPlayedReturnRideNarration = true;
 
             //if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
             //if (bridgeSnow != null) bridgeSnow.SetActive(true);
@@ -207,10 +205,15 @@ public class HorseStopZone : MonoBehaviour
         if (narration != null)
         {
             narration.StartNarration(returnLines);
+            PreconditionTracker.hasEnteredPrecondition = true;
+            Debug.Log("📜 Return narration started. Precondition set. Bridge can now break.");
+            if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
+            if (bridgeSnow != null) bridgeSnow.SetActive(true);
         }
         else
         {
             Debug.LogWarning("NarrationTextManager not found in scene.");
         }
     }
+
 }

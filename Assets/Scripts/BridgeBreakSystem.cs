@@ -48,7 +48,7 @@ public class BridgeBreakSystem : MonoBehaviour
                 HasBroken = true;
                 Debug.Log("Precondition met. Breaking bridge.");
 
-                horseController.EnterBridge();
+                //horseController.EnterBridge();
                 horseSound?.Play();
                 impulseSource?.GenerateImpulse(1f);
 
