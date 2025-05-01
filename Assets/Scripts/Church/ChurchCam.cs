@@ -5,7 +5,6 @@ public class ChurchCam : MonoBehaviour
     public HorseCameraFollow cameraFollow; // Assign in Inspector
     public Vector3 zoomOutOffset = new Vector3(0, 8, -15); // New zoomed-out camera offset
     public Vector3 normalOffset; // Stores the default offset to reset later
-
     public float newRotationY = 90f; // ⬅️ New desired Y rotation when triggered
     private float originalRotationY; // To restore original later
 
@@ -14,7 +13,7 @@ public class ChurchCam : MonoBehaviour
         if (cameraFollow != null)
         {
             normalOffset = cameraFollow.unmountedOffset; // Save the default offset
-            originalRotationY = cameraFollow.transform.eulerAngles.y; // Save original rotation
+            originalRotationY = cameraFollow.transform.eulerAngles.y;
         }
     }
 
@@ -23,11 +22,7 @@ public class ChurchCam : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player entered zoom trigger area!");
-            if (cameraFollow != null)
-            {
-                cameraFollow.SetZoomedOutOffset(zoomOutOffset);
-                RotateCameraTo(newRotationY);
-            }
+            ActivateChurchZoom();
         }
     }
 
@@ -36,11 +31,25 @@ public class ChurchCam : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player exited zoom trigger area!");
-            if (cameraFollow != null)
-            {
-                cameraFollow.ResetOffset(normalOffset);
-                RotateCameraTo(originalRotationY);
-            }
+            cameraFollow.ResetOffset(normalOffset);
+            RotateCameraTo(originalRotationY);
+        }
+    }
+
+    public void ActivateChurchZoom()
+    {
+        if (cameraFollow != null)
+        {
+            cameraFollow.SetZoomedOutOffset(zoomOutOffset);
+            RotateCameraTo(newRotationY);
+        }
+    }
+
+    public void SwitchCameraTarget(Transform newTarget)
+    {
+        if (cameraFollow != null)
+        {
+            cameraFollow.SwitchToTarget(newTarget, false); // not mounted
         }
     }
 

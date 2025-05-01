@@ -48,6 +48,16 @@ public class HorseCameraFollow : MonoBehaviour
         lastPosition = currentTarget.position;
     }
 
+    
+    public void SwitchToTarget(Transform newTarget, bool mounted = false)
+    {
+        currentTarget = newTarget;
+        isMounted = mounted;
+        if (cinemachineCam != null)
+        {
+            cinemachineCam.Follow = newTarget;
+        }
+    }
     void LateUpdate()
     {
         if (currentTarget == null || cinemachineCam == null) return;

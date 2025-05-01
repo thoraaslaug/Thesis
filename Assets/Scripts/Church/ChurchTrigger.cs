@@ -1,81 +1,94 @@
 using System.Collections;
-using StarterAssets;
+using MalbersAnimations.HAP;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class ChurchTrigger : MonoBehaviour
 {
     public MountSystem mountSystem;
-    public Animator manAnimator;
-    public Animator womanAnimator;
-
-    public HorseController horseController;
     public GameObject horse;
-    public Transform horseDestination; // where man brings the horse
+    public Transform horseDestination;
 
-    public GameObject playerControlWoman; // Enable after dismount
-    public GameObject playerControlMan;   // Disable after dismount
-    public ThirdPersonController womanController;
-    public ThirdPersonController manController;
+    public GameObject manObject;               // Man character (disable input here)
+    public GameObject ridingWomanObject;       // Rider (to deactivate)
+    public GameObject newWomanObject;          // New playable character
+
+    public MRider ridingMan;
+    public MRider ridingWoman;
+    public HorseController horseController;
+
+    public HorseCameraFollow cameraFollow;
 
     private bool hasTriggered = false;
-    public HorseCameraFollow camera;
+    public CinemachineCamera churchCam;
 
     private void OnTriggerEnter(Collider other)
     {
         if (!hasTriggered && other.CompareTag("Player"))
         {
             hasTriggered = true;
-            manAnimator.transform.SetParent(null);
-            playerControlWoman.transform.SetParent(null);
-            womanController.DismountFromHorseImmediately();
-            manController.DismountFromHorseImmediately();
-            camera.SwitchToPlayer();
-            
-            if (manAnimator != null)
-            {
-                manAnimator.SetTrigger("Dismount");
-                manAnimator.SetBool("IsRiding", false);
-            }
-        
-            if (womanAnimator != null)
-            {
-                womanAnimator.SetTrigger("Dismount");
-                womanAnimator.SetBool("IsRiding", false);
-
-            }
-
-
-            // Deactivate horse
-            horse.SetActive(false);
-
-            StartCoroutine(BeginChurchSequence());
+            StartCoroutine(DismountSequence());
         }
+    }
+
+    private IEnumerator DismountSequence()
+    {
+        if (ridingMan != null)
+        {
+            ridingMan.DismountAnimal();
+            var inputLink = ridingMan.GetComponent<MalbersAnimations.InputSystem.MInputLink>();
+            if (inputLink != null)
+            {
+                inputLink.Enable(false);  // Disables input while keeping him active
+                Debug.Log("🚫 Man's input disabled.");
+            }
+        }
+
+        // Wait a moment before the woman dismounts
+        yield return new WaitForSeconds(0.5f);
+
+        if (ridingWoman != null)
+        {
+            ridingWoman.DismountAnimal();
+        }
+
+        // Then continue with the rest
+        StartCoroutine(SwapToNewWoman());
+    }
+    private IEnumerator SwapToNewWoman()
+    {
+        yield return new WaitForSeconds(1.2f); // Slight buffer for dismount animation (adjust if needed)
+        
+        if (churchCam != null)
+            churchCam.Priority = 20;
+
+
+        // Position the new woman where the rider was
+        newWomanObject.transform.SetPositionAndRotation(ridingWomanObject.transform.position, ridingWomanObject.transform.rotation);
+
+        // Activate new player and disable others
+        newWomanObject.SetActive(true);
+        ridingWomanObject.SetActive(false);
+        //manObject.SetActive(false);
+
+        // Switch camera to follow the new woman
+        if (cameraFollow != null)
+        {
+            cameraFollow.SwitchToTarget(newWomanObject.transform, false);
+        }
+
+        // Update ChurchCam zoom and rotation
+        FindObjectOfType<ChurchCam>()?.ActivateChurchZoom();
+
+        // Continue with event
+        StartCoroutine(BeginChurchSequence());
     }
 
     private IEnumerator BeginChurchSequence()
     {
-        // 🐎 Step 1: Dismount Male and Female
         mountSystem.DismountMale();
-        mountSystem.DismountFemale();
         mountSystem.DetachReins();
 
-        // Play dismount animations manually
-        /*if (manAnimator != null)
-        {
-            manAnimator.SetTrigger("Dismount");
-            manAnimator.SetBool("IsRiding", false);
-        }
-        
-        if (womanAnimator != null)
-        {
-            womanAnimator.SetTrigger("Dismount");
-            womanAnimator.SetBool("IsRiding", false);
-
-        }*/
-
-        yield return new WaitForSeconds(1.5f);
-
-        // 🐴 Step 2: Man leads horse away
         if (horseController != null)
             horseController.enabled = false;
 
@@ -91,16 +104,11 @@ public class ChurchTrigger : MonoBehaviour
             yield return null;
         }
 
-        horse.SetActive(false); // 💨 Hide horse when out of view
+        horse.SetActive(false);
 
-        // 🏃‍♀️ Step 3: Switch control to Woman
-        playerControlWoman.SetActive(true);
-        playerControlMan.SetActive(false);
-
-        // (then the Dragging System kicks in after a few seconds)
+        // Begin dragging mechanic
         var dragger = FindObjectOfType<DraggingSystem>();
         if (dragger != null)
             dragger.StartDragging();
     }
 }
-
