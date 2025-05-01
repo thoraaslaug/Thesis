@@ -5,7 +5,9 @@ using UnityEngine.Playables;
 using Unity.Cinemachine;
 using MalbersAnimations.Controller;
 using MalbersAnimations.HAP;
+using MalbersAnimations.InputSystem;
 using StarterAssets;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -42,11 +44,17 @@ public class HorseStopZone : MonoBehaviour
         var animal = other.GetComponentInParent<MAnimal>();
         var rider = other.GetComponentInParent<MRider>();
 
-        if (animal != null && rider != null && !hasPlayed)
+        if (rider != null && !hasPlayed)
         {
             Debug.Log("Horse entered stop zone.");
-            animal.MovementAxis = Vector3.zero;
-            animal.RB.angularVelocity = Vector3.zero;
+           // animal.MovementAxis = Vector3.zero;
+            //animal.RB.angularVelocity = Vector3.zero;
+            
+            if (rider.Montura != null)
+            {
+                rider.Set_StoredMount(rider.Montura.gameObject);
+            }
+
 
             rider.DismountAnimal(); // Automatically triggers dismount
             hasPlayed = true;
@@ -85,8 +93,8 @@ public class HorseStopZone : MonoBehaviour
         if (hair) hair.SetActive(false);
 
         // Disable input
-        var input = player.GetComponent<StarterAssetsInputs>();
-        if (input) input.enabled = false;
+        //var input = player.GetComponent<StarterAssetsInputs>();
+       // if (input) input.enabled = false;
 
         // Switch camera
         if (timelineCamera) timelineCamera.Priority = 20;
@@ -106,12 +114,35 @@ public class HorseStopZone : MonoBehaviour
         timelineDummy.SetActive(false);
 
         // Restore visuals and input
-        if (mesh) mesh.enabled = true;
+        //if (mesh) mesh.enabled = true;
         //if (hair) hair.SetActive(true);
-        if (input) input.enabled = true;
+        //if (input) input.enabled = true;
        
         var rider = player.GetComponent<MRider>();
         var animal = player.GetComponent<MAnimal>();
+
+        animal.InputSource?.Enable(true);
+        var inputLink = player.GetComponent<MInputLink>();
+        if (inputLink != null)
+        {
+            inputLink.ClearPlayerInput();
+            //inputLink.PlayerInput_Set(player);  // Ensure it re-finds the PlayerInput component
+            var playerInputComponent = player.GetComponentInChildren<MInputLink>();
+            if (playerInputComponent != null)
+            {
+                inputLink.PlayerInput_Set(playerInputComponent);
+            }
+            else
+            {
+                Debug.LogError("❌ Could not find PlayerInput component on player or its children.");
+            }
+            inputLink.Enable(true);             // Reactivate
+            Debug.Log("✅ Input Link reconnected after timeline.");
+        }
+        if (animal != null)
+        {
+            animal.InputSource?.Enable(true);
+        }
 
 // Restore Rider input
         if (rider?.RiderInput != null)
@@ -131,18 +162,23 @@ public class HorseStopZone : MonoBehaviour
         }
 
 // Remount rider if needed
-        if (rider != null && rider.Montura == null && rider.MountStored != null)
+       /* if (rider != null && rider.Montura == null && rider.MountStored != null)
         {
             rider.Set_StoredMount(rider.MountStored.gameObject);
             rider.MountAnimal();
             Debug.Log("✅ Rider remounted after timeline");
-        }
+        }*/
         // Restore camera
         if (timelineCamera) timelineCamera.Priority = 5;
         if (gameplayCamera) gameplayCamera.Priority = 20;
         
         if (!GameState.hasPlayedReturnRideNarration)
         {
+            Debug.Log("Is Riding: " + rider.IsRiding);
+            Debug.Log("Mount is: " + (rider.Montura != null ? rider.Montura.name : "null"));
+            Debug.Log("Input Source Enabled: " + (animal.InputSource != null));
+            Debug.Log("Current State ID: " + (animal.ActiveState != null ? animal.ActiveState.ID.name : "None"));
+
             StartReturnRideNarration();
             hasPlayedReturnRideNarration = true; 
             PreconditionTracker.hasEnteredPrecondition = true;

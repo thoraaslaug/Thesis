@@ -101,9 +101,9 @@ namespace MalbersAnimations
 
             if (foot.StepAudio && foot.StepAudio.enabled && !sounds.NullOrEmpty())    //If the track has an AudioSource Component and whe have some audio to play
             {
-                sounds.Play(foot.StepAudio);
+              sounds.Play(foot.StepAudio);
             }
-
+          
 
             var Ray = new Ray(foot.transform.position, -transform.up);
 

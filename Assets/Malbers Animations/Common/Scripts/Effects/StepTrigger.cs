@@ -73,6 +73,7 @@ namespace MalbersAnimations
             if (!m_StepsManager.InTrackState) return; //Do not create tracks when is not on the correct state
             if (!MTools.CollidersLayer(other, GroundLayer)) return; //Ignore layers that are not Ground
             if (!MTools.ElapsedTime(stepTime, waitTime)) return;
+            //if (Time.time - stepTime < waitTime) return;
 
             stepTime = Time.time;
             m_StepsManager.EnterStep(this, other);
