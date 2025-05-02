@@ -10,6 +10,7 @@ using MalbersAnimations.Controller;
 
 
 
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -599,7 +600,7 @@ namespace MalbersAnimations.HAP
                 Anim?.Play(Montura.MountIdle, MountLayerIndex);               //Play Mount Idle Animation Directly
 
                 Montura.Mounted = Mounted = true;                             //Send to the animalMount that mounted is active
-
+                
                 UpdateRiderTransform();
             }
             else
@@ -694,7 +695,6 @@ namespace MalbersAnimations.HAP
         public virtual void End_Mounting()
         {
             IsOnHorse = true;                              //Sync Mounted Values in Animal and Rider again Double Check
-
             if (Parent)
             {
                 //Reset Rotation when PARENTED
@@ -733,6 +733,7 @@ namespace MalbersAnimations.HAP
             SendMessage("SetIgnoreTransform", Montura.Animal.transform, SendMessageOptions.DontRequireReceiver);
 
             Debbuging("End Mounting", "green");
+            
         }
 
         /// <summary> CallBack at the Start of the Dismount Animations</summary>

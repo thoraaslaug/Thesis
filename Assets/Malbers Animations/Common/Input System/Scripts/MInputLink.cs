@@ -365,7 +365,7 @@ namespace MalbersAnimations.InputSystem
             }
         }*/
         
-       private void UpdateActiveMap()
+       public void UpdateActiveMap()
        {
            if (playerInput == null || playerInput.currentActionMap == null)
            return;
