@@ -354,7 +354,7 @@ namespace MalbersAnimations.InputSystem
         }
 
         /// <summary> Update the Active Map to the current one  </summary>
-        private void UpdateActiveMap()
+       /* private void UpdateActiveMap()
         {
             if (ActiveMActionMap.ActionMap.id != playerInput.currentActionMap.id)
             {
@@ -363,7 +363,41 @@ namespace MalbersAnimations.InputSystem
 
                 Debug.Log("UpdateActiveMap");
             }
-        }
+        }*/
+        
+       private void UpdateActiveMap()
+       {
+           if (playerInput == null || playerInput.currentActionMap == null)
+           return;
+
+           // Try to set ActiveMActionMap if it's null
+           if (playerInput == null || playerInput.currentActionMap == null)
+           {
+               ActiveMActionMap = m_MapButtons.Find(x => x.ActionMap != null && x.ActionMap.id == playerInput.currentActionMap.id);
+               if (ActiveMActionMap == null)
+               {
+                   Debug.LogWarning($"[MInputLink] Could not find matching ActionMap for '{playerInput.currentActionMap.name}'", this);
+                   return;
+               }
+           }
+
+           if (ActiveMActionMap.ActionMap.id != playerInput.currentActionMap.id)
+           {
+               ActiveMActionMap = m_MapButtons.Find(x => x.ActionMap.id == playerInput.currentActionMap.id);
+
+               if (ActiveMActionMap != null)
+               {
+                   OnActionMapChanged.Invoke(ActiveMActionMap.ActionMap.name);
+                   Debug.Log("UpdateActiveMap: Active map switched to " + ActiveMActionMap.ActionMap.name);
+               }
+               else
+               {
+                   Debug.LogWarning($"[MInputLink] Active map ID mismatch, but no map found with id {playerInput.currentActionMap.id}", this);
+               }
+           }
+       }
+        
+        
 
         public virtual void SwitchActionMap(string map)
         {
