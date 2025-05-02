@@ -365,13 +365,13 @@ namespace MalbersAnimations.InputSystem
             }
         }*/
         
-       public void UpdateActiveMap()
+      /* public void UpdateActiveMap()
        {
-           if (playerInput == null || playerInput.currentActionMap == null)
+           if (playerInput == null && playerInput.currentActionMap == null)
            return;
 
            // Try to set ActiveMActionMap if it's null
-           if (playerInput == null || playerInput.currentActionMap == null)
+           if (playerInput == null && playerInput.currentActionMap == null)
            {
                ActiveMActionMap = m_MapButtons.Find(x => x.ActionMap != null && x.ActionMap.id == playerInput.currentActionMap.id);
                if (ActiveMActionMap == null)
@@ -387,6 +387,7 @@ namespace MalbersAnimations.InputSystem
 
                if (ActiveMActionMap != null)
                {
+                   
                    OnActionMapChanged.Invoke(ActiveMActionMap.ActionMap.name);
                    Debug.Log("UpdateActiveMap: Active map switched to " + ActiveMActionMap.ActionMap.name);
                }
@@ -395,7 +396,55 @@ namespace MalbersAnimations.InputSystem
                    Debug.LogWarning($"[MInputLink] Active map ID mismatch, but no map found with id {playerInput.currentActionMap.id}", this);
                }
            }
-       }
+       }*/
+        
+      private void UpdateActiveMap()
+      {
+          if (playerInput == null)
+          {
+              Debug.LogWarning("[MInputLink] playerInput is null in UpdateActiveMap", this);
+              return;
+          }
+
+          if (playerInput.currentActionMap == null)
+          {
+              Debug.LogWarning("[MInputLink] playerInput.currentActionMap is null in UpdateActiveMap", this);
+              return;
+          }
+
+          if (ActiveMActionMap == null || ActiveMActionMap.ActionMap == null)
+          {
+              Debug.LogWarning("[MInputLink] ActiveMActionMap or its ActionMap is null in UpdateActiveMap", this);
+
+              // Try to find the matching map
+              ActiveMActionMap = m_MapButtons.Find(x =>
+                  x.ActionMap != null &&
+                  x.ActionMap.id == playerInput.currentActionMap.id);
+
+              if (ActiveMActionMap == null)
+              {
+                  Debug.LogWarning($"[MInputLink] Could not find ActionMap matching '{playerInput.currentActionMap.name}'", this);
+                  return;
+              }
+          }
+
+          // Now both are guaranteed non-null
+          if (ActiveMActionMap.ActionMap.id != playerInput.currentActionMap.id)
+          {
+              ActiveMActionMap = m_MapButtons.Find(x => x.ActionMap.id == playerInput.currentActionMap.id);
+
+              if (ActiveMActionMap != null)
+              {
+                  OnActionMapChanged.Invoke(ActiveMActionMap.ActionMap.name);
+                  Debug.Log("UpdateActiveMap: Active map switched to " + ActiveMActionMap.ActionMap.name);
+              }
+              else
+              {
+                  Debug.LogWarning($"[MInputLink] Failed to match currentActionMap.id with any map in m_MapButtons", this);
+              }
+          }
+      }
+
         
         
 

@@ -62,9 +62,7 @@ public class HorseCameraFollow : MonoBehaviour
     {
         if (currentTarget == null || cinemachineCam == null) return;
 
-        // Detect movement
         Vector3 movement = currentTarget.position - lastPosition;
-        float speed = movement.magnitude / Time.deltaTime;
         lastPosition = currentTarget.position;
 
         Vector3 targetOffset;
@@ -87,13 +85,16 @@ public class HorseCameraFollow : MonoBehaviour
             targetOffset = unmountedOffset;
         }
 
-        // Lerp to new offset
         currentOffset = Vector3.Lerp(currentOffset, targetOffset, followSpeed * Time.deltaTime);
 
-        // Apply manually
-        Vector3 desiredPosition = currentTarget.position + currentOffset;
-        cinemachineCam.transform.position = desiredPosition;
+        var follow = cinemachineCam.GetComponent<CinemachineThirdPersonFollow>();
+        if (follow != null)
+        {
+            follow.ShoulderOffset = currentOffset;
+            //follow.DampedFollowOffset = currentOffset;
+        }
     }
+
 
     // Controls
     public void SwitchToHorse()
