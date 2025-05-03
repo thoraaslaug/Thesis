@@ -68,10 +68,58 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1e63a09174f2c9945baf22722a68e3bc, type: 2}
+    - target: {fileID: 137398531946276588, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137398531946276588, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137398531946276588, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137398531946276588, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137398531946276588, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137398531946276588, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: NaN
+      objectReference: {fileID: 0}
     - target: {fileID: 137402054757496220, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: -876546973899608171, guid: 8ab7ee1df80e46d418b90c8f0ec717c6, type: 3}
+    - target: {fileID: 137696313329508124, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137696313329508124, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137696313329508124, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137696313329508124, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137696313329508124, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137696313329508124, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: NaN
+      objectReference: {fileID: 0}
     - target: {fileID: 137709597806283982, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -80,6 +128,30 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1e63a09174f2c9945baf22722a68e3bc, type: 2}
+    - target: {fileID: 137949445443993446, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137949445443993446, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137949445443993446, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137949445443993446, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137949445443993446, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 137949445443993446, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: NaN
+      objectReference: {fileID: 0}
     - target: {fileID: 321490976439515913, guid: 6c7a70b07cc96cb42bf7239369521199, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0010070801
