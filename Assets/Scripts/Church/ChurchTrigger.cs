@@ -118,6 +118,17 @@ public class ChurchTrigger : MonoBehaviour
         // Continue with event
         //StartCoroutine(BeginChurchSequence());
     }
+    
+    public void EnableFall()
+    {
+        var rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+            rb.AddForce(transform.forward * 2f + Vector3.down * 5f, ForceMode.VelocityChange);
+        }
+    }
+
 
     private IEnumerator BeginChurchSequence()
     {
