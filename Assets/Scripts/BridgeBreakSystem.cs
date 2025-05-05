@@ -74,7 +74,7 @@ public class BridgeBreakSystem : MonoBehaviour
         }
     }
 
-    private GameObject GetNextRockAhead()
+  /*  private GameObject GetNextRockAhead()
     {
         Vector3 playerPos = player.transform.position;
         var candidates = bridgeParts
@@ -85,14 +85,45 @@ public class BridgeBreakSystem : MonoBehaviour
         foreach (var part in candidates)
         {
             Vector3 toPart = part.transform.position - playerPos;
-            if (Vector3.Dot(toPart.normalized, player.transform.forward) > 0.5f &&
+            if (Vector3.Dot(toPart.normalized, player.transform.forward) > 0.1f &&
                 Vector3.Distance(part.transform.position, playerPos) <= dropAheadDistance)
             {
                 return part;
             }
         }
         return null;
-    }
+    }*/
+  
+  private GameObject GetNextRockAhead()
+  {
+      Vector3 playerPos = player.transform.position;
+
+      var candidates = bridgeParts
+          .Where(part => part != null && !droppedParts.Contains(part))
+          .OrderBy(part => Vector3.Distance(part.transform.position, playerPos))
+          .ToList();
+
+      Debug.Log($"Checking {candidates.Count} candidate rocks...");
+
+      foreach (var part in candidates)
+      {
+          Vector3 toPart = part.transform.position - playerPos;
+          float dot = Vector3.Dot(toPart.normalized, player.transform.forward);
+          float dist = Vector3.Distance(part.transform.position, playerPos);
+
+          Debug.Log($"→ Rock: {part.name}, Dot: {dot:F2}, Dist: {dist:F2}");
+
+          if (dot > 0.5f && dist <= dropAheadDistance)
+          {
+              Debug.Log($"✅ Dropping rock: {part.name}");
+              return part;
+          }
+      }
+
+      Debug.Log("❌ No valid rock found ahead.");
+      return null;
+  }
+
 
     private IEnumerator FallDown(GameObject part)
     {

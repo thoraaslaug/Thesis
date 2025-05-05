@@ -2,6 +2,7 @@ using System.Collections;
 using MalbersAnimations.HAP;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ChurchTrigger : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class ChurchTrigger : MonoBehaviour
     public GameObject horse;
     public Transform horseDestination;
 
-    public GameObject manObject;               // Man character (disable input here)
+    public GameObject manObject; 
+    public GameObject newManObject;          // New playable character
+    // Man character (disable input here)
     public GameObject ridingWomanObject;       // Rider (to deactivate)
     public GameObject newWomanObject;          // New playable character
 
@@ -21,6 +24,7 @@ public class ChurchTrigger : MonoBehaviour
 
     private bool hasTriggered = false;
     public CinemachineCamera churchCam;
+    public PlayableDirector draggingTimeline;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,6 +40,7 @@ public class ChurchTrigger : MonoBehaviour
         if (ridingMan != null)
         {
             ridingMan.DismountAnimal();
+            
             var inputLink = ridingMan.GetComponent<MalbersAnimations.InputSystem.MInputLink>();
             if (inputLink != null)
             {
@@ -54,6 +59,7 @@ public class ChurchTrigger : MonoBehaviour
 
         // Then continue with the rest
         StartCoroutine(SwapToNewWoman());
+        StartCoroutine(SwapToNewMan());
     }
     private IEnumerator SwapToNewWoman()
     {
@@ -83,6 +89,35 @@ public class ChurchTrigger : MonoBehaviour
         // Continue with event
         StartCoroutine(BeginChurchSequence());
     }
+    
+    private IEnumerator SwapToNewMan()
+    {
+        yield return new WaitForSeconds(1.2f); // Slight buffer for dismount animation (adjust if needed)
+        
+        if (churchCam != null)
+            churchCam.Priority = 20;
+
+
+        // Position the new woman where the rider was
+        newManObject.transform.SetPositionAndRotation(manObject.transform.position, manObject.transform.rotation);
+
+        // Activate new player and disable others
+        newManObject.SetActive(true);
+        manObject.SetActive(false);
+        //manObject.SetActive(false);
+
+        // Switch camera to follow the new woman
+        //if (cameraFollow != null)
+        //{
+          //  cameraFollow.SwitchToTarget(newWomanObject.transform, false);
+        //}
+
+        // Update ChurchCam zoom and rotation
+        //FindObjectOfType<ChurchCam>()?.ActivateChurchZoom();
+
+        // Continue with event
+        //StartCoroutine(BeginChurchSequence());
+    }
 
     private IEnumerator BeginChurchSequence()
     {
@@ -105,6 +140,13 @@ public class ChurchTrigger : MonoBehaviour
         }
 
         horse.SetActive(false);
+        
+        if (draggingTimeline != null)
+        {
+            draggingTimeline.Play();
+            Debug.Log("🎬 Dragging timeline triggered.");
+            yield break; // Stop here if the timeline handles dragging visuals
+        }
 
         // Begin dragging mechanic
         var dragger = FindObjectOfType<DraggingSystem>();
