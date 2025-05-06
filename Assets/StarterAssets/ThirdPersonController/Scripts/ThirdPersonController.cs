@@ -349,7 +349,8 @@ namespace StarterAssets
             // Switch camera priorities
             if (timelineCamera != null) timelineCamera.Priority = 20;
             if (gameplayCamera != null) gameplayCamera.Priority = 5;
-
+            
+         
             // Play timeline
             kissTimeline.Play();
 

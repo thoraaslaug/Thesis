@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
+
 
 public class BridgeBreakSystem : MonoBehaviour
 {
@@ -25,12 +27,15 @@ public class BridgeBreakSystem : MonoBehaviour
     public static bool HasBroken { get; private set; }
     private GameObject player;
     private HashSet<GameObject> droppedParts = new HashSet<GameObject>();
+    public static bool PlayerIsOnBridge { get; private set; } = false;
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             player = other.gameObject;
+            PlayerIsOnBridge = true;
 
             if (!hasPlayerEnteredOnce)
             {
@@ -45,6 +50,7 @@ public class BridgeBreakSystem : MonoBehaviour
 
             if (PreconditionTracker.hasEnteredPrecondition && !HasBroken)
             {
+                Debug.Log("player is on bridge. interior scene next");
                 HasBroken = true;
                 Debug.Log("Precondition met. Breaking bridge.");
 
@@ -103,7 +109,7 @@ public class BridgeBreakSystem : MonoBehaviour
           .OrderBy(part => Vector3.Distance(part.transform.position, playerPos))
           .ToList();
 
-      Debug.Log($"Checking {candidates.Count} candidate rocks...");
+     // Debug.Log($"Checking {candidates.Count} candidate rocks...");
 
       foreach (var part in candidates)
       {
@@ -111,11 +117,11 @@ public class BridgeBreakSystem : MonoBehaviour
           float dot = Vector3.Dot(toPart.normalized, player.transform.forward);
           float dist = Vector3.Distance(part.transform.position, playerPos);
 
-          Debug.Log($"→ Rock: {part.name}, Dot: {dot:F2}, Dist: {dist:F2}");
+         // Debug.Log($"→ Rock: {part.name}, Dot: {dot:F2}, Dist: {dist:F2}");
 
           if (dot > 0.5f && dist <= dropAheadDistance)
           {
-              Debug.Log($"✅ Dropping rock: {part.name}");
+             // Debug.Log($"✅ Dropping rock: {part.name}");
               return part;
           }
       }

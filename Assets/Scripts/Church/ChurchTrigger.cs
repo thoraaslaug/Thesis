@@ -11,15 +11,15 @@ public class ChurchTrigger : MonoBehaviour
     public GameObject horse;
     public Transform horseDestination;
 
-    public GameObject manObject; 
-    public GameObject newManObject;          // New playable character
-    // Man character (disable input here)
-    public GameObject ridingWomanObject;       // Rider (to deactivate)
-    public GameObject newWomanObject;          // New playable character
+    public GameObject manObject;
+    public GameObject newManObject;
+    public GameObject ridingWomanObject;
+    public GameObject newWomanObject;
 
     public MRider ridingMan;
     public MRider ridingWoman;
     public HorseController horseController;
+    public ScreenFade screenFade;
 
     public HorseCameraFollow cameraFollow;
 
@@ -44,121 +44,58 @@ public class ChurchTrigger : MonoBehaviour
 
     private IEnumerator DismountSequence()
     {
-        if (ridingMan != null)
-        {
-            ridingMan.DismountAnimal();
-            var inputLink = ridingMan.GetComponent<MalbersAnimations.InputSystem.MInputLink>();
-            if (inputLink != null)
-            {
-                inputLink.Enable(false);
-                Debug.Log("🚫 Man's input disabled.");
-            }
-        }
-        yield return new WaitForSeconds(1f);
-
+        if (screenFade != null)
+            yield return StartCoroutine(screenFade.FadeToBlack(1f));
 
         if (ridingWoman != null)
         {
             ridingWoman.DismountAnimal();
             yield return new WaitUntil(() => !ridingWoman.Montura.Mounted);
-            yield return new WaitForSeconds(1f); 
-            StartCoroutine(SwapToNewWoman());
-
-
             Debug.Log("✅ Woman has dismounted.");
         }
 
-        // ✅ Wait until man has fully dismounted too
-        yield return new WaitUntil(() => !ridingMan.Montura.Mounted);
-        Debug.Log("✅ Man has dismounted.");
+        yield return StartCoroutine(SwapToNewWoman());
 
-        
-        yield return new WaitForSeconds(1f); 
+        yield return new WaitForSeconds(0.8f);
 
-        // ✅ Now deactivate old man
-        manObject.SetActive(false);
+        if (ridingMan != null)
+        {
+            ridingMan.DismountAnimal();
+            yield return new WaitUntil(() => !ridingMan.Montura.Mounted);
+            Debug.Log("✅ Man has dismounted.");
 
-        // Continue with swap and sequence
-        //StartCoroutine(SwapToNewWoman());
+            var inputLink = ridingMan.GetComponent<MalbersAnimations.InputSystem.MInputLink>();
+            if (inputLink != null) inputLink.Enable(false);
+
+            yield return new WaitForSeconds(1f);
+            manObject.SetActive(false);
+        }
+
+        StartCoroutine(BeginChurchSequence());
     }
 
     private IEnumerator SwapToNewWoman()
     {
-        var woman = newWomanObject.GetComponent<CharacterController>();
-        if (woman != null)
-        {
-            woman.enabled = false; // Freeze
-        }
-      
-        yield return new WaitForSeconds(0.05f); // Slight buffer for dismount animation (adjust if needed)
-        
-        if (churchCam != null)
-            churchCam.Priority = 20;
+        yield return new WaitForSeconds(1.2f);
 
+        //if (churchCam != null) churchCam.Priority = 20;
 
-        // Position the new woman where the rider was
         newWomanObject.transform.SetPositionAndRotation(ridingWomanObject.transform.position, ridingWomanObject.transform.rotation);
-        //newWomanObject.transform.SetPositionAndRotation(finalPos, finalRot);
 
-        // Activate new player and disable others
         newWomanObject.SetActive(true);
         ridingWomanObject.SetActive(false);
-        //manObject.SetActive(false);
 
-        // Switch camera to follow the new woman
-        if (cameraFollow != null)
-        {
-            cameraFollow.SwitchToTarget(newWomanObject.transform, false);
-        }
+        //if (cameraFollow != null)
+          //  cameraFollow.SwitchToTarget(newWomanObject.transform, false);
+
         var input = newWomanObject.GetComponent<StarterAssetsInputs>();
         var controller = newWomanObject.GetComponent<ThirdPersonController>();
         if (input != null) input.enabled = false;
         if (controller != null) controller.enabled = false;
 
-        // Update ChurchCam zoom and rotation
-        FindObjectOfType<ChurchCam>()?.ActivateChurchZoom();
-
-        // Continue with event
-        StartCoroutine(BeginChurchSequence());
-    }
-    
-   // private void SwapToNewMan()
-    //{
-        //newManObject.transform.SetPositionAndRotation(manObject.transform.position, manObject.transform.rotation);
-      //  newManObject.SetActive(true);
-        //manObject.SetActive(false);
-    //}
-
-    
-   /* private IEnumerator SwapToNewMan()
-    {
-        yield return new WaitForSeconds(1.2f); // Slight buffer for dismount animation (adjust if needed)
-        
-        if (churchCam != null)
-            churchCam.Priority = 20;
-
-
-        // Position the new woman where the rider was
-        newManObject.transform.SetPositionAndRotation(manObject.transform.position, manObject.transform.rotation);
-
-        // Activate new player and disable others
-        newManObject.SetActive(true);
-        manObject.SetActive(false);
-        //manObject.SetActive(false);
-
-        // Switch camera to follow the new woman
-        //if (cameraFollow != null)
-        //{
-          //  cameraFollow.SwitchToTarget(newWomanObject.transform, false);
-        //}
-
-        // Update ChurchCam zoom and rotation
         //FindObjectOfType<ChurchCam>()?.ActivateChurchZoom();
+    }
 
-        // Continue with event
-        //StartCoroutine(BeginChurchSequence());
-    }*/
-    
     public void EnableFall()
     {
         var rb = GetComponent<Rigidbody>();
@@ -169,12 +106,8 @@ public class ChurchTrigger : MonoBehaviour
         }
     }
 
-
     private IEnumerator BeginChurchSequence()
     {
-        mountSystem.DismountMale();
-        mountSystem.DetachReins();
-
         if (horseController != null)
             horseController.enabled = false;
 
@@ -192,38 +125,45 @@ public class ChurchTrigger : MonoBehaviour
 
         horse.SetActive(false);
 
-        if (narrationTextManager != null)
-        {
-            bool narrationFinished = false;
-            narrationTextManager.onNarrationComplete = () => narrationFinished = true;
-            narrationTextManager.StartNarration(preTimelineNarration);
-
-            yield return new WaitUntil(() => narrationFinished);
-        }
-
-        // ✅ Activate new man object before timeline starts
-        if (newManObject != null && !newManObject.activeSelf)
-        {
-            newManObject.SetActive(true);
-            Debug.Log("✅ New man activated.");
-        }
-
+        // ✅ Start Timeline
         if (draggingTimeline != null)
         {
             draggingTimeline.Play();
             Debug.Log("🎬 Dragging timeline triggered.");
-
-            var input = newWomanObject.GetComponent<StarterAssetsInputs>();
-            var controller = newWomanObject.GetComponent<ThirdPersonController>();
-            if (input != null) input.enabled = true;
-            if (controller != null) controller.enabled = true;
-
-            yield break;
         }
 
-        var dragger = FindObjectOfType<DraggingSystem>();
-        if (dragger != null)
-            dragger.StartDragging();
+        // ✅ Start narration
+        if (narrationTextManager != null)
+            narrationTextManager.StartNarration(preTimelineNarration);
+
+        // ✅ Fade in to timeline
+        if (screenFade != null)
+            yield return StartCoroutine(screenFade.FadeFromBlack(0.4f));
+
+        // ✅ Wait for timeline to complete
+        yield return new WaitUntil(() => draggingTimeline.state != PlayState.Playing);
+
+        // ✅ Switch to ChurchCam for gameplay
+        if (churchCam != null)
+            churchCam.Priority = 20;
+        
+        if (narrationTextManager != null)
+        {
+            string[] churchLines = {
+                "The church... maybe they’ll hear the bells.",
+                "This has to end now.",
+            };
+            narrationTextManager.StartNarration(churchLines);
+        }
+
+        // ✅ Re-enable character input
+        var input = newWomanObject.GetComponent<StarterAssetsInputs>();
+        var controller = newWomanObject.GetComponent<ThirdPersonController>();
+        if (input != null) input.enabled = true;
+        if (controller != null) controller.enabled = true;
+
+        Debug.Log("🎮 Cutscene finished. ChurchCam activated and input enabled.");
     }
+
 
 }

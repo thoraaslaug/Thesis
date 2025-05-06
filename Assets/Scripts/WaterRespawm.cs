@@ -32,8 +32,7 @@ public class WaterRespawn : MonoBehaviour
         // 🕶️ Fade to black once
         yield return screenFade.FadeToBlack(1f);
 
-        if (BridgeBreakSystem.HasBroken)
-        {
+        if (BridgeBreakSystem.PlayerIsOnBridge)        {
             // 🌁 Bridge broke → load next scene
             UnityEngine.SceneManagement.SceneManager.LoadScene("Interior");
             yield break;
