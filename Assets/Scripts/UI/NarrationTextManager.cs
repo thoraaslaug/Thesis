@@ -9,6 +9,7 @@ public class NarrationTextManager : MonoBehaviour
     public float fadeDuration = 1f;
     public TextPopUpManager popupManager; // assign in inspector if needed
     public System.Action onNarrationComplete;
+    [HideInInspector] public bool isNarrating = false;
 
 
     public void StartNarration(string[] lines)
@@ -23,6 +24,8 @@ public class NarrationTextManager : MonoBehaviour
 
     private IEnumerator PlayNarration(string[] lines)
     {
+        isNarrating = true;
+
         foreach (string line in lines)
         {
             yield return StartCoroutine(ShowLine(line));
