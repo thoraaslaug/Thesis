@@ -118,7 +118,7 @@ public class HorseController : MonoBehaviour
             return;
 
         bool isHoldingForward = Input.GetKey(KeyCode.D);
-        narrationRide.isRiding = isHoldingForward;
+       // narrationRide.isRiding = isHoldingForward;
     }
 
     public void PlayFootstep()

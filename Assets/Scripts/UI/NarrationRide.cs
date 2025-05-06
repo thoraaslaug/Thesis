@@ -1,34 +1,43 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using MalbersAnimations.Controller;
 
 public class NarrationRide : MonoBehaviour
 {
     public TextMeshProUGUI narrationText;
     public float fadeDuration = 1f;
     public float visibleDuration = 2f;
-    public string[] rideLines; // ✅ All your ride narration lines
+    public string[] rideLines;
 
-    [HideInInspector]
-    public bool isRiding = false;
+    public MAnimal horse; // 🐎 Assign in inspector (this is the horse's MAnimal)
+
+    public float movementThreshold = 0.1f; // Movement threshold to count as "riding"
+    public float delayBetweenLines = 4f;   // Prevents rapid line playback
 
     private Coroutine currentNarration;
     private int currentLineIndex = 0;
     private bool narrationPlaying = false;
+    private float timeSinceLastLine = 0f;
 
     private void Update()
     {
-        if (isRiding && !narrationPlaying)
+        if (horse == null || rideLines.Length == 0 || currentLineIndex >= rideLines.Length) return;
+
+        float speed = horse.MovementAxis.magnitude;
+
+        if (speed > movementThreshold && !narrationPlaying && timeSinceLastLine >= delayBetweenLines)
         {
             ShowNextLine();
+            timeSinceLastLine = 0f;
         }
+
+        if (!narrationPlaying)
+            timeSinceLastLine += Time.deltaTime;
     }
 
     public void ShowNextLine()
     {
-        if (rideLines.Length == 0 || currentLineIndex >= rideLines.Length)
-            return;
-
         if (currentNarration != null)
             StopCoroutine(currentNarration);
 
@@ -52,7 +61,6 @@ public class NarrationRide : MonoBehaviour
         }
 
         narrationText.alpha = 1f;
-
         yield return new WaitForSecondsRealtime(visibleDuration);
 
         t = 0f;
@@ -65,9 +73,6 @@ public class NarrationRide : MonoBehaviour
 
         narrationText.text = "";
         narrationText.alpha = 0f;
-        
-        yield return new WaitForSecondsRealtime(2f);
-
         narrationPlaying = false;
     }
 
