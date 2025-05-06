@@ -42,6 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Fade: 0
     - _FrenelStrength: 4.48
     - _LineFrequency: 25
     - _LineRotation: 135.89
