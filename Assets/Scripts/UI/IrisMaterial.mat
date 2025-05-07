@@ -30,7 +30,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Cutoff: 0.6919414
-    - _IrisSize: 1
-    m_Colors: []
+    - _IrisSize: 2
+    m_Colors:
+    - _IrisCenter: {r: 0.39667374, g: 0.34141797, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

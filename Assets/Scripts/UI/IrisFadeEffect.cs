@@ -5,6 +5,7 @@ public class IrisFadeEffect : MonoBehaviour
 {
     public Material irisMaterial; // Material using IrisCutout Shader
     public float irisOpenSpeed = 2f; // Speed of iris opening
+    public Transform player;  // assign this in Inspector
 
     private void Start()
     {
@@ -14,9 +15,11 @@ public class IrisFadeEffect : MonoBehaviour
     private IEnumerator PlayIrisFade()
     {
         float elapsedTime = 0f;
-        float irisSize = 0.002f; // Start with an even smaller transparent hole
+        float irisSize = 0.002f;
 
-        // ✅ Ensure the iris starts small and expands outward
+        Vector3 viewPos = Camera.main.WorldToViewportPoint(player.position);
+        irisMaterial.SetVector("_IrisCenter", new Vector4(viewPos.x, viewPos.y, 0f, 0f));
+
         irisMaterial.SetFloat("_IrisSize", irisSize);
 
         while (elapsedTime < irisOpenSpeed)
@@ -24,8 +27,7 @@ public class IrisFadeEffect : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / irisOpenSpeed;
 
-            // 🔥 Expand the iris outward smoothly
-            irisSize = Mathf.Lerp(0.002f, 1.0f, t); // Smaller start value
+            irisSize = Mathf.Lerp(0.002f, 2.0f, t);
             irisMaterial.SetFloat("_IrisSize", irisSize);
 
             yield return null;

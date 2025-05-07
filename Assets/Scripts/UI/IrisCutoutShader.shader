@@ -1,8 +1,9 @@
 Shader "Unlit/IrisCutoutShader"
-{  
-  Properties
+{
+    Properties
     {
-        _IrisSize ("Iris Size", Range(0, 1)) = 0.0000001
+        _IrisSize ("Iris Size", Range(0, 2)) = 0.0001
+        _IrisCenter ("Iris Center", Vector) = (0.5, 0.5, 0, 0)
     }
     SubShader
     {
@@ -17,6 +18,8 @@ Shader "Unlit/IrisCutoutShader"
             #include "UnityCG.cginc"
 
             float _IrisSize;
+            float4 _IrisCenter;
+            //float4 _ScreenParams;
 
             struct appdata_t
             {
@@ -40,12 +43,20 @@ Shader "Unlit/IrisCutoutShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 center = float2(0.5, 0.5); // Center of screen
-                float dist = distance(i.texcoord, center);
+                float2 uv = i.texcoord;
 
-                // 🔥 Create a transparent hole in a black screen
-                float mask = smoothstep(_IrisSize, _IrisSize + 0.02, dist);
-                return fixed4(0, 0, 0, mask); // Transparent inside, black outside
+                // Correct for screen aspect ratio
+                float aspect = _ScreenParams.x / _ScreenParams.y;
+                float2 center = _IrisCenter.xy;
+                float2 diff = uv - center;
+                diff.x *= aspect;
+
+                float dist = length(diff);
+
+                // Hard cutoff (no black fringe)
+                float alpha = dist > _IrisSize ? 1.0 : 0.0;
+
+                return fixed4(0, 0, 0, alpha);
             }
             ENDCG
         }
