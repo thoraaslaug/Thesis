@@ -48,20 +48,20 @@ public class RespawnOrAdvanceTrigger : MonoBehaviour
 
     private IEnumerator  HandleFall()
     {
-        
+        if (BridgeBreakSystem.HasBroken && BridgeBreakSystem.PlayerIsOnBridge)
+                         {
+                             if (ScreenFade != null)
+                                 yield return ScreenFade.FadeToBlack(1f);
+                             SceneManager.LoadScene(nextSceneName);
+                                 yield break;
+                             }
         // ✅ Highest priority: bridge broke & player on bridge → go to next scene
         
         // ✅ Otherwise, pick the correct respawn point
         Transform targetPoint = PreconditionTracker.hasEnteredPrecondition
             ? alternateRespawnPoint
             : defaultRespawnPoint;
-    if (BridgeBreakSystem.HasBroken && BridgeBreakSystem.PlayerIsOnBridge)
-                 {
-                     if (ScreenFade != null)
-                         yield return ScreenFade.FadeToBlack(1f);
-                     SceneManager.LoadScene(nextSceneName);
-                         yield break;
-                     }
+    
 
         if (targetPoint != null && animal != null)
         {
