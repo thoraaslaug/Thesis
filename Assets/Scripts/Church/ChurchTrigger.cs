@@ -22,13 +22,14 @@ public class ChurchTrigger : MonoBehaviour
     public ScreenFade screenFade;
 
     public HorseCameraFollow cameraFollow;
+    public static bool timelineHasPlayed = false;
 
     private bool hasTriggered = false;
     public CinemachineCamera churchCam;
     public PlayableDirector draggingTimeline;
     public NarrationTextManager narrationTextManager;
     public string[] preTimelineNarration = {
-        "Where did he go?",
+        "Where is he going?",
         "I have to get to the church",
         "I have to escape him"
     };
@@ -163,6 +164,8 @@ public class ChurchTrigger : MonoBehaviour
         if (controller != null) controller.enabled = true;
 
         Debug.Log("🎮 Cutscene finished. ChurchCam activated and input enabled.");
+        ChurchTrigger.timelineHasPlayed = true;
+
     }
 
 

@@ -8,15 +8,18 @@ public class BellTrigger : MonoBehaviour
     public GameObject player;
     private bool playerInZone = false;
     private bool hasRung = false;
+    public TextPopUpManager textPopUpManager; // Assign this in the inspector
+
 
     void Update()
     {
-        if (playerInZone && !hasRung && Input.GetKeyDown(KeyCode.E))
+        if (playerInZone && !hasRung && ChurchTrigger.timelineHasPlayed && Input.GetKeyDown(KeyCode.E))
         {
             hasRung = true;
             StartCoroutine(RingBellAndEnd());
         }
     }
+
 
     private IEnumerator RingBellAndEnd()
     {
@@ -35,12 +38,22 @@ public class BellTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == player)
+        {
             playerInZone = true;
+
+            if (ChurchTrigger.timelineHasPlayed && textPopUpManager != null)
+                textPopUpManager.ShowMessage("Press E to ring bell");
+        }
     }
+
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == player)
+        {
             playerInZone = false;
+            if (textPopUpManager != null)
+                textPopUpManager.HideMessage();
+        }
     }
 }
