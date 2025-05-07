@@ -13,6 +13,7 @@ public class GameStateResetOnStart : MonoBehaviour
             GameState.hasStartedRideNarration = false;
             GameState.hasPlayedReturnRideNarration = false;
             GameState.hasStartedInteriorNarration = false;
+            
             Debug.Log("🧼 GameState reset in IntroScene.");
         }
         else

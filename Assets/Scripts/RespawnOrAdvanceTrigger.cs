@@ -50,18 +50,18 @@ public class RespawnOrAdvanceTrigger : MonoBehaviour
     {
         
         // ✅ Highest priority: bridge broke & player on bridge → go to next scene
-        if (BridgeBreakSystem.HasBroken && BridgeBreakSystem.PlayerIsOnBridge)
-        {
-            if (ScreenFade != null)
-                yield return ScreenFade.FadeToBlack(1f);
-            SceneManager.LoadScene(nextSceneName);
-                yield break;
-            }
-
+        
         // ✅ Otherwise, pick the correct respawn point
         Transform targetPoint = PreconditionTracker.hasEnteredPrecondition
             ? alternateRespawnPoint
             : defaultRespawnPoint;
+    if (BridgeBreakSystem.HasBroken && BridgeBreakSystem.PlayerIsOnBridge)
+                 {
+                     if (ScreenFade != null)
+                         yield return ScreenFade.FadeToBlack(1f);
+                     SceneManager.LoadScene(nextSceneName);
+                         yield break;
+                     }
 
         if (targetPoint != null && animal != null)
         {
@@ -74,5 +74,7 @@ public class RespawnOrAdvanceTrigger : MonoBehaviour
         {
             Debug.LogWarning("⚠️ Missing animal or target respawn point.");
         }
+        
+
     }
 }

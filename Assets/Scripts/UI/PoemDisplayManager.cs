@@ -17,6 +17,8 @@ public class PoemDisplayManager : MonoBehaviour
     [Header("Typing Settings")]
     public float typingSpeed = 0.05f;  
     public float delayBetweenSections = 2.0f;  // ← longer pause before next part
+    public NarrationRide narrationManager; // Assign this in the inspector
+    [TextArea] public string[] postPoemLines;
 
     private Coroutine poemCoroutine;
 
@@ -55,6 +57,20 @@ public class PoemDisplayManager : MonoBehaviour
         leftText.gameObject.SetActive(false);
         rightText.gameObject.SetActive(false);
         bottomText.gameObject.SetActive(false);
+        StartCoroutine(PlayPostPoemNarration());
+
+       
+    }
+    
+    private IEnumerator PlayPostPoemNarration()
+    {
+        yield return new WaitForSecondsRealtime(5f); // Wait after poem fade-out
+
+        foreach (string line in postPoemLines)
+        {
+            if (narrationManager != null)
+                yield return narrationManager.ShowLineRoutine(line); // Play each line
+        }
     }
 
     private IEnumerator TypeText(string fullText, TextMeshProUGUI textTarget)

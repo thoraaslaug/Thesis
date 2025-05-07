@@ -62,6 +62,14 @@ public class BridgeBreakSystem : MonoBehaviour
             }
         }
     }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerIsOnBridge = false;
+        }
+    }
 
     private IEnumerator DropRocksAhead()
     {

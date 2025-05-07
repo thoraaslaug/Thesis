@@ -27858,7 +27858,6 @@ GameObject:
   - component: {fileID: 885108876}
   - component: {fileID: 885108875}
   - component: {fileID: 885108874}
-  - component: {fileID: 885108873}
   - component: {fileID: 885108878}
   m_Layer: 4
   m_Name: Water Object (1)
@@ -27867,24 +27866,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &885108873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 885108872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5bd0c2d246461940a1bdd44fa95a38b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
-  particles: {fileID: 0}
-  player: {fileID: 1941117987}
-  female: {fileID: 1201067432}
-  mainCamera: {fileID: 1909211891}
-  screenFade: {fileID: 1414813754}
 --- !u!65 &885108874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27904,8 +27885,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 111.366936, y: 1.3938026, z: 113.78707}
-  m_Center: {x: -5.6835527, y: -1.3030987, z: -6.893591}
+  m_Size: {x: 43.585304, y: 1.3938026, z: 113.78707}
+  m_Center: {x: 10.52463, y: -1.3030987, z: -6.893591}
 --- !u!23 &885108875
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47819,7 +47800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee1fbf4dd84c7d4faf7900812b348a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2041349631
+--- !u!114 &2041349642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64937,7 +64918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 574302163861386171, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_MapButtons.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 574302163861386171, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: IgnoreOnPause.ConstantValue
@@ -65108,7 +65089,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4796723312085153185, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2041349631}
+      addedObject: {fileID: 2041349642}
   m_SourcePrefab: {fileID: 100100000, guid: 6343c428099366746ab47d445a1f767f, type: 3}
 --- !u!1 &7096930158206926562
 GameObject:
