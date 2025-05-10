@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,6 +30,10 @@ public class BridgeBreakSystem : MonoBehaviour
     private HashSet<GameObject> droppedParts = new HashSet<GameObject>();
     public static bool PlayerIsOnBridge { get; private set; } = false;
 
+    private void Awake()
+    {
+        PlayerIsOnBridge = false; 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -50,9 +55,9 @@ public class BridgeBreakSystem : MonoBehaviour
 
             if (PreconditionTracker.hasEnteredPrecondition && !HasBroken)
             {
-                Debug.Log("player is on bridge. interior scene next");
+                //Debug.Log("player is on bridge. interior scene next");
                 HasBroken = true;
-                Debug.Log("Precondition met. Breaking bridge.");
+                //Debug.Log("Precondition met. Breaking bridge.");
 
                 //horseController.EnterBridge();
                 horseSound?.Play();

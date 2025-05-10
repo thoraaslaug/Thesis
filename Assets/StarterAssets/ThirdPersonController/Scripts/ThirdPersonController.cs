@@ -168,6 +168,7 @@ namespace StarterAssets
 
         private void Move()
         {
+            return;
             if (_hasAnimator)
             {
                 float animSpeed = _animator.GetFloat("Speed");

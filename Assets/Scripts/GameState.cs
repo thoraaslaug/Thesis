@@ -7,7 +7,5 @@ public static class GameState
     public static bool hasPlayedReturnRideNarration = false;
     public static bool hasStartedRideNarration = false;
     public static bool hasStartedInteriorNarration = false;
-
-
-
+    
 }

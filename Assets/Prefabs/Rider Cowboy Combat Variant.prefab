@@ -230,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 6366030322787328251}
     - target: {fileID: 3045440275809185135, guid: 870fe5de2a8749348b7b5a4d72c0e0f0, type: 3}
       propertyPath: Editor_Tabs1
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3045440275809185135, guid: 870fe5de2a8749348b7b5a4d72c0e0f0, type: 3}
       propertyPath: m_CanMount.ConstantValue
@@ -367,7 +367,7 @@ PrefabInstance:
     - target: {fileID: 6487523346279223674, guid: 870fe5de2a8749348b7b5a4d72c0e0f0, type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7612199577590863807}
     - target: {fileID: 6490072583360244875, guid: 870fe5de2a8749348b7b5a4d72c0e0f0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -551,3 +551,8 @@ MonoBehaviour:
   snowstormTrigger: {fileID: 0}
   postProcessingVolume: {fileID: 0}
   horseTimeLine: {fileID: 0}
+--- !u!95 &7612199577590863807 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 828224487558615496, guid: 870fe5de2a8749348b7b5a4d72c0e0f0, type: 3}
+  m_PrefabInstance: {fileID: 7123998515530335863}
+  m_PrefabAsset: {fileID: 0}
