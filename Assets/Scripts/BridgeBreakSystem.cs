@@ -32,6 +32,7 @@ public class BridgeBreakSystem : MonoBehaviour
 
     private void Awake()
     {
+        HasBroken = false;
         PlayerIsOnBridge = false; 
     }
 

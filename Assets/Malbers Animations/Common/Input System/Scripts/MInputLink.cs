@@ -738,6 +738,7 @@ namespace MalbersAnimations.InputSystem
             MoveAxis.z = move2D.y * ActiveMActionMap.MoveMult.z; //Catch the Forward Axis
 
             this.MoveAxis = MoveAxis;
+            Debug.Log("hello im mobinh");
 
             character?.SetInputAxis(this.MoveAxis);
 

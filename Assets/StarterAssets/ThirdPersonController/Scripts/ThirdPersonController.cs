@@ -168,7 +168,8 @@ namespace StarterAssets
 
         private void Move()
         {
-            return;
+            Debug.Log("im mobing also");
+           
             if (_hasAnimator)
             {
                 float animSpeed = _animator.GetFloat("Speed");
@@ -176,8 +177,10 @@ namespace StarterAssets
             }
 
             if (isMounted) return; // Prevent movement while mounted
+            Debug.Log("im mobing also 2");
 
             Vector2 inputDirection = _input.move; // Get player input
+            Debug.Log(_input);
 
             if (inputDirection.magnitude > 0.1f) // If the player is moving
             {
@@ -210,6 +213,7 @@ namespace StarterAssets
                     Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
                     transform.rotation =
                         Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turnSpeed);
+                    Debug.Log(moveDirection);
                 }
                 // Quaternion targetRotation = Quaternion.LookRotation(inputDirection);
                 //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);

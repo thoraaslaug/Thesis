@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using MalbersAnimations.HAP;
 using StarterAssets;
@@ -34,6 +35,13 @@ public class ChurchTrigger : MonoBehaviour
         "I have to escape him"
     };
 
+   /* private void Awake()
+    {
+        timelineHasPlayed = false;
+    }*/
+    
+    
+
     private void OnTriggerEnter(Collider other)
     {
         if (!hasTriggered && other.CompareTag("Player"))
@@ -52,7 +60,9 @@ public class ChurchTrigger : MonoBehaviour
         {
             ridingWoman.DismountAnimal();
             yield return new WaitUntil(() => !ridingWoman.Montura.Mounted);
-            Debug.Log("✅ Woman has dismounted.");
+            Debug.Log(" Woman has dismounted.");
+            var inputLink = ridingWoman.GetComponent<MalbersAnimations.InputSystem.MInputLink>();
+            if (inputLink != null) inputLink.Enable(false);
         }
 
         yield return StartCoroutine(SwapToNewWoman());
@@ -63,9 +73,9 @@ public class ChurchTrigger : MonoBehaviour
         {
             ridingMan.DismountAnimal();
             yield return new WaitUntil(() => !ridingMan.Montura.Mounted);
-            Debug.Log("✅ Man has dismounted.");
+            Debug.Log(" Man has dismounted.");
 
-            var inputLink = ridingMan.GetComponent<MalbersAnimations.InputSystem.MInputLink>();
+           var inputLink = ridingMan.GetComponent<MalbersAnimations.InputSystem.MInputLink>();
             if (inputLink != null) inputLink.Enable(false);
 
             yield return new WaitForSeconds(1f);
@@ -89,10 +99,10 @@ public class ChurchTrigger : MonoBehaviour
         //if (cameraFollow != null)
           //  cameraFollow.SwitchToTarget(newWomanObject.transform, false);
 
-        var input = newWomanObject.GetComponent<StarterAssetsInputs>();
+       /* var input = newWomanObject.GetComponent<StarterAssetsInputs>();
         var controller = newWomanObject.GetComponent<ThirdPersonController>();
         if (input != null) input.enabled = false;
-        if (controller != null) controller.enabled = false;
+        if (controller != null) controller.enabled = false;*/
 
         //FindObjectOfType<ChurchCam>()?.ActivateChurchZoom();
     }
@@ -126,25 +136,25 @@ public class ChurchTrigger : MonoBehaviour
 
         horse.SetActive(false);
 
-        // ✅ Start Timeline
+        //  Start Timeline
         if (draggingTimeline != null)
         {
             draggingTimeline.Play();
-            Debug.Log("🎬 Dragging timeline triggered.");
+            Debug.Log(" Dragging timeline triggered.");
         }
 
-        // ✅ Start narration
+        // Start narration
         if (narrationTextManager != null)
             narrationTextManager.StartNarration(preTimelineNarration);
 
-        // ✅ Fade in to timeline
+        //  Fade in to timeline
         if (screenFade != null)
             yield return StartCoroutine(screenFade.FadeFromBlack(0.4f));
 
-        // ✅ Wait for timeline to complete
+        //  Wait for timeline to complete
         yield return new WaitUntil(() => draggingTimeline.state != PlayState.Playing);
 
-        // ✅ Switch to ChurchCam for gameplay
+        //  Switch to ChurchCam for gameplay
         if (churchCam != null)
             churchCam.Priority = 20;
         
@@ -156,16 +166,29 @@ public class ChurchTrigger : MonoBehaviour
             };
             narrationTextManager.StartNarration(churchLines);
         }
-
-        // ✅ Re-enable character input
+       
+       /* var controller = newWomanObject.GetComponent<ThirdPersonController>();
         var input = newWomanObject.GetComponent<StarterAssetsInputs>();
-        var controller = newWomanObject.GetComponent<ThirdPersonController>();
-        if (input != null) input.enabled = true;
         if (controller != null) controller.enabled = true;
+        if (input != null) input.enabled = true;*/
+        
 
-        Debug.Log("🎮 Cutscene finished. ChurchCam activated and input enabled.");
-        ChurchTrigger.timelineHasPlayed = true;
+        Debug.Log("Cutscene finished. ChurchCam activated and input enabled.");
+        timelineHasPlayed = true;
 
+    }
+    
+    private void Update()
+    {
+        if (newWomanObject != null)
+        {
+            var input = newWomanObject.GetComponent<StarterAssetsInputs>();
+            var controller = newWomanObject.GetComponent<ThirdPersonController>();
+            if (input != null && controller != null)
+            {
+                Debug.Log($"Input: {input.move} — Enabled: {input.enabled}, Controller: {controller.enabled}");
+            }
+        }
     }
 
 
