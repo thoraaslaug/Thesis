@@ -1584,7 +1584,7 @@ MonoBehaviour:
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: 1.0666666666666664
+    m_BlendOutDuration: 0.5
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -1644,7 +1644,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: vcam_wideApproach
   - m_Version: 1
-    m_Start: 7.4
+    m_Start: 7.966666666666667
     m_ClipIn: 0
     m_Asset: {fileID: 4992391020146862347}
     m_Duration: 16.762450663993754
@@ -1652,8 +1652,8 @@ MonoBehaviour:
     m_ParentTrack: {fileID: 3371763021337075353}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 1.0666666666666664
-    m_BlendOutDuration: 2.3457839973270858
+    m_BlendInDuration: 0.5
+    m_BlendOutDuration: 2.9124506639937557
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -1721,7 +1721,7 @@ MonoBehaviour:
     m_ParentTrack: {fileID: 3371763021337075353}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 2.3457839973270858
+    m_BlendInDuration: 2.9124506639937557
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
