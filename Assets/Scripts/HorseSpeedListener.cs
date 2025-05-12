@@ -182,8 +182,8 @@ public class HorseStopZone : MonoBehaviour
             StartReturnRideNarration();
             hasPlayedReturnRideNarration = true;
 
-            //if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
-            //if (bridgeSnow != null) bridgeSnow.SetActive(true);
+            if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
+            if (bridgeSnow != null) bridgeSnow.SetActive(true);
         }
 
         snowstormTrigger.StartSnowstorm();
@@ -193,7 +193,7 @@ public class HorseStopZone : MonoBehaviour
     {
         string[] returnLines = new string[]
         {
-            "She said yes…",
+            "I have to get back home",
             "The snow feels heavier now, I can barely see",
             "I must keep moving",
             "My hands are numb. No matter. She'll be waiting for me, I'll be back on Christmas Eve.",
@@ -207,8 +207,8 @@ public class HorseStopZone : MonoBehaviour
             narration.StartNarration(returnLines);
             PreconditionTracker.hasEnteredPrecondition = true;
             Debug.Log("📜 Return narration started. Precondition set. Bridge can now break.");
-            if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
-            if (bridgeSnow != null) bridgeSnow.SetActive(true);
+            //if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
+            //if (bridgeSnow != null) bridgeSnow.SetActive(true);
         }
         else
         {
