@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using MalbersAnimations.Controller;
 
@@ -6,8 +5,15 @@ public class EnableCameraInputOnStart : MonoBehaviour
 {
     private MAnimal animal;
 
-    private void Awake()
+    private void Start()
     {
+        StartCoroutine(DelayedEnable(3f));
+    }
+
+    private System.Collections.IEnumerator DelayedEnable(float delay)
+    {
+        yield return new WaitForSeconds(delay); // Wait one frame
+
         animal = GetComponent<MAnimal>();
 
         if (animal != null)
@@ -19,12 +25,11 @@ public class EnableCameraInputOnStart : MonoBehaviour
                 animal.InputSource.Enable(true);
             }
 
-            Debug.Log($"✅ Camera Input enabled for {gameObject.name}");
+            Debug.Log($"✅ Camera Input re-enabled after delay on: {gameObject.name}");
         }
         else
         {
-            Debug.LogWarning($"⚠️ No MAnimal component found on {gameObject.name}");
+            Debug.LogWarning("⚠️ MAnimal component not found on object!");
         }
     }
-    
 }
