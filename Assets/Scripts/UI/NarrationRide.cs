@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using MalbersAnimations.Controller;
+using MalbersAnimations.HAP;
 
 public class NarrationRide : MonoBehaviour
 {
@@ -9,9 +10,8 @@ public class NarrationRide : MonoBehaviour
     public float fadeDuration = 1f;
     public float visibleDuration = 2f;
     public string[] rideLines;
-
+    public MRider rider;
     public MAnimal horse; // 🐎 Assign in inspector (this is the horse's MAnimal)
-
     public float movementThreshold = 0.1f; // Movement threshold to count as "riding"
     public float delayBetweenLines = 4f;   // Prevents rapid line playback
 
@@ -24,17 +24,21 @@ public class NarrationRide : MonoBehaviour
     {
         if (horse == null || rideLines.Length == 0 || currentLineIndex >= rideLines.Length) return;
 
-        float speed = horse.MovementAxis.magnitude;
-
-        if (speed > movementThreshold && !narrationPlaying && timeSinceLastLine >= delayBetweenLines)
+        if (rider != null && rider.IsRiding)
         {
-            ShowNextLine();
-            timeSinceLastLine = 0f;
-        }
+            float speed = horse.MovementAxis.magnitude;
 
-        if (!narrationPlaying)
-            timeSinceLastLine += Time.deltaTime;
+            if (speed > movementThreshold && !narrationPlaying && timeSinceLastLine >= delayBetweenLines)
+            {
+                ShowNextLine();
+                timeSinceLastLine = 0f;
+            }
+
+            if (!narrationPlaying)
+                timeSinceLastLine += Time.deltaTime;
+        }
     }
+
 
     public void ShowNextLine()
     {
