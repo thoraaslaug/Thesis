@@ -45317,6 +45317,7 @@ MonoBehaviour:
   - This cold cannot reach me... not when I'm riding to her.
   - "I wonder if she\u2019s still wearing the apron I gave her."
   - She'll be surprised to see me...but she will accept my invitation.
+  rider: {fileID: 1961686436}
   horse: {fileID: 2041349626}
   movementThreshold: 0.1
   delayBetweenLines: 4
@@ -65299,11 +65300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4827929938849979915, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: Editor_Tabs1
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4827929938849979915, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: Editor_Tabs2
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4827929938849979915, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: Editor_EventTabs
@@ -65985,7 +65986,7 @@ PrefabInstance:
       objectReference: {fileID: 812498589}
     - target: {fileID: 5729470702249142250, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: Editor_Tabs1
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5729470702249142250, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_CanMount.ConstantValue
@@ -66097,6 +66098,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8065485578630274606, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: Editor_Tabs1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065485578630274606, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
+      propertyPath: Editor_Tabs2
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065485578630274606, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
+      propertyPath: Editor_EventTabs
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8065485578630274607, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
