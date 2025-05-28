@@ -42577,6 +42577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupManager: {fileID: 124929870}
+  rider: {fileID: 1961686436}
 --- !u!1 &1591875270 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8876703004671596380, guid: a525e97d8ad9a1949800cb3aa43786ab, type: 3}
