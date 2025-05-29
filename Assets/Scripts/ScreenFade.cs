@@ -43,4 +43,14 @@ public class ScreenFade : MonoBehaviour
 
         fadePanel.gameObject.SetActive(false); 
     }
+
+    public void Fade()
+    {
+        StartCoroutine(FadeToBlack(1f));
+    }
+    public void ReturnFade()
+    {
+        StartCoroutine(FadeFromBlack(1f));
+    }
+    
 }

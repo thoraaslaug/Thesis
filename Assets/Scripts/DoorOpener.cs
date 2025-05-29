@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -23,6 +24,11 @@ public class DoorOpener : MonoBehaviour
 
     public AudioSource source;
 
+
+    private void Awake()
+    {
+        GameState.hasStartedInteriorNarration = false; // ✅ Mark it as played
+    }
 
     void Update()
     {
@@ -59,7 +65,7 @@ public class DoorOpener : MonoBehaviour
         }
     }
     
-    void StartInterorNarration()
+   public void StartInterorNarration()
     {
         if (GameState.hasStartedInteriorNarration) return; // ✅ Already played, exit
 
