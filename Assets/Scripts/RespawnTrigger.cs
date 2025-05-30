@@ -13,6 +13,7 @@ public class RespawnTrigger : MonoBehaviour
     public float delay = 0f;
 
     private MAnimal animal;
+    public EnableCameraInputOnStart cameraInputOnStart;
 
     private void Start()
     {
@@ -44,6 +45,7 @@ public class RespawnTrigger : MonoBehaviour
     {
         if (animal != null && respawnPoint != null)
         {
+            cameraInputOnStart.StartCoroutine(cameraInputOnStart.DelayedEnable(2f));
             animal.Teleport(respawnPoint.position); // This is the public method
             animal.transform.rotation = respawnPoint.rotation;
             animal.ResetController();

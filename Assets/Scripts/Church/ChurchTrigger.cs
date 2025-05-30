@@ -8,7 +8,7 @@ using UnityEngine.Playables;
 
 public class ChurchTrigger : MonoBehaviour
 {
-    public MountSystem mountSystem;
+   // public MountSystem mountSystem;
     public GameObject horse;
     public Transform horseDestination;
 
@@ -22,9 +22,9 @@ public class ChurchTrigger : MonoBehaviour
     public HorseController horseController;
     public ScreenFade screenFade;
 
-    public HorseCameraFollow cameraFollow;
+   // public HorseCameraFollow cameraFollow;
     public static bool timelineHasPlayed = false;
-
+    public AudioSource windSource;
     private bool hasTriggered = false;
     public CinemachineCamera churchCam;
     public PlayableDirector draggingTimeline;
@@ -47,6 +47,7 @@ public class ChurchTrigger : MonoBehaviour
         if (!hasTriggered && other.CompareTag("Player"))
         {
             hasTriggered = true;
+            windSource.Stop();
             StartCoroutine(DismountSequence());
         }
     }
@@ -150,13 +151,16 @@ public class ChurchTrigger : MonoBehaviour
         //  Fade in to timeline
         if (screenFade != null)
             yield return StartCoroutine(screenFade.FadeFromBlack(0.4f));
-
+if (churchCam != null)
+        {
+            churchCam.Priority = 100;
+            Debug.Log("🎥 ChurchCam now active");
+        }
+        
         //  Wait for timeline to complete
         yield return new WaitUntil(() => draggingTimeline.state != PlayState.Playing);
+        yield return null; // wait 1 frame
 
-        //  Switch to ChurchCam for gameplay
-        if (churchCam != null)
-            churchCam.Priority = 20;
         
         if (narrationTextManager != null)
         {

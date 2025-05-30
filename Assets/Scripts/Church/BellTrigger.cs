@@ -9,6 +9,9 @@ public class BellTrigger : MonoBehaviour
     private bool playerInZone = false;
     private bool hasRung = false;
     public TextPopUpManager textPopUpManager; // Assign this in the inspector
+    public Transform cameraTransform; // Assign your main/virtual camera transform in the Inspector
+    public float panDuration = 3f;
+    public float panAngle = 20f; // How many degrees downward to tilt
 
 
     void Update()
@@ -19,21 +22,25 @@ public class BellTrigger : MonoBehaviour
             StartCoroutine(RingBellAndEnd());
         }
     }
-
-
+    
     private IEnumerator RingBellAndEnd()
     {
         if (bellSound != null)
             bellSound.Play();
 
-        yield return new WaitForSeconds(2f); // Let the bell sound
+        // 🔽 Start camera pan
+        if (cameraTransform != null)
+            StartCoroutine(PanCameraDown());
+
+        yield return new WaitForSeconds(2f); // Let the bell ring
 
         if (screenFade != null)
             yield return screenFade.FadeToBlack(2f);
 
         Debug.Log("🎬 Game Over.");
-        // Add Application.Quit(); or load end scene
+        // Application.Quit() or load scene
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -56,4 +63,21 @@ public class BellTrigger : MonoBehaviour
                 textPopUpManager.HideMessage();
         }
     }
+    
+    private IEnumerator PanCameraDown()
+    {
+        Vector3 initialPos = cameraTransform.position;
+        Vector3 targetPos = initialPos + new Vector3(0f, -20f, 0f); // Move 2 units downward (adjust as needed)
+
+        float elapsed = 0f;
+        while (elapsed < panDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / panDuration);
+            cameraTransform.position = Vector3.Lerp(initialPos, targetPos, t);
+            yield return null;
+        }
+    }
+
+
 }
