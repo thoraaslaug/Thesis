@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using MalbersAnimations;
 using UnityEngine;
 using UnityEngine.Playables;
 using Unity.Cinemachine;
@@ -28,7 +29,8 @@ public class HorseStopZone : MonoBehaviour
 
     public Volume postProcessingVolume; // Assign in inspector
     private DepthOfField dof;
-
+    public MRider rider;
+    public MInput riderInput;
     public GameObject bridgeNoSnow;
     public GameObject bridgeSnow;
     
@@ -109,11 +111,15 @@ public class HorseStopZone : MonoBehaviour
         if (gameplayCamera) gameplayCamera.Priority = 5;
 
         // Play timeline
-        
-
+        var inputRider = player.GetComponent<MInputLink>();
+        if (inputRider != null)
+        {
+            inputRider.enabled = false;
+            Debug.Log("player stopped.");
+        }
         timeline.Play();
         yield return new WaitForSeconds(3f);          // ⏳ Step 3: hold black screen while timeline runs
-
+            
           if (screenFade != null)
               yield return screenFade.FadeFromBlack(2f);
         while (timeline.state == PlayState.Playing)
@@ -126,7 +132,7 @@ public class HorseStopZone : MonoBehaviour
         player.transform.position = timelineDummy.transform.position;
         player.transform.rotation = timelineDummy.transform.rotation;
         timelineDummy.SetActive(false);
-
+    
         // Restore visuals and input
         //if (mesh) mesh.enabled = true;
         //if (hair) hair.SetActive(true);

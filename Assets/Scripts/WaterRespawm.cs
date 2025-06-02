@@ -34,7 +34,7 @@ public class WaterRespawn : MonoBehaviour
 
         if (BridgeBreakSystem.PlayerIsOnBridge)        {
             // 🌁 Bridge broke → load next scene
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Interior");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Interior1");
             yield break;
         }
         else

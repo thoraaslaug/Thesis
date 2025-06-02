@@ -34,7 +34,7 @@ Material:
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
-    RenderType: Transparent
+    RenderType: Opaque
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -132,18 +132,23 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
+    - _DstBlend2: 0
+    - _EmissionPower: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _MaterialID: 1
+    - _MaterialTypeMask: 2
     - _Metallic: 0
     - _Mode: 3
     - _OcclusionStrength: 1
     - _OpaqueCullMode: 2
     - _Parallax: 0.02
-    - _QueueControl: -1
+    - _PerPixelSorting: 0
+    - _QueueControl: 1
     - _QueueOffset: 0
     - _RayTracing: 0
     - _ReceiveShadows: 1
@@ -169,6 +174,7 @@ Material:
     - _SupportDecals: 1
     - _Surface: 0
     - _SurfaceType: 0
+    - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0

@@ -48,6 +48,11 @@ public class BridgeBreakSystem : MonoBehaviour
         blocker2.SetActive(false);
         blocker3.SetActive(false);
         blocker4.SetActive(false);
+        
+        bridgeParts = bridgeParts
+            .Where(p => p != null)
+            .OrderBy(p => p.transform.position.z) // or `.x` depending on your bridge orientation
+            .ToArray();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -96,7 +101,7 @@ public class BridgeBreakSystem : MonoBehaviour
     {
         while (true)
         {
-            for (int i = 0; i < 3; i++) // ⬆️ Drop 3 rocks per frame for urgency
+            for (int i = 0; i < 20; i++) // ⬆️ Drop 3 rocks per frame for urgency
             { 
                 blocker1.SetActive(true);
                              blocker2.SetActive(true);

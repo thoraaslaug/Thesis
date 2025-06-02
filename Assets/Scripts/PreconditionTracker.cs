@@ -9,6 +9,11 @@ public class PreconditionTracker : MonoBehaviour
     public GameObject bridgeNoSnow;
     public GameObject bridgeSnow;
 
+    private void Awake()
+    {
+        hasEnteredPrecondition = false;
+    }
+
     private void Start()
     {
         bridgeNoSnow.SetActive(true);

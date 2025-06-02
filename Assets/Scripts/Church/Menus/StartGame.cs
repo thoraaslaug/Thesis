@@ -46,6 +46,8 @@ public class StartGame : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneToLoad);
+        
+
     }
 
     private IEnumerator FadeInMenuTexts()
