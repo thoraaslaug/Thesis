@@ -21,6 +21,7 @@ public class ChurchTrigger : MonoBehaviour
     public MRider ridingWoman;
     public HorseController horseController;
     public ScreenFade screenFade;
+    public PoemDisplayManager poemDisplayManager;
 
    // public HorseCameraFollow cameraFollow;
     public static bool timelineHasPlayed = false;
@@ -65,6 +66,9 @@ public class ChurchTrigger : MonoBehaviour
             var inputLink = ridingWoman.GetComponent<MalbersAnimations.InputSystem.MInputLink>();
             if (inputLink != null) inputLink.Enable(false);
         }
+        
+        yield return new WaitForSeconds(0.8f);
+
 
         yield return StartCoroutine(SwapToNewWoman());
 
@@ -81,6 +85,7 @@ public class ChurchTrigger : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
             manObject.SetActive(false);
+            
         }
 
         StartCoroutine(BeginChurchSequence());
@@ -142,6 +147,7 @@ public class ChurchTrigger : MonoBehaviour
         {
             draggingTimeline.Play();
             Debug.Log(" Dragging timeline triggered.");
+            poemDisplayManager.StartPoem();
         }
 
         // Start narration
@@ -159,6 +165,8 @@ if (churchCam != null)
         
         //  Wait for timeline to complete
         yield return new WaitUntil(() => draggingTimeline.state != PlayState.Playing);
+        windSource.Play();
+
         yield return null; // wait 1 frame
 
         

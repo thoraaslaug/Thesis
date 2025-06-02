@@ -34,6 +34,7 @@ namespace MalbersAnimations.HAP
 
         private StarterAssetsInputs inputMan;
         private StarterAssetsInputs inputWoman;
+        public PoemDisplayManager poemDisplayManager;
 
         [Header("Malbers Horse")] public MAnimal malbersHorse; // Reference to Malbers' MAnimal script
         private bool originalGravity;
@@ -105,9 +106,7 @@ namespace MalbersAnimations.HAP
                 hasPlayed = true;
                 kissAudio.Play();
 
-                var poemDisplay = FindObjectOfType<PoemDisplayManager>();
-                if (poemDisplay != null)
-                    poemDisplay.StartPoem();
+                poemDisplayManager.StartPoem();
 
                 // Camera zoom
                 if (vcamKissZoom != null)

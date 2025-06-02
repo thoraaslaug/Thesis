@@ -21044,6 +21044,7 @@ MonoBehaviour:
   man: {fileID: 0}
   woman: {fileID: 0}
   horse: {fileID: 0}
+  poemDisplayManager: {fileID: 0}
   malbersHorse: {fileID: 0}
   horseRigidbody: {fileID: 0}
 --- !u!4 &677153600
@@ -45002,7 +45003,7 @@ MonoBehaviour:
   fadeDuration: 1
   visibleDuration: 2
   rideLines:
-  - Tonight, I will see her again.
+  - "Tonight, I will see my beloved Gu\xF0r\xFAn again."
   - This cold cannot reach me... not when I'm riding to her.
   - "I wonder if she\u2019s still wearing the apron I gave her."
   - She'll be surprised to see me...but she will accept my invitation.

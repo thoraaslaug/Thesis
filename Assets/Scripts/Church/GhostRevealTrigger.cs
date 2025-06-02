@@ -6,7 +6,7 @@ public class GhostRevealTrigger : MonoBehaviour
     
     [TextArea]
     public string[] ghostRevealLines = {
-        "Garun... why can't he say",
+        "Garun... why can't he say <size=140%>Guð</size>rún...",
         "No. No, it can’t be",
         "He’s dead. He’s been dead this whole time.",
         "I have to get away. I have to get to the church."

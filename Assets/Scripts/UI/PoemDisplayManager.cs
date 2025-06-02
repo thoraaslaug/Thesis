@@ -26,6 +26,10 @@ public class PoemDisplayManager : MonoBehaviour
     {
         if (poemCoroutine != null)
             StopCoroutine(poemCoroutine);
+        
+        leftText.gameObject.SetActive(true);
+        rightText.gameObject.SetActive(true);
+        bottomText.gameObject.SetActive(true);
 
         poemCoroutine = StartCoroutine(TypePoemSequence());
     }
@@ -51,7 +55,7 @@ public class PoemDisplayManager : MonoBehaviour
         // Type BOTTOM
         yield return StartCoroutine(TypeText(bottomPoem, bottomText));
         
-        yield return new WaitForSecondsRealtime(3.0f);
+        yield return new WaitForSecondsRealtime(2.0f);
 
         // 🚫 Set texts inactive after poem is fully shown
         leftText.gameObject.SetActive(false);
