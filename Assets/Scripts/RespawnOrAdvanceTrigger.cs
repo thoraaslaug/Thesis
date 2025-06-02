@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,7 +25,8 @@ public class RespawnOrAdvanceTrigger : MonoBehaviour
 
     public ScreenFade ScreenFade;
 
-    private void Start()
+
+  private void Start()
     {
         animal = GetComponent<MAnimal>();
 

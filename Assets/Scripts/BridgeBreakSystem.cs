@@ -29,11 +29,25 @@ public class BridgeBreakSystem : MonoBehaviour
     private GameObject player;
     private HashSet<GameObject> droppedParts = new HashSet<GameObject>();
     public static bool PlayerIsOnBridge { get; private set; } = false;
+    public GameObject blocker1;
+    public GameObject blocker2;
+    public GameObject blocker3;
+    public GameObject blocker4;
+
 
     private void Awake()
     {
         HasBroken = false;
         PlayerIsOnBridge = false; 
+  
+    }
+
+    private void Start()
+    {
+        blocker1.SetActive(false);
+        blocker2.SetActive(false);
+        blocker3.SetActive(false);
+        blocker4.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,6 +70,7 @@ public class BridgeBreakSystem : MonoBehaviour
 
             if (PreconditionTracker.hasEnteredPrecondition && !HasBroken)
             {
+               
                 //Debug.Log("player is on bridge. interior scene next");
                 HasBroken = true;
                 //Debug.Log("Precondition met. Breaking bridge.");
@@ -82,7 +97,11 @@ public class BridgeBreakSystem : MonoBehaviour
         while (true)
         {
             for (int i = 0; i < 3; i++) // ⬆️ Drop 3 rocks per frame for urgency
-            {
+            { 
+                blocker1.SetActive(true);
+                             blocker2.SetActive(true);
+                             blocker3.SetActive(true);
+                             blocker4.SetActive(true);
                 GameObject rock = GetNextRockAhead();
                 if (rock != null)
                 {

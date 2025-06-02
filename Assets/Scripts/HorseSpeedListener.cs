@@ -31,6 +31,9 @@ public class HorseStopZone : MonoBehaviour
 
     public GameObject bridgeNoSnow;
     public GameObject bridgeSnow;
+    
+    public ScreenFade screenFade; // Assign in inspector
+
     private void Start()
     {
         if (postProcessingVolume != null)
@@ -55,9 +58,9 @@ public class HorseStopZone : MonoBehaviour
                 rider.Set_StoredMount(rider.Montura.gameObject);
             }
 
-
-            rider.DismountAnimal(); // Automatically triggers dismount
+       rider.DismountAnimal(); // Automatically triggers dismount
             hasPlayed = true;
+            
 
             // Start the timeline logic after dismount
             player.GetComponent<MonoBehaviour>().StartCoroutine(PlayTimeline());
@@ -78,6 +81,11 @@ public class HorseStopZone : MonoBehaviour
     private IEnumerator PlayTimeline()
     {
         yield return new WaitForSeconds(2f);
+        
+        if (screenFade != null)
+            yield return screenFade.FadeToBlack(1f);
+        //yield return new WaitForSeconds(3f); 
+
 
         // Position dummy at player
         timelineDummy.transform.position = player.transform.position;
@@ -101,10 +109,16 @@ public class HorseStopZone : MonoBehaviour
         if (gameplayCamera) gameplayCamera.Priority = 5;
 
         // Play timeline
+        
+
         timeline.Play();
+        yield return new WaitForSeconds(3f);          // ⏳ Step 3: hold black screen while timeline runs
+
+          if (screenFade != null)
+              yield return screenFade.FadeFromBlack(2f);
         while (timeline.state == PlayState.Playing)
             yield return null;
-        
+      
         if (dof != null)
             dof.active = true;
 
