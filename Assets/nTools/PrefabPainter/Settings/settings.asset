@@ -2292,7 +2292,7 @@ MonoBehaviour:
       customPreviewImage: {fileID: 0}
     - name: Grass_A
       settings:
-        brushRadius: 1.2
+        brushRadius: 0.01
         brushSpacing: 0.01
         brushOverlapCheckMode: 0
         brushOverlapDistance: 0.5
@@ -2310,8 +2310,8 @@ MonoBehaviour:
         randomizeOrientationZ: 0
         scaleTransformMode: 0
         scaleMode: 0
-        scaleUniformMin: 0.51
-        scaleUniformMax: 2.41
+        scaleUniformMin: 0.66
+        scaleUniformMax: 4.63
         scalePerAxisMin: {x: 1, y: 1, z: 1}
         scalePerAxisMax: {x: 1, y: 1, z: 1}
         pinFixedRotation: 0
@@ -3665,7 +3665,7 @@ MonoBehaviour:
   pinSnapScale: 0
   placeAngleStep: 15
   placeScaleStep: 0.1
-  eraseBrushRadius: 0.01
+  eraseBrushRadius: 4.06
   eraseByLayer: 1
   eraseLayers:
     serializedVersion: 2
