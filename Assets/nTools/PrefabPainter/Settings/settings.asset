@@ -3665,7 +3665,7 @@ MonoBehaviour:
   pinSnapScale: 0
   placeAngleStep: 15
   placeScaleStep: 0.1
-  eraseBrushRadius: 4.06
+  eraseBrushRadius: 0.07
   eraseByLayer: 1
   eraseLayers:
     serializedVersion: 2
