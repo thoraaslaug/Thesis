@@ -3673,7 +3673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 29.02}
+  m_AnchoredPosition: {x: 0, y: 61.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &152556198
@@ -27218,8 +27218,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Resume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0b32d0f6a0b52ab4f91af236e4d78d91, type: 2}
-  m_sharedMaterial: {fileID: 6009345715027294178, guid: 0b32d0f6a0b52ab4f91af236e4d78d91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9cb45c209892fe3438195a4bde831cd6, type: 2}
+  m_sharedMaterial: {fileID: -7856802937537113486, guid: 9cb45c209892fe3438195a4bde831cd6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -38741,7 +38741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2.3}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1238687590
@@ -38768,8 +38768,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0b32d0f6a0b52ab4f91af236e4d78d91, type: 2}
-  m_sharedMaterial: {fileID: 6009345715027294178, guid: 0b32d0f6a0b52ab4f91af236e4d78d91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9cb45c209892fe3438195a4bde831cd6, type: 2}
+  m_sharedMaterial: {fileID: -7856802937537113486, guid: 9cb45c209892fe3438195a4bde831cd6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -44602,7 +44602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 758babb9237f8ce4eb6cd70befbb3ed8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 181.79
+      value: 180.87
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 758babb9237f8ce4eb6cd70befbb3ed8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -64453,7 +64453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 197.3
+      value: 188
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.y

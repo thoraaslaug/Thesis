@@ -9182,7 +9182,7 @@ MonoBehaviour:
   leftPoem: "M\xE1ninn l\xED\xF0ur,\r\ndau\xF0inn r\xED\xF0ur"
   rightPoem: "s\xE9r\xF0u ekki hv\xEDtan blett\r\n\xED hnakka m\xEDnum"
   bottomPoem: "Gar\xFAn, Gar\xFAn?"
-  typingSpeed: 0
+  typingSpeed: 0.06
   delayBetweenSections: 0.1
   narrationManager: {fileID: 0}
   postPoemLines: []
@@ -36200,7 +36200,7 @@ MonoBehaviour:
   leftPoem: "B\xEDddu h\xE9rna, Gar\xFAn, Gar\xFAn"
   rightPoem: "me\xF0an eg flyt hann Faxa, Faxa"
   bottomPoem: "upp fyrir gar\xF0a, gar\xF0a"
-  typingSpeed: 0
+  typingSpeed: 0.07
   delayBetweenSections: 0.5
   narrationManager: {fileID: 0}
   postPoemLines: []
