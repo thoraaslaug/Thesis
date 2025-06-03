@@ -101,7 +101,7 @@ public class BridgeBreakSystem : MonoBehaviour
     {
         while (true)
         {
-            for (int i = 0; i < 20; i++) // ⬆️ Drop 3 rocks per frame for urgency
+            for (int i = 0; i < 7; i++) // ⬆️ Drop 3 rocks per frame for urgency
             { 
                 blocker1.SetActive(true);
                              blocker2.SetActive(true);

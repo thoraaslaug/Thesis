@@ -8,11 +8,14 @@ public class PoemDisplayManager : MonoBehaviour
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
     public TextMeshProUGUI bottomText;
+    public TextMeshProUGUI translation;
 
     [Header("Poem Lines")]
     [TextArea] public string leftPoem;
     [TextArea] public string rightPoem;
     [TextArea] public string bottomPoem;
+    [TextArea] public string translationPoem;
+
 
     [Header("Typing Settings")]
     public float typingSpeed = 0.05f;  
@@ -30,6 +33,9 @@ public class PoemDisplayManager : MonoBehaviour
         leftText.gameObject.SetActive(true);
         rightText.gameObject.SetActive(true);
         bottomText.gameObject.SetActive(true);
+        translation.gameObject.SetActive(true);
+         StartCoroutine(TypeText(translationPoem, translation));
+
 
         poemCoroutine = StartCoroutine(TypePoemSequence());
     }
@@ -39,9 +45,12 @@ public class PoemDisplayManager : MonoBehaviour
         leftText.text = "";
         rightText.text = "";
         bottomText.text = "";
+        translation.text = "";
 
         // Type LEFT
         yield return StartCoroutine(TypeText(leftPoem, leftText));
+        //yield return StartCoroutine(TypeText(translationPoem, translation));
+
 
         // Pause
         yield return new WaitForSecondsRealtime(delayBetweenSections);
@@ -61,10 +70,12 @@ public class PoemDisplayManager : MonoBehaviour
         leftText.gameObject.SetActive(false);
         rightText.gameObject.SetActive(false);
         bottomText.gameObject.SetActive(false);
+        translation.gameObject.SetActive(false);
         StartCoroutine(PlayPostPoemNarration());
 
        
     }
+    
     
     private IEnumerator PlayPostPoemNarration()
     {

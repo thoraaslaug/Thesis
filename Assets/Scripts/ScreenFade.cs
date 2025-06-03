@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScreenFade : MonoBehaviour
@@ -52,5 +53,19 @@ public class ScreenFade : MonoBehaviour
     {
         StartCoroutine(FadeFromBlack(1f));
     }
+    
+    public void FadeAndReturnToMainMenu(string MainMenu, float delay = 2f)
+    {
+        StartCoroutine(FadeAndLoadScene(MainMenu, delay));
+    }
+
+    private IEnumerator FadeAndLoadScene(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        yield return StartCoroutine(FadeToBlack(2f));         // Ensures fade finishes
+        yield return new WaitForSeconds(0.1f);                // Forces Unity to render final frame
+        SceneManager.LoadScene(sceneName);
+    }
+
     
 }

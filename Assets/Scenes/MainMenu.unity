@@ -23360,6 +23360,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096944610}
   m_CullTransparentMesh: 1
+--- !u!114 &1115268740 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5729470702249142250, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
+  m_PrefabInstance: {fileID: 2067247324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ced0ef3d825bf46baedd6a5bf7447a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1146487313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23467,6 +23478,14 @@ PrefabInstance:
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827929938849979915, guid: 6343c428099366746ab47d445a1f767f, type: 3}
+      propertyPath: Editor_Tabs1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827929938849979915, guid: 6343c428099366746ab47d445a1f767f, type: 3}
+      propertyPath: Editor_Tabs2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8779025588416059020, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].x
@@ -24849,7 +24868,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1414813753}
-  - component: {fileID: 1414813752}
   - component: {fileID: 1414813751}
   - component: {fileID: 1414813750}
   - component: {fileID: 1414813749}
@@ -24925,21 +24943,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1414813752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1414813748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945a6cfc6291423469535918b0dec1b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  irisMaterial: {fileID: 2100000, guid: 0cb824c858445fa4983e9a7701f20557, type: 2}
-  irisOpenSpeed: 10
-  player: {fileID: 0}
 --- !u!224 &1414813753
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24994,6 +24997,8 @@ MonoBehaviour:
   menuTexts:
   - {fileID: 1868481189}
   - {fileID: 1096944612}
+  rider: {fileID: 1115268740}
+  horse: {fileID: 133518241}
 --- !u!1 &1435886213
 GameObject:
   m_ObjectHideFlags: 0
@@ -28861,7 +28866,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5729470702249142250, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: StartMounted.ConstantValue
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5729470702249142250, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_MountStored.ConstantValue
@@ -28877,15 +28882,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 451.77768
+      value: 454.45
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 29.409935
+      value: 29.248
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 59.63
+      value: 60.791
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalRotation.w

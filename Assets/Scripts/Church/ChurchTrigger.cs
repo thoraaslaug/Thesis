@@ -5,6 +5,7 @@ using StarterAssets;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class ChurchTrigger : MonoBehaviour
 {
@@ -166,18 +167,22 @@ if (churchCam != null)
         //  Wait for timeline to complete
         yield return new WaitUntil(() => draggingTimeline.state != PlayState.Playing);
         windSource.Play();
+        
+        if (screenFade != null)
+            yield return StartCoroutine(screenFade.FadeToBlack(1f));
+        SceneManager.LoadScene("MainMenu");      
 
         yield return null; // wait 1 frame
 
         
-        if (narrationTextManager != null)
+      /*  if (narrationTextManager != null)
         {
             string[] churchLines = {
                 "The church... maybe they’ll hear the bells.",
                 "This has to end now.",
             };
             narrationTextManager.StartNarration(churchLines);
-        }
+        }*/
        
        /* var controller = newWomanObject.GetComponent<ThirdPersonController>();
         var input = newWomanObject.GetComponent<StarterAssetsInputs>();

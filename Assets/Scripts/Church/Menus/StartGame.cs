@@ -2,10 +2,10 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using MalbersAnimations.HAP;  // For MRider
 
 public class StartGame : MonoBehaviour
 {
-    [Tooltip("Name of the scene to load")]
     public string sceneToLoad = "SampleScene";
     public ScreenFade screenFade;
     public float fadeDuration = 1f;
@@ -13,16 +13,58 @@ public class StartGame : MonoBehaviour
 
     public TextMeshProUGUI[] menuTexts;
 
+    [Header("Mount Setup")]
+    public MRider rider;  // Assign in inspector
+    public GameObject horse; // Optional, just to ensure visuals are ready
+
     private void Start()
     {
+        // Hide texts initially
         foreach (var text in menuTexts)
         {
             Color c = text.color;
-            text.color = new Color(c.r, c.g, c.b, 0f); // Start fully transparent
+            text.color = new Color(c.r, c.g, c.b, 0f);
         }
+
+        StartCoroutine(InitMenuSequence());
+    }
+
+    private IEnumerator InitMenuSequence()
+    {
+        yield return new WaitForSeconds(2f); // Delay after game starts
+
+      /*  if (rider == null || horse == null)
+        {
+            Debug.LogError("Rider or Horse not assigned.");
+            yield break;
+        }*/
+
+        // 🔧 Set up mount reference
+      //  rider.Set_StoredMount(horse);
+
+        // 🔁 Let the system process mount data
+        //yield return null;
+
+        // ✅ Check if mounting is possible (makes CanMount true if within valid range)
+       // rider.UpdateCanMountDismount();
+
+        if (rider.CanMount)
+        {
+            // ✅ Use Malbers' full mount logic
+            rider.MountAnimal();
+        }
+        else
+        {
+            Debug.LogWarning("Rider cannot mount. Check mount trigger range and setup.");
+        }
+        yield return new WaitForSeconds(1f); // Optional buffer after mounting
+
 
         StartCoroutine(FadeInMenuTexts());
     }
+
+
+
 
     public void StartPlay()
     {
@@ -46,14 +88,10 @@ public class StartGame : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneToLoad);
-        
-
     }
 
     private IEnumerator FadeInMenuTexts()
     {
-        yield return new WaitForSeconds(2f); // Wait before fade-in
-
         float t = 0f;
         while (t < fadeDuration)
         {
@@ -67,13 +105,6 @@ public class StartGame : MonoBehaviour
             }
 
             yield return null;
-        }
-
-        // Just to ensure it's fully visible
-        foreach (var text in menuTexts)
-        {
-            Color c = text.color;
-            text.color = new Color(c.r, c.g, c.b, 1f);
         }
     }
 
@@ -89,7 +120,5 @@ public class StartGame : MonoBehaviour
             text.color = new Color(original.r, original.g, original.b, alpha);
             yield return null;
         }
-
-        text.color = new Color(original.r, original.g, original.b, 0f);
     }
 }
