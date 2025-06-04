@@ -75,7 +75,6 @@ public class DoorOpener : MonoBehaviour
         {
             "The days have passed so slowly",
             "He’ll ride through anything for me… I know he will.",
-            "It’s colder tonight than I expected.",
             "The lamp is lit. He’ll see it.",
             "I keep listening for hoofbeats… but the snow eats every sound.",
             "Just get here safe… please, just get here safe."

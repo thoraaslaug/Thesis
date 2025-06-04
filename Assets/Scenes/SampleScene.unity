@@ -19735,7 +19735,7 @@ Transform:
   m_GameObject: {fileID: 479481767}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.0014880528, z: 0, w: 0.9999989}
-  m_LocalPosition: {x: 187.59, y: 27.24, z: 57.97}
+  m_LocalPosition: {x: 186.37, y: 27.24, z: 58.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30068,7 +30068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9695f673fe347c247938040acf6233f8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9695f673fe347c247938040acf6233f8, type: 3}
       propertyPath: m_TagString
@@ -39637,7 +39637,7 @@ Transform:
   m_GameObject: {fileID: 1318150258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0014880528, z: -0, w: 0.9999989}
-  m_LocalPosition: {x: 187.59, y: 27.24, z: 57.97}
+  m_LocalPosition: {x: 186.37, y: 27.24, z: 58.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44503,13 +44503,7 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:RightFoot'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
-    'mixamorig:LeftHand'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:Spine1'\n\tTransform
-    'mixamorig:Spine2'\n\tTransform 'mixamorig:LeftHandPinky3'\n\tTransform 'mixamorig:LeftHandThumb1'\n\tTransform
-    'mixamorig:RightHandPinky3'\n\tTransform 'mixamorig:LeftHandRing2'\n\tand more
-    ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -45008,9 +45002,9 @@ MonoBehaviour:
   visibleDuration: 2
   rideLines:
   - "Tonight, I will see my beloved Gu\xF0r\xFAn again."
-  - This cold cannot reach me... not when I'm riding to her.
-  - "I wonder if she\u2019s still wearing the apron I gave her."
-  - She'll be surprised to see me...but she will accept my invitation.
+  - This cold cannot reach me... <br>not when I'm riding to her.
+  - "I wonder if Gu\xF0r\xFAn is still wearing the <br> apron I gave her."
+  - "Gu\xF0r\xFAn will be surprised to see me...<br>but she will accept my invitation."
   rider: {fileID: 1961686436}
   horse: {fileID: 2041349626}
   movementThreshold: 0.1
@@ -64457,7 +64451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 188
+      value: 186.28
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -64465,7 +64459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 55.99
+      value: 60.39
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64605,15 +64599,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8779025588416059020, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].x
-      value: -0.13002014
+      value: -0.1300354
       objectReference: {fileID: 0}
     - target: {fileID: 8779025588416059020, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].y
-      value: 0.13748169
+      value: 0.13748932
       objectReference: {fileID: 0}
     - target: {fileID: 8779025588416059020, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].z
-      value: 0
+      value: -0.0000076293945
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -65403,7 +65397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 185.5
+      value: 184.28
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.y
@@ -65411,7 +65405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 67.97
+      value: 68.36
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalRotation.w

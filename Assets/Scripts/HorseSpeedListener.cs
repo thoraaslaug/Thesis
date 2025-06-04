@@ -68,6 +68,109 @@ public class HorseStopZone : MonoBehaviour
             player.GetComponent<MonoBehaviour>().StartCoroutine(PlayTimeline());
         }
     }
+    
+ /*   private IEnumerator PlayTimeline()
+{
+    yield return new WaitForSeconds(2f);
+
+    // 🔲 Step 1: Fade out before cutscene begins
+    if (screenFade != null)
+        yield return screenFade.FadeToBlack(1f);
+    yield return new WaitForSeconds(1.5f);
+
+    // 🧍 Step 2: Prepare dummy and visuals
+    timelineDummy.transform.position = player.transform.position;
+    timelineDummy.transform.rotation = player.transform.rotation;
+    timelineDummy.SetActive(true);
+
+    if (dof != null)
+        dof.active = false;
+
+    if (hair) hair.SetActive(false);
+
+    // 🎮 Step 3: Disable input
+    var inputRider = player.GetComponent<MInputLink>();
+    if (inputRider != null)
+    {
+        inputRider.enabled = false;
+        Debug.Log("🎮 Player input disabled.");
+    }
+
+    // 🎥 Step 4: Switch to timeline camera
+    if (timelineCamera) timelineCamera.Priority = 20;
+    if (gameplayCamera) gameplayCamera.Priority = 5;
+
+    // ▶️ Step 5: Play timeline WHILE SCREEN IS STILL BLACK
+    timeline.Play();
+    yield return new WaitForSeconds(2f);          // ⏳ Step 3: hold black screen while timeline runs
+
+
+    yield return new WaitUntil(() => timeline.state != PlayState.Playing);
+if (screenFade != null)
+        yield return screenFade.FadeFromBlack(2f);
+    //yield return new WaitForSeconds(2f);
+    // 🔲 Step 6: Fade out AGAIN before swapping back
+    if (screenFade != null)
+        yield return screenFade.FadeToBlack(1f);
+    //yield return new WaitForSeconds(2f);
+
+    // 🎥 Step 7: Switch back to gameplay camera
+    if (timelineCamera) timelineCamera.Priority = 5;
+    if (gameplayCamera) gameplayCamera.Priority = 20;
+
+    // 🧍 Step 8: Restore player
+    player.transform.position = timelineDummy.transform.position;
+    player.transform.rotation = timelineDummy.transform.rotation;
+    timelineDummy.SetActive(false);
+
+    if (dof != null)
+        dof.active = true;
+
+    // 🎮 Step 9: Reactivate input
+    var rider = player.GetComponent<MRider>();
+    var animal = player.GetComponent<MAnimal>();
+    var inputLink = player.GetComponent<MInputLink>();
+
+    if (inputLink != null)
+    {
+        inputLink.ClearPlayerInput();
+        inputLink.PlayerInput_Set(inputLink);
+        inputLink.Enable(true);
+        Debug.Log("✅ Player input re-enabled.");
+    }
+
+    if (animal != null)
+    {
+        animal.InputSource?.Enable(true);
+        animal.ResetController();
+    }
+
+    if (rider?.RiderInput != null)
+    {
+        rider.RiderInput.MoveCharacter = true;
+        rider.RiderInput.Enable(true);
+    }
+    yield return new WaitForSeconds(2f);          // ⏳ Step 3: hold black screen while timeline runs
+
+    // ☀️ Step 10: Fade back in AFTER everything is switched
+    if (screenFade != null)
+        yield return screenFade.FadeFromBlack(1f);
+    yield return new WaitForSeconds(2f);
+
+
+    // 🗣️ Step 11: Narration and bridge
+    if (!GameState.hasPlayedReturnRideNarration)
+    {
+        StartReturnRideNarration();
+        hasPlayedReturnRideNarration = true;
+
+        if (bridgeNoSnow) bridgeNoSnow.SetActive(false);
+        if (bridgeSnow) bridgeSnow.SetActive(true);
+    }
+
+    snowstormTrigger.StartSnowstorm();
+}*/
+
 
   /*  private void OnTriggerExit(Collider other)
     {
@@ -124,15 +227,21 @@ public class HorseStopZone : MonoBehaviour
               yield return screenFade.FadeFromBlack(2f);
         while (timeline.state == PlayState.Playing)
             yield return null;
-      
+
         if (dof != null)
             dof.active = true;
-
+        if (screenFade != null)
+            yield return screenFade.FadeToBlack(1f);
         // Restore player position
         player.transform.position = timelineDummy.transform.position;
         player.transform.rotation = timelineDummy.transform.rotation;
         timelineDummy.SetActive(false);
+        
     
+        
+        
+        
+       
         // Restore visuals and input
         //if (mesh) mesh.enabled = true;
         //if (hair) hair.SetActive(true);
@@ -171,7 +280,6 @@ public class HorseStopZone : MonoBehaviour
             rider.RiderInput.Enable(true);
             Debug.Log("✅ Rider input restored");
         }
-
 // Wake up animal
         if (animal != null)
         {
@@ -180,6 +288,8 @@ public class HorseStopZone : MonoBehaviour
             animal.ResetController();             // Reset full control state
             Debug.Log("✅ Animal awake and input enabled");
         }
+        //yield return new WaitForSeconds(3f);          // ⏳ Step 3: hold black screen while timeline runs
+
 
 // Remount rider if needed
        /* if (rider != null && rider.Montura == null && rider.MountStored != null)
@@ -189,8 +299,13 @@ public class HorseStopZone : MonoBehaviour
             Debug.Log("✅ Rider remounted after timeline");
         }*/
         // Restore camera
-        if (timelineCamera) timelineCamera.Priority = 5;
-        if (gameplayCamera) gameplayCamera.Priority = 20;
+       if (timelineCamera) timelineCamera.Priority = 5;
+        if (gameplayCamera) gameplayCamera.Priority = 20; 
+        if (screenFade != null)
+                                                                   
+            yield return new WaitForSeconds(2f);
+        if (screenFade != null)
+            yield return screenFade.FadeFromBlack(1f);  
         
         if (!GameState.hasPlayedReturnRideNarration)
         {
@@ -215,9 +330,7 @@ public class HorseStopZone : MonoBehaviour
         {
             "I have to get back home",
             "The snow feels heavier now, I can barely see",
-            "I must keep moving",
             "My hands are numb. No matter. She'll be waiting for me, I'll be back on Christmas Eve.",
-            "It’s darker than I remember… the bridge, the sky… the world.",
             "I will see her again. I will see her again..."
         };
 

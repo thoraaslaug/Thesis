@@ -42,18 +42,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fade: 0.518
+    - _Fade: 0.481
     - _FrenelStrength: 4.48
-    - _LineFrequency: 25
+    - _LineFrequency: 27.82
     - _LineRotation: 135.89
     - _LineStrength: 0.076
-    - _LineThickness: 0.26
+    - _LineThickness: -2.83
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScrollSpeed: -1.01
     m_Colors:
-    - _FrenelColor: {r: 0, g: 0, b: 0, a: 0.454902}
-    - _Tint: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0.9843137}
+    - _FrenelColor: {r: 0, g: 0, b: 0, a: 0.25490198}
+    - _Tint: {r: 0.39622638, g: 0.39622638, b: 0.39622638, a: 0.6862745}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2299759230896492161
