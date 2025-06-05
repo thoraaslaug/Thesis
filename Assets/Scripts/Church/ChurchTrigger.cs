@@ -166,7 +166,7 @@ if (churchCam != null)
         
         //  Wait for timeline to complete
         yield return new WaitUntil(() => draggingTimeline.state != PlayState.Playing);
-        windSource.Play();
+        //windSource.Play();
         
         if (screenFade != null)
             yield return StartCoroutine(screenFade.FadeToBlack(1f));

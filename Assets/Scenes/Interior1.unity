@@ -1831,6 +1831,7 @@ GameObject:
   - component: {fileID: 178423218}
   - component: {fileID: 178423219}
   - component: {fileID: 178423220}
+  - component: {fileID: 178423221}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2075,6 +2076,30 @@ MonoBehaviour:
   snowNormalsTex: {fileID: 2800000, guid: 6e97ae521a24e404ebf8f4e3315de047, type: 3}
   noiseTex: {fileID: 2800000, guid: 3e786e3bdcb6e49e190005901e860fa1, type: 3}
   snowdustSystem: {fileID: 0}
+--- !u!167 &178423221
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178423214}
+  m_Enabled: 1
+  m_MinDistance: 8.2
+  m_MaxDistance: 13.84
+  m_ReverbPreset: 5
+  m_Room: -1000
+  m_RoomHF: -6000
+  m_DecayTime: 0.5
+  m_DecayHFRatio: 0.1
+  m_Reflections: -1376
+  m_ReflectionsDelay: 0.003
+  m_Reverb: -1104
+  m_ReverbDelay: 0.004
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1001 &209835863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2837,7 +2862,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8f8b873de262815499c7829266c2620c, type: 3}
   m_Resource: {fileID: 8300000, guid: 8f8b873de262815499c7829266c2620c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.205
+  m_Volume: 0.097
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8144,6 +8169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 511695381}
   - component: {fileID: 511695380}
+  - component: {fileID: 511695382}
   m_Layer: 0
   m_Name: NarrationManager
   m_TagString: Untagged
@@ -8168,6 +8194,7 @@ MonoBehaviour:
   fadeDuration: 1
   popupManager: {fileID: 0}
   isNarrating: 0
+  audioSource: {fileID: 511695382}
 --- !u!4 &511695381
 Transform:
   m_ObjectHideFlags: 0
@@ -8183,6 +8210,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &511695382
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511695379}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &590066644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13213,6 +13337,12 @@ MonoBehaviour:
   timeline: {fileID: 407054498}
   screenFade: {fileID: 1036197685}
   source: {fileID: 1704033717}
+  interiorNarrationClips:
+  - {fileID: 8300000, guid: 8788d729759527145a3ed2a645e09902, type: 3}
+  - {fileID: 8300000, guid: 2f3ab3e7391a5c241933729da81673ce, type: 3}
+  - {fileID: 8300000, guid: 28aac04a82211c740941910944c7157e, type: 3}
+  - {fileID: 8300000, guid: 8079dd013ff6e5447878605ff4ea8f9a, type: 3}
+  - {fileID: 8300000, guid: 14829e2152750114b81209dbe33a5008, type: 3}
 --- !u!82 &1704033717
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13227,7 +13357,7 @@ AudioSource:
   m_Resource: {fileID: 8300000, guid: 30ab1886daa90f34cb4cec179878d1f4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.28
   Loop: 0
   Mute: 0
   Spatialize: 0

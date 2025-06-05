@@ -33,7 +33,8 @@ public class HorseStopZone : MonoBehaviour
     public MInput riderInput;
     public GameObject bridgeNoSnow;
     public GameObject bridgeSnow;
-    
+    public AudioClip[] returnLineAudioClips;  // Assign 4 audio clips in Inspector
+
     public ScreenFade screenFade; // Assign in inspector
 
     private void Start()
@@ -337,16 +338,16 @@ if (screenFade != null)
         var narration = FindObjectOfType<NarrationTextManager>();
         if (narration != null)
         {
-            narration.StartNarration(returnLines);
+            // 🔊 Pass both text and audio
+            narration.StartNarrationWithAudio(returnLines, returnLineAudioClips);
             PreconditionTracker.hasEnteredPrecondition = true;
-            Debug.Log("📜 Return narration started. Precondition set. Bridge can now break.");
-            //if (bridgeNoSnow != null) bridgeNoSnow.SetActive(false);
-            //if (bridgeSnow != null) bridgeSnow.SetActive(true);
+            Debug.Log("📜 Return narration with audio started.");
         }
         else
         {
             Debug.LogWarning("NarrationTextManager not found in scene.");
         }
     }
+
 
 }

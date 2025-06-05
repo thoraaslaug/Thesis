@@ -11,6 +11,10 @@ public class NarrationTextManager : MonoBehaviour
     public System.Action onNarrationComplete;
     [HideInInspector] public bool isNarrating = false;
 
+    private Coroutine narrationCoroutine;
+    
+    public AudioSource audioSource; // Drag your AudioSource in the inspector
+
 
     public void StartNarration(string[] lines)
     {
@@ -70,5 +74,69 @@ public class NarrationTextManager : MonoBehaviour
 
         narrationText.alpha = 0f;
     }
+    
+    public void StartNarrationWithAudio(string[] lines, AudioClip[] audioClips, float delayBetweenLines = 0f, float startDelay = 0f)
+    {
+        if (narrationCoroutine != null)
+            StopCoroutine(narrationCoroutine);
+
+        narrationCoroutine = StartCoroutine(PlayNarrationWithAudio(lines, audioClips, delayBetweenLines, startDelay));
+    }
+
+
+
+    private IEnumerator PlayNarrationWithAudio(string[] lines, AudioClip[] audioClips, float delayBetweenLines, float startDelay)
+    {
+        if (startDelay > 0f)
+            yield return new WaitForSecondsRealtime(startDelay); // ⏱️ Delay before narration starts
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            string line = lines[i];
+            AudioClip clip = (audioClips != null && i < audioClips.Length) ? audioClips[i] : null;
+
+            // Fade in
+            narrationText.text = line;
+            narrationText.alpha = 0f;
+            float t = 0f;
+            while (t < fadeDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                narrationText.alpha = Mathf.Lerp(0f, 1f, t / fadeDuration);
+                yield return null;
+            }
+
+            narrationText.alpha = 1f;
+
+            // Play audio
+            float waitTime = 2f;
+            if (clip != null)
+            {
+                audioSource.clip = clip;
+                audioSource.Play();
+                waitTime = clip.length;
+            }
+            yield return new WaitForSecondsRealtime(waitTime);
+
+            if (delayBetweenLines > 0f)
+                yield return new WaitForSecondsRealtime(delayBetweenLines);
+
+            // Fade out
+            t = 0f;
+            while (t < fadeDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                narrationText.alpha = Mathf.Lerp(1f, 0f, t / fadeDuration);
+                yield return null;
+            }
+
+            narrationText.text = "";
+        }
+
+        onNarrationComplete?.Invoke();
+    }
+
+
+
     
 }

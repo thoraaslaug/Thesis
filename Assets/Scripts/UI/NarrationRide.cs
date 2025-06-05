@@ -19,6 +19,9 @@ public class NarrationRide : MonoBehaviour
     private int currentLineIndex = 0;
     private bool narrationPlaying = false;
     private float timeSinceLastLine = 0f;
+    
+    public AudioSource audioSource; // Assign in Inspector
+    public AudioClip[] rideAudio;   // Match 1:1 with rideLines
 
     private void Update()
     {
@@ -53,6 +56,11 @@ public class NarrationRide : MonoBehaviour
     {
         narrationPlaying = true;
 
+        // 🔊 Play corresponding audio
+        if (currentLineIndex < rideAudio.Length && rideAudio[currentLineIndex] != null)
+            audioSource.PlayOneShot(rideAudio[currentLineIndex]);
+
+        // 📝 Show text
         narrationText.text = line;
         narrationText.alpha = 0f;
 
@@ -65,8 +73,15 @@ public class NarrationRide : MonoBehaviour
         }
 
         narrationText.alpha = 1f;
-        yield return new WaitForSecondsRealtime(visibleDuration);
 
+        // ⏳ Wait for the audio to finish or a fallback duration
+        float waitTime = (currentLineIndex < rideAudio.Length && rideAudio[currentLineIndex] != null)
+            ? rideAudio[currentLineIndex].length
+            : visibleDuration;
+
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        // 🔻 Fade out
         t = 0f;
         while (t < fadeDuration)
         {
@@ -79,6 +94,7 @@ public class NarrationRide : MonoBehaviour
         narrationText.alpha = 0f;
         narrationPlaying = false;
     }
+
 
     public void ResetNarration()
     {

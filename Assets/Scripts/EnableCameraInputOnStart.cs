@@ -7,6 +7,7 @@ public class EnableCameraInputOnStart : MonoBehaviour
 {
     private MAnimal animal;
     private bool hasStartedSceneNarration = false;
+    public AudioClip[] femaleSceneClips; // Assign 5 clips in Inspector
 
 
     private void Start()
@@ -16,15 +17,20 @@ public class EnableCameraInputOnStart : MonoBehaviour
         if (currentScene == "FemaleScene" && !hasStartedSceneNarration)
         {
             hasStartedSceneNarration = true;
+
             string[] lines = {
                 "He really came for me...",
                 "After all that snow... I didn’t think..",
                 "It’s strange though... he hasn’t said a word.",
             };
 
+            AudioClip[] voiceClips = femaleSceneClips; // assign this in inspector, length = 3
+
             var narration = FindObjectOfType<NarrationTextManager>();
             if (narration != null)
-                narration.StartNarration(lines);
+            {
+                narration.StartNarrationWithAudio(lines, voiceClips, delayBetweenLines: 1f, startDelay: 5f);
+            }
         }
     }
 

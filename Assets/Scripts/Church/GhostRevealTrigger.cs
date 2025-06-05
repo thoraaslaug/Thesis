@@ -3,6 +3,8 @@ using UnityEngine;
 public class GhostRevealTrigger : MonoBehaviour
 {
     public NarrationTextManager narrationManager;
+    public AudioClip[] ghostRevealClips; // 🎤 Assign 4 voice clips in Inspector
+
     
     [TextArea]
     public string[] ghostRevealLines = {
@@ -19,7 +21,7 @@ public class GhostRevealTrigger : MonoBehaviour
         if (!hasTriggered && other.CompareTag("Player"))
         {
             hasTriggered = true;
-            narrationManager.StartNarration(ghostRevealLines);
+            narrationManager.StartNarrationWithAudio(ghostRevealLines, ghostRevealClips);
         }
     }
 }

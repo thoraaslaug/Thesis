@@ -23,6 +23,9 @@ public class DoorOpener : MonoBehaviour
     private bool hasStartedNarration = false;
 
     public AudioSource source;
+    
+    public AudioClip[] interiorNarrationClips; // Assign 5 clips in Inspector
+
 
 
     private void Awake()
@@ -84,7 +87,7 @@ public class DoorOpener : MonoBehaviour
         if (narrationManager != null)
         {
             narrationManager.onNarrationComplete = OpenDoorAfterNarration;
-            narrationManager.StartNarration(narrationLines);
+            narrationManager.StartNarrationWithAudio(narrationLines, interiorNarrationClips, 3f);
         }
     }
     void OpenDoorAfterNarration()
