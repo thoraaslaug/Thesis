@@ -330,16 +330,17 @@ if (screenFade != null)
         string[] returnLines = new string[]
         {
             "I have to get back home",
+            "She was wearing the apron",
             "The snow feels heavier now, I can barely see",
-            "My hands are numb. No matter. She'll be waiting for me, I'll be back on Christmas Eve.",
-            "I will see her again. I will see her again..."
+            "My hands are numb. No matter. She accepted my invitation and she'll be waiting for me",
+           
         };
 
         var narration = FindObjectOfType<NarrationTextManager>();
         if (narration != null)
         {
             // 🔊 Pass both text and audio
-            narration.StartNarrationWithAudio(returnLines, returnLineAudioClips);
+            narration.StartNarrationWithAudio(returnLines, returnLineAudioClips, 1f, 2f);
             PreconditionTracker.hasEnteredPrecondition = true;
             Debug.Log("📜 Return narration with audio started.");
         }

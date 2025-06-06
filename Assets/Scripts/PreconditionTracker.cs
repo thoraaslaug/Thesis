@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PreconditionTracker : MonoBehaviour
 {
-    public static bool hasEnteredPrecondition = false; // Shared across scripts
+    [SerializeField] public static bool hasEnteredPrecondition = false; // Shared across scripts
     public SnowstormTrigger snowstormTrigger; // Reference to the Snowstorm System
     public GameObject bridgeNoSnow;
     public GameObject bridgeSnow;

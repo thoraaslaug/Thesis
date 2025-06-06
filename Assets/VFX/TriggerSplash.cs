@@ -14,7 +14,7 @@ public class WaterSplashTrigger : MonoBehaviour
         }
     }
 
-    private void PlaySplashEffect(Vector3 position)
+    public void PlaySplashEffect(Vector3 position)
     {
         if (splashEffect != null)
         {
