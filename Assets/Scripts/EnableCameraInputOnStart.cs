@@ -1,18 +1,28 @@
 using System;
 using UnityEngine;
 using MalbersAnimations.Controller;
+using MalbersAnimations.HAP;
 using UnityEngine.SceneManagement;
 
 public class EnableCameraInputOnStart : MonoBehaviour
 {
     private MAnimal animal;
+    public MRider rider;
     private bool hasStartedSceneNarration = false;
     public AudioClip[] femaleSceneClips; // Assign 5 clips in Inspector
 
 
     private void Start()
     {
-        StartCoroutine(DelayedEnable(3f));
+
+        if (rider.Mounted)
+        {
+            // forcibly stop dismount if needed
+            if (Input.GetKeyDown(KeyCode.E))  // or use Input System action
+            {
+                Debug.Log("❌ Dismount blocked!");
+            }
+        }        StartCoroutine(DelayedEnable(3f));
         string currentScene = SceneManager.GetActiveScene().name;
         if (currentScene == "FemaleScene" && !hasStartedSceneNarration)
         {

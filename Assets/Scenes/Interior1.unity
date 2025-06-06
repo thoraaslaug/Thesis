@@ -1906,13 +1906,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178423214}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.6144529, z: -0, w: 0.78895354}
-  m_LocalPosition: {x: 134.28, y: 21.71, z: 20.38}
+  m_LocalRotation: {x: -0, y: -0.6673217, z: -0, w: 0.74476963}
+  m_LocalPosition: {x: 134.28, y: 20.86, z: 17.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -75.824, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -83.721, z: 0}
 --- !u!114 &178423218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2995,6 +2995,8 @@ PlayableDirector:
     value: {fileID: 1036197690}
   - key: {fileID: -8098415614104658729, guid: bd782fc20a4ab784c833df73417be22c, type: 2}
     value: {fileID: 1036197690}
+  - key: {fileID: -3634421702499653970, guid: bd782fc20a4ab784c833df73417be22c, type: 2}
+    value: {fileID: 1704033718}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &407054499
@@ -10256,7 +10258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7719962920237418563, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -114.621
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7719962920237418563, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -13292,6 +13294,7 @@ GameObject:
   - component: {fileID: 1704033715}
   - component: {fileID: 1704033716}
   - component: {fileID: 1704033717}
+  - component: {fileID: 1704033718}
   m_Layer: 0
   m_Name: w
   m_TagString: Untagged
@@ -13330,7 +13333,7 @@ MonoBehaviour:
   door: {fileID: 1704033714}
   openRot: -217
   closeRot: 0
-  speed: 2
+  speed: 1
   opening: 0
   dayNightSystem: {fileID: 364991882}
   openAfterDays: 0.7
@@ -13440,6 +13443,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1704033718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704033714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: ebe208d3abe74344092142bafb5edf31, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1704033716}
+          m_TargetAssemblyTypeName: DoorOpener, Assembly-CSharp
+          m_MethodName: TriggerDoorOpen
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &1775920843 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ef6b1ceb05680a4481e8d72786578ef, type: 3}

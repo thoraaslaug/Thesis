@@ -99,6 +99,14 @@ public class DoorOpener : MonoBehaviour
         timeline.Play();
     }
     
+    public void TriggerDoorOpen()
+    {
+        opening = true;
+        hasOpened = true;
+        source.Play();  // Optional sound
+        Debug.Log("📢 Signal received — Door is opening!");
+    }
+    
 
     
     

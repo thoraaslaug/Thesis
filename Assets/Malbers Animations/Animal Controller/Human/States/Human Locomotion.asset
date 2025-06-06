@@ -117,7 +117,8 @@ MonoBehaviour:
   IncludeSleepState: 1
   SleepFromState: []
   SleepFromMode: []
-  DisableModes: []
+  DisableModes:
+  - {fileID: 0}
   noModes:
     UseConstant: 1
     ConstantValue: 0
