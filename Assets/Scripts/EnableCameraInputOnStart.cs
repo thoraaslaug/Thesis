@@ -22,7 +22,7 @@ public class EnableCameraInputOnStart : MonoBehaviour
             {
                 Debug.Log("❌ Dismount blocked!");
             }
-        }        StartCoroutine(DelayedEnable(3f));
+        }        StartCoroutine(DelayedEnable(2f));
         string currentScene = SceneManager.GetActiveScene().name;
         if (currentScene == "FemaleScene" && !hasStartedSceneNarration)
         {
@@ -39,7 +39,7 @@ public class EnableCameraInputOnStart : MonoBehaviour
             var narration = FindObjectOfType<NarrationTextManager>();
             if (narration != null)
             {
-                narration.StartNarrationWithAudio(lines, voiceClips, delayBetweenLines: 1f, startDelay: 5f);
+                narration.StartNarrationWithAudio(lines, voiceClips, delayBetweenLines: 3f, startDelay: 5f);
             }
         }
     }

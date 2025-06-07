@@ -88,16 +88,17 @@ public class NarrationTextManager : MonoBehaviour
     private IEnumerator PlayNarrationWithAudio(string[] lines, AudioClip[] audioClips, float delayBetweenLines, float startDelay)
     {
         if (startDelay > 0f)
-            yield return new WaitForSecondsRealtime(startDelay); // ⏱️ Delay before narration starts
+            yield return new WaitForSecondsRealtime(startDelay); // ⏱️ Optional delay before narration starts
 
         for (int i = 0; i < lines.Length; i++)
         {
             string line = lines[i];
             AudioClip clip = (audioClips != null && i < audioClips.Length) ? audioClips[i] : null;
 
-            // Fade in
+            // Set text and fade in
             narrationText.text = line;
             narrationText.alpha = 0f;
+
             float t = 0f;
             while (t < fadeDuration)
             {
@@ -109,19 +110,18 @@ public class NarrationTextManager : MonoBehaviour
             narrationText.alpha = 1f;
 
             // Play audio
-            float waitTime = 2f;
+            float waitTime = 2f; // default
             if (clip != null)
             {
                 audioSource.clip = clip;
                 audioSource.Play();
                 waitTime = clip.length;
             }
+
+            // Wait while audio plays
             yield return new WaitForSecondsRealtime(waitTime);
 
-            if (delayBetweenLines > 0f)
-                yield return new WaitForSecondsRealtime(delayBetweenLines);
-
-            // Fade out
+            // Fade out AFTER audio ends
             t = 0f;
             while (t < fadeDuration)
             {
@@ -130,13 +130,14 @@ public class NarrationTextManager : MonoBehaviour
                 yield return null;
             }
 
+            narrationText.alpha = 0f;
             narrationText.text = "";
+
+            // Delay BETWEEN lines (while no audio or text is showing)
+            if (delayBetweenLines > 0f)
+                yield return new WaitForSecondsRealtime(delayBetweenLines);
         }
 
         onNarrationComplete?.Invoke();
     }
-
-
-
-    
 }

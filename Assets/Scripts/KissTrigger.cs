@@ -106,7 +106,7 @@ namespace MalbersAnimations.HAP
                 hasPlayed = true;
                 kissAudio.Play();
 
-                poemDisplayManager.StartPoem();
+                //poemDisplayManager.StartPoem();
 
                 // Camera zoom
                 if (vcamKissZoom != null)
@@ -141,8 +141,10 @@ namespace MalbersAnimations.HAP
                 if (normalHair != null) normalHair.SetActive(false);
                 if (deadHair != null) deadHair.SetActive(true);
 
-                StartCoroutine(ResetAfterAudio(kissAudio.clip.length));
-            }
+                poemDisplayManager.StartPoem(() =>
+                {
+                    StartCoroutine(ResetAfterAudio(kissAudio.clip.length));
+                });            }
         }
 
         private IEnumerator ResetAfterAudio(float duration)

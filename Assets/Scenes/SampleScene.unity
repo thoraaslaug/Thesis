@@ -29569,7 +29569,7 @@ Transform:
   m_GameObject: {fileID: 479481767}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.0014880528, z: 0, w: 0.9999989}
-  m_LocalPosition: {x: 415.88998, y: 27.24, z: 47.2}
+  m_LocalPosition: {x: 186.759, y: 27.24, z: 57.729996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65575,7 +65575,7 @@ Transform:
   m_GameObject: {fileID: 1318150258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0014880528, z: -0, w: 0.9999989}
-  m_LocalPosition: {x: 415.88998, y: 27.24, z: 47.2}
+  m_LocalPosition: {x: 186.759, y: 27.24, z: 57.729996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78014,7 +78014,13 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:RightFoot'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
+    'mixamorig:LeftHand'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:Spine1'\n\tTransform
+    'mixamorig:Spine2'\n\tTransform 'mixamorig:LeftHandPinky3'\n\tTransform 'mixamorig:LeftHandThumb1'\n\tTransform
+    'mixamorig:RightHandPinky3'\n\tTransform 'mixamorig:LeftHandRing2'\n\tand more
+    ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -104576,27 +104582,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2327778176926507083, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000036507845
+      value: 0.0000015050173
       objectReference: {fileID: 0}
     - target: {fileID: 2327778176926507083, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.1917257
+      value: 1.1917409
       objectReference: {fileID: 0}
     - target: {fileID: 2327778177905783904, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0009988621
+      value: 0.0009967759
       objectReference: {fileID: 0}
     - target: {fileID: 2327778177905783904, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6914608
+      value: 0.69147587
       objectReference: {fileID: 0}
     - target: {fileID: 2610900026183171718, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0010019392
+      value: -0.0009999126
       objectReference: {fileID: 0}
     - target: {fileID: 2610900026183171718, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.3902063
+      value: 1.3901912
       objectReference: {fileID: 0}
     - target: {fileID: 2669374991321165568, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: narrationRide
@@ -104616,7 +104622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 411.88098
+      value: 182.75
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -104624,7 +104630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 51.02
+      value: 61.55
       objectReference: {fileID: 0}
     - target: {fileID: 4799674217497866121, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -105116,11 +105122,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8779025588416059020, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].y
-      value: 0.13745117
+      value: 0.13748169
       objectReference: {fileID: 0}
     - target: {fileID: 8779025588416059020, guid: 6343c428099366746ab47d445a1f767f, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].z
-      value: 0
+      value: -0.0000076293945
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -105910,7 +105916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 413.8
+      value: 184.669
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.y
@@ -105918,7 +105924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 57.2
+      value: 67.729996
       objectReference: {fileID: 0}
     - target: {fileID: 8068835239017589589, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_LocalRotation.w

@@ -8,7 +8,6 @@ public class PoemDisplayManager : MonoBehaviour
     public TextMeshProUGUI leftText;
     public TextMeshProUGUI rightText;
     public TextMeshProUGUI bottomText;
-    public TextMeshProUGUI translation;
 
     [Header("Poem Lines")]
     [TextArea] public string leftPoem;
@@ -24,58 +23,52 @@ public class PoemDisplayManager : MonoBehaviour
     [TextArea] public string[] postPoemLines;
 
     private Coroutine poemCoroutine;
+    
+    public AudioSource poemAudioSource;
 
-    public void StartPoem()
+
+    public void StartPoem(System.Action onComplete = null)
     {
         if (poemCoroutine != null)
             StopCoroutine(poemCoroutine);
-        
+
         leftText.gameObject.SetActive(true);
         rightText.gameObject.SetActive(true);
         bottomText.gameObject.SetActive(true);
-        translation.gameObject.SetActive(true);
-         StartCoroutine(TypeText(translationPoem, translation));
 
-
-        poemCoroutine = StartCoroutine(TypePoemSequence());
+        //StartCoroutine(TypeText(translationPoem, translation));
+        poemCoroutine = StartCoroutine(TypePoemSequence(onComplete));
     }
 
-    private IEnumerator TypePoemSequence()
+
+    private IEnumerator TypePoemSequence(System.Action onComplete)
     {
         leftText.text = "";
         rightText.text = "";
         bottomText.text = "";
-        translation.text = "";
-
-        // Type LEFT
-        yield return StartCoroutine(TypeText(leftPoem, leftText));
-        //yield return StartCoroutine(TypeText(translationPoem, translation));
-
-
-        // Pause
-        yield return new WaitForSecondsRealtime(delayBetweenSections);
-
-        // Type RIGHT
-        yield return StartCoroutine(TypeText(rightPoem, rightText));
-
-        // Pause
-        yield return new WaitForSecondsRealtime(delayBetweenSections);
-
-        // Type BOTTOM
-        yield return StartCoroutine(TypeText(bottomPoem, bottomText));
         
-        yield return new WaitForSecondsRealtime(2.0f);
+        yield return StartCoroutine(TypeText(leftPoem, leftText));
+        yield return new WaitForSecondsRealtime(delayBetweenSections);
+        yield return StartCoroutine(TypeText(rightPoem, rightText));
+        yield return new WaitForSecondsRealtime(delayBetweenSections);
+        yield return StartCoroutine(TypeText(bottomPoem, bottomText));
 
-        // 🚫 Set texts inactive after poem is fully shown
+        float audioDuration = 5f;
+        if (poemAudioSource != null && poemAudioSource.clip != null)
+            audioDuration = poemAudioSource.clip.length;
+
+        yield return new WaitForSecondsRealtime(audioDuration);
+
         leftText.gameObject.SetActive(false);
         rightText.gameObject.SetActive(false);
         bottomText.gameObject.SetActive(false);
-        translation.gameObject.SetActive(false);
-        StartCoroutine(PlayPostPoemNarration());
 
-       
+        if (onComplete != null)
+            onComplete.Invoke();
+
+        StartCoroutine(PlayPostPoemNarration());
     }
-    
+
     
     private IEnumerator PlayPostPoemNarration()
     {
