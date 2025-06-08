@@ -53,11 +53,13 @@ public class PoemDisplayManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(delayBetweenSections);
         yield return StartCoroutine(TypeText(bottomPoem, bottomText));
 
-        float audioDuration = 5f;
+        float remainingAudioTime = 0f;
         if (poemAudioSource != null && poemAudioSource.clip != null)
-            audioDuration = poemAudioSource.clip.length;
+        {
+            remainingAudioTime = Mathf.Max(0f, poemAudioSource.clip.length - poemAudioSource.time);
+        }
 
-        yield return new WaitForSecondsRealtime(audioDuration);
+        yield return new WaitForSeconds(1f);
 
         leftText.gameObject.SetActive(false);
         rightText.gameObject.SetActive(false);
@@ -72,7 +74,7 @@ public class PoemDisplayManager : MonoBehaviour
     
     private IEnumerator PlayPostPoemNarration()
     {
-        yield return new WaitForSecondsRealtime(5f); // Wait after poem fade-out
+        yield return new WaitForSecondsRealtime(1f); // Wait after poem fade-out
 
         foreach (string line in postPoemLines)
         {

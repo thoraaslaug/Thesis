@@ -143,13 +143,13 @@ namespace MalbersAnimations.HAP
 
                 poemDisplayManager.StartPoem(() =>
                 {
-                    StartCoroutine(ResetAfterAudio(kissAudio.clip.length));
+                    StartCoroutine(ResetAfterAudio(0f));
                 });            }
         }
 
         private IEnumerator ResetAfterAudio(float duration)
         {
-            yield return new WaitForSecondsRealtime(duration);
+            yield return new WaitForSeconds(0f);
 
             // Re-enable characters
             if (inputMan) inputMan.enabled = true;

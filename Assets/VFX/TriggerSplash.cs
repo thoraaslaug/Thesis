@@ -8,7 +8,7 @@ public class WaterSplashTrigger : MonoBehaviour
     {
         if (other.CompareTag("Rock")) // Ensure bridge parts have this tag
         {
-            Debug.Log($"Bridge part {other.gameObject.name} hit the water!");
+            //ebug.Log($"Bridge part {other.gameObject.name} hit the water!");
 
             PlaySplashEffect(other.transform.position);
         }

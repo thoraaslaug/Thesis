@@ -2178,6 +2178,7 @@ MonoBehaviour:
   zoomOutOffset: {x: 0, y: 7, z: -20}
   normalOffset: {x: 0, y: 0, z: 0}
   vcamKissZoom: {fileID: 476947301}
+  postProcessingVolume: {fileID: 479481768}
 --- !u!23 &59472646
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53740,11 +53741,11 @@ MonoBehaviour:
   blocker2: {fileID: 1738543314}
   blocker3: {fileID: 552850901}
   blocker4: {fileID: 1066058365}
-  initialDropInterval: 0.06
-  finalDropInterval: 0.004
-  dropSpeedAcceleration: 0.0009
-  initialFallSpeed: 25
-  finalFallSpeed: 150
+  initialDropInterval: 0.35
+  finalDropInterval: 0.08
+  dropSpeedAcceleration: 0.07
+  initialFallSpeed: 20
+  finalFallSpeed: 50
   minFallDuration: 0.5
   splashTrigger: {fileID: 885108878}
   horse: {fileID: 2041349626}
@@ -64195,7 +64196,6 @@ GameObject:
   - component: {fileID: 1276331764}
   - component: {fileID: 1276331763}
   - component: {fileID: 1276331768}
-  - component: {fileID: 1276331767}
   - component: {fileID: 1276331769}
   m_Layer: 4
   m_Name: Water Object
@@ -64287,24 +64287,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1276331767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1276331762}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5bd0c2d246461940a1bdd44fa95a38b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 0}
-  particles: {fileID: 0}
-  player: {fileID: 0}
-  female: {fileID: 0}
-  mainCamera: {fileID: 0}
-  screenFade: {fileID: 0}
 --- !u!65 &1276331768
 BoxCollider:
   m_ObjectHideFlags: 0

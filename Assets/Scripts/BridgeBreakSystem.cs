@@ -205,10 +205,10 @@ public class BridgeBreakSystem : MonoBehaviour
 
         part.transform.position = end;
 
-        if (splashTrigger != null)
+       /* if (splashTrigger != null)
         {
             splashTrigger.PlaySplashEffect(part.transform.position); // ✅ Always current position
-        }
+        }*/
 
     }
 }
