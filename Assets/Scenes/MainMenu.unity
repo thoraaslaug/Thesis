@@ -21458,7 +21458,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885108872}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5bd0c2d246461940a1bdd44fa95a38b, type: 3}
   m_Name: 
@@ -22801,7 +22801,8 @@ PrefabInstance:
       value: 3.458
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1880364652237104472, guid: b90afd4f9ad94dc4498e489d571082df, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b90afd4f9ad94dc4498e489d571082df, type: 3}
@@ -28881,6 +28882,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1564131092575792990, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.426
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564131092575792990, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.072
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564131092575792990, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5729470702249142250, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: StartMounted.ConstantValue
       value: 0
@@ -28889,6 +28902,10 @@ PrefabInstance:
       propertyPath: m_MountStored.ConstantValue
       value: 
       objectReference: {fileID: 133518241}
+    - target: {fileID: 5863864278923966112, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6969129952819322767, guid: a873679b8f6c677418a747fde2bbca75, type: 3}
       propertyPath: m_Enabled
       value: 0
