@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using MalbersAnimations.HAP;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -25,7 +26,6 @@ public class DoorOpener : MonoBehaviour
     public AudioSource source;
     
     public AudioClip[] interiorNarrationClips; // Assign 5 clips in Inspector
-
 
 
     private void Awake()

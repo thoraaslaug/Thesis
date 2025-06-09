@@ -77,8 +77,15 @@ public class StartGame : MonoBehaviour
 
     private IEnumerator FadeAndLoad()
     {
+        // 🔒 Disable hover interaction
         foreach (var text in menuTexts)
         {
+            var hoverScript = text.GetComponent<TextHoverColor>();
+            if (hoverScript != null)
+            {
+                hoverScript.enabled = false;
+            }
+
             StartCoroutine(FadeTextOut(text));
         }
 
@@ -89,6 +96,7 @@ public class StartGame : MonoBehaviour
 
         SceneManager.LoadScene(sceneToLoad);
     }
+
 
     private IEnumerator FadeInMenuTexts()
     {
