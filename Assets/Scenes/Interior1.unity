@@ -8109,7 +8109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7552325380232887710, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
       propertyPath: m_Intensity
-      value: 615.38
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8197,6 +8197,7 @@ MonoBehaviour:
   popupManager: {fileID: 0}
   isNarrating: 0
   audioSource: {fileID: 511695382}
+  screenFade: {fileID: 1036197685}
 --- !u!4 &511695381
 Transform:
   m_ObjectHideFlags: 0
@@ -8893,7 +8894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952131365919966842, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6040056879142927025, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
       propertyPath: m_LocalScale.x
@@ -8953,7 +8954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7552325380232887710, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
       propertyPath: m_Intensity
-      value: 31.82
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10226,7 +10227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7719962920237418563, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 120.90532
+      value: 116.03
       objectReference: {fileID: 0}
     - target: {fileID: 7719962920237418563, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10234,7 +10235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7719962920237418563, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.209139
+      value: 26.98
       objectReference: {fileID: 0}
     - target: {fileID: 7719962920237418563, guid: 84f7920e3b5b3094fbc14de6a8aff1fa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10789,7 +10790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4952131365919966842, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6040056879142927025, guid: 9f90aa15c6b14234ea7247f33f09e816, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11638,7 +11639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829451551789304537, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.346119
+      value: 21.16
       objectReference: {fileID: 0}
     - target: {fileID: 8829451551789304537, guid: e91fa0fac941e714e8c4d5709097019f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13379,7 +13380,7 @@ MonoBehaviour:
   door: {fileID: 1704033714}
   openRot: -217
   closeRot: 0
-  speed: 1
+  speed: 2
   opening: 0
   dayNightSystem: {fileID: 364991882}
   openAfterDays: 0.7

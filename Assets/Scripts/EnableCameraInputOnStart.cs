@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using MalbersAnimations.Controller;
 using MalbersAnimations.HAP;
@@ -17,6 +18,8 @@ public class EnableCameraInputOnStart : MonoBehaviour
 
         if (rider.Mounted)
         {
+            StartCoroutine(ResetUnityClothAfterMount());
+
             // forcibly stop dismount if needed
             if (Input.GetKeyDown(KeyCode.E))  // or use Input System action
             {
@@ -67,4 +70,33 @@ public class EnableCameraInputOnStart : MonoBehaviour
             Debug.LogWarning("⚠️ MAnimal component not found on object!");
         }
     }
+    
+    private IEnumerator ResetUnityClothAfterMount()
+    {
+        yield return new WaitForSeconds(0.5f); // Wait for mount to settle
+
+        Cloth[] cloths = GetComponentsInChildren<Cloth>(includeInactive: true);
+
+        if (cloths.Length > 0)
+        {
+            foreach (var cloth in cloths)
+            {
+                cloth.enabled = false;
+            }
+
+            yield return null; // Wait one frame
+
+            foreach (var cloth in cloths)
+            {
+                cloth.enabled = true;
+            }
+
+            Debug.Log($"🧥 Reset {cloths.Length} Unity Cloth components after mount.");
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ No Unity Cloth components found to reset.");
+        }
+    }
+
 }

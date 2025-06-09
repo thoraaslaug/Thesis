@@ -16,6 +16,88 @@ public class NarrationTextManager : MonoBehaviour
     public AudioSource audioSource; // Drag your AudioSource in the inspector
 
 
+    
+    public ScreenFade screenFade;
+
+    public void StartNarrationWithAudioAndFades(string[] lines, AudioClip[] clips, float delayBetweenLines = 2f)
+    {
+        StartCoroutine(PlayNarrationWithFades(lines, clips, delayBetweenLines));
+    }
+
+    private IEnumerator PlayNarrationWithFades(string[] lines, AudioClip[] clips, float delayBetweenLines)
+    {
+        isNarrating = true;
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            narrationText.text = lines[i];
+
+            // ✨ Fade text in
+            yield return StartCoroutine(FadeTextAlpha(0f, 1f, 1f));
+
+            if (i < clips.Length && audioSource != null)
+            {
+                audioSource.clip = clips[i];
+                audioSource.Play();
+                yield return new WaitForSeconds(clips[i].length);
+            }
+            else
+            {
+                yield return new WaitForSeconds(delayBetweenLines);
+            }
+
+            // 🔚 Skip fade after last line
+            if (i == lines.Length - 1) break;
+
+            // 🌓 Fade text out and screen to black
+            Coroutine fadeTextOut = StartCoroutine(FadeTextAlpha(1f, 0f, 1f));
+            if (screenFade != null)
+            {
+                yield return screenFade.FadeToBlack(1f);
+            }
+            yield return fadeTextOut;
+
+            yield return new WaitForSeconds(1f);
+
+            // 🌄 Fade from black before next line
+            if (screenFade != null)
+            {
+                yield return screenFade.FadeFromBlack(1f);
+            }
+
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        // Final cleanup for last line (text fades out normally)
+        yield return StartCoroutine(FadeTextAlpha(1f, 0f, 1f));
+        narrationText.text = "";
+        isNarrating = false;
+
+        onNarrationComplete?.Invoke();
+    }
+
+
+
+    private IEnumerator FadeTextAlpha(float from, float to, float duration)
+    {
+        float elapsed = 0f;
+        Color color = narrationText.color;
+        color.a = from;
+        narrationText.color = color;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            color.a = Mathf.Lerp(from, to, elapsed / duration);
+            narrationText.color = color;
+            yield return null;
+        }
+
+        color.a = to;
+        narrationText.color = color;
+    }
+
+
     public void StartNarration(string[] lines)
     {
         if (popupManager != null)
