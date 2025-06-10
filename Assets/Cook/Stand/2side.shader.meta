@@ -7,3 +7,10 @@ ShaderImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Cook/Stand/2side.shader
+  uploadId: 699357

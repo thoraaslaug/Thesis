@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3ada5db24705a2841b934744f89d49d5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/HDRP/Materials/Skin2/M_Witch_Skin2_Armor.mat
+  uploadId: 699357

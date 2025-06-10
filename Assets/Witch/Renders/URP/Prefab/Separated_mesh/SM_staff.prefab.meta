@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 60e1f09dc49034c429e46ad591c1623a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/URP/Prefab/Separated_mesh/SM_staff.prefab
+  uploadId: 699357

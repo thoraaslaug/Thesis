@@ -10,13 +10,7 @@ public class SceneFadeIn : MonoBehaviour
     {
         if (screenFade != null)
         {
-            StartCoroutine(fadeFromBlack(2));
             StartCoroutine(screenFade.FadeFromBlack(fadeDuration));
         }
-    }
-
-    public IEnumerator fadeFromBlack(float duration)
-    {
-        yield return new WaitForSeconds(2);
     }
 }

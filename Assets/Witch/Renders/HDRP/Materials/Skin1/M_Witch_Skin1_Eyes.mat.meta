@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dacb07b3e5b8d4a469764dd8dcc33130
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/HDRP/Materials/Skin1/M_Witch_Skin1_Eyes.mat
+  uploadId: 699357

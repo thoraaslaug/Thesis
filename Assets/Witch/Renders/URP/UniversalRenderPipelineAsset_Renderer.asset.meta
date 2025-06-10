@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ed056e88c70baa44d811183a3e2d759b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/URP/UniversalRenderPipelineAsset_Renderer.asset
+  uploadId: 699357

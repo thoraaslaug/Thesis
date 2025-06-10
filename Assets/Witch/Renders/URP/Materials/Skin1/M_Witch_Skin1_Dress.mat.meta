@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 792d5c4d1e0e39e40b9d38f6afafdb1a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/URP/Materials/Skin1/M_Witch_Skin1_Dress.mat
+  uploadId: 699357

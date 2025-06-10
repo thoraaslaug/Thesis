@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 680a23f22cf354449a387cd5445b1608
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/HDRP/Materials/Skin3/M_Witch_Skin3_Body.mat
+  uploadId: 699357

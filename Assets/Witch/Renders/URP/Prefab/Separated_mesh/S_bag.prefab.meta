@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: debd430c30a44534695710dacb05c25c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/URP/Prefab/Separated_mesh/S_bag.prefab
+  uploadId: 699357

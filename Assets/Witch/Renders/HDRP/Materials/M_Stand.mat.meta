@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0bc649e27e2112a47b71011372958e59
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/HDRP/Materials/M_Stand.mat
+  uploadId: 699357

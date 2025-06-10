@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b59d25fc07ce6f04f8f3f59b3717a39e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/URP/Materials/Skin3/M_Witch_Skin3_Eyes.mat
+  uploadId: 699357

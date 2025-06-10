@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c58893445ab519e44a9860a923b23e10
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/URP/Prefab/Separated_mesh/S_body.prefab
+  uploadId: 699357

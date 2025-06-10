@@ -6,8 +6,7 @@ using MalbersAnimations.Controller;
 
 public class RespawnOrAdvanceTrigger : MonoBehaviour
 {
-    [Tooltip("Tag that identifies water")]
-    public string waterTag = "Water";
+    [Tooltip("Tag that identifies water")] public string waterTag = "Water";
 
     [Tooltip("Where the horse should respawn before precondition is met")]
     public Transform defaultRespawnPoint;
@@ -26,7 +25,7 @@ public class RespawnOrAdvanceTrigger : MonoBehaviour
     public ScreenFade ScreenFade;
 
 
-  private void Start()
+    private void Start()
     {
         animal = GetComponent<MAnimal>();
 
@@ -48,26 +47,21 @@ public class RespawnOrAdvanceTrigger : MonoBehaviour
         }
     }
 
-    private IEnumerator  HandleFall()
+    private IEnumerator HandleFall()
     {
         if (BridgeBreakSystem.HasBroken && BridgeBreakSystem.PlayerIsOnBridge)
         {
-            if (ScreenFade != null)
-                yield return ScreenFade.FadeToBlack(1f);            
-           
-            yield return new WaitForSeconds(2f);
-
-            SceneManager.LoadScene(nextSceneName);
-
-            yield break;
+            yield return ScreenFade.FadeToBlack(2f);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Interior1");
+            yield return new WaitForSeconds(5f);
+            // ⛔ STOP here! We don't want to respawn when switching scenes
+            //yield break;
         }
-        //  Highest priority: bridge broke & player on bridge → go to next scene
-        
-        // Otherwise, pick the correct respawn point
+
+        // ✅ Otherwise: respawn locally
         Transform targetPoint = PreconditionTracker.hasEnteredPrecondition
             ? alternateRespawnPoint
             : defaultRespawnPoint;
-    
 
         if (targetPoint != null && animal != null)
         {
@@ -80,7 +74,6 @@ public class RespawnOrAdvanceTrigger : MonoBehaviour
         {
             Debug.LogWarning("⚠️ Missing animal or target respawn point.");
         }
-        
-
     }
+
 }

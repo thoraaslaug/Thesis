@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eb0a3beeddfb04f4396437657611df25
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/HDRP/Materials/Skin2/M_Witch_Skin2_Head.mat
+  uploadId: 699357

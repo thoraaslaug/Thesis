@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ScreenFade : MonoBehaviour
 {
     public Image fadePanel;
-
+    
     public IEnumerator FadeToBlack(float duration)
     {
         fadePanel.gameObject.SetActive(true); 
@@ -17,7 +17,7 @@ public class ScreenFade : MonoBehaviour
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             color.a = Mathf.Clamp01(elapsed / duration);
             fadePanel.color = color;
             yield return null;
@@ -36,7 +36,7 @@ public class ScreenFade : MonoBehaviour
 
         while (elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             color.a = 1 - Mathf.Clamp01(elapsed / duration);
             fadePanel.color = color;
             yield return null;
@@ -59,13 +59,25 @@ public class ScreenFade : MonoBehaviour
         StartCoroutine(FadeAndLoadScene(MainMenu, delay));
     }
 
-    private IEnumerator FadeAndLoadScene(string sceneName, float delay)
+    public IEnumerator FadeAndLoadScene(string sceneName, float delay)
     {
-        yield return new WaitForSeconds(delay);
-        yield return StartCoroutine(FadeToBlack(2f));         // Ensures fade finishes
-        yield return new WaitForSeconds(0.1f);                // Forces Unity to render final frame
+        // Optional: small delay before starting fade
+        /*if (delay > 0)
+            yield return new WaitForSeconds(delay);*/
+
+        // Start fade
+        yield return StartCoroutine(FadeToBlack(1f));
+
+        // Wait while fully black
+        yield return new WaitForSeconds(5f);  // <- THIS is your “stay black” time
+
+        // Optional: ensure final black frame renders
+        yield return new WaitForEndOfFrame();
+
+        // Load the new scene
         SceneManager.LoadScene(sceneName);
     }
+
     
     public void SetBlackInstantly()
     {

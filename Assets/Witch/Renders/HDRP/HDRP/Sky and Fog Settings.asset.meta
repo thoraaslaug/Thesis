@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 945b0e6a98039014fbdfe8831fd52085
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/HDRP/HDRP/Sky and Fog Settings.asset
+  uploadId: 699357

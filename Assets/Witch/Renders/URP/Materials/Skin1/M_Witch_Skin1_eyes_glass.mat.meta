@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9f26c82b20b71bc41a1b95c4380d8716
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/URP/Materials/Skin1/M_Witch_Skin1_eyes_glass.mat
+  uploadId: 699357

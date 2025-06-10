@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0881fe25408e6d141be32d7f0493a978
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 191230
+  packageName: Witch.
+  packageVersion: 1.0
+  assetPath: Assets/Witch/Renders/URP/Prefab/Separated_mesh/S_cloak.prefab
+  uploadId: 699357

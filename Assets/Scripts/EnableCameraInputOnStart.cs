@@ -11,7 +11,13 @@ public class EnableCameraInputOnStart : MonoBehaviour
     public MRider rider;
     private bool hasStartedSceneNarration = false;
     public AudioClip[] femaleSceneClips; // Assign 5 clips in Inspector
+    public ScreenFade fade;
 
+    private void Awake()
+    {
+        fade.StartCoroutine(fade.FadeFromBlack(3f));
+
+    }
 
     private void Start()
     {
