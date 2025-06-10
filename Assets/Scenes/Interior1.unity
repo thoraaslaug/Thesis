@@ -15412,6 +15412,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 28aac04a82211c740941910944c7157e, type: 3}
   - {fileID: 8300000, guid: 8079dd013ff6e5447878605ff4ea8f9a, type: 3}
   - {fileID: 8300000, guid: 14829e2152750114b81209dbe33a5008, type: 3}
+  screenFadeIn: {fileID: 1191386489}
 --- !u!82 &1704033717
 AudioSource:
   m_ObjectHideFlags: 0

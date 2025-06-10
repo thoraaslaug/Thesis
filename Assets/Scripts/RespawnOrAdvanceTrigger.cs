@@ -53,8 +53,12 @@ public class RespawnOrAdvanceTrigger : MonoBehaviour
         if (BridgeBreakSystem.HasBroken && BridgeBreakSystem.PlayerIsOnBridge)
         {
             if (ScreenFade != null)
-                yield return ScreenFade.FadeToBlack(1f);
+                yield return ScreenFade.FadeToBlack(1f);            
+           
+            yield return new WaitForSeconds(2f);
+
             SceneManager.LoadScene(nextSceneName);
+
             yield break;
         }
         //  Highest priority: bridge broke & player on bridge → go to next scene

@@ -26,11 +26,12 @@ public class DoorOpener : MonoBehaviour
     public AudioSource source;
     
     public AudioClip[] interiorNarrationClips; // Assign 5 clips in Inspector
-
+    public SceneFadeIn screenFadeIn;
 
     private void Awake()
     {
         GameState.hasStartedInteriorNarration = false; // ✅ Mark it as played
+        StartCoroutine(screenFadeIn.fadeFromBlack(2));
     }
 
     void Update()

@@ -66,6 +66,16 @@ public class ScreenFade : MonoBehaviour
         yield return new WaitForSeconds(0.1f);                // Forces Unity to render final frame
         SceneManager.LoadScene(sceneName);
     }
+    
+    public void SetBlackInstantly()
+    {
+        if (fadePanel != null)
+        {
+            Color c = fadePanel.color;
+            c.a = 1f;
+            fadePanel.color = c;
+        }
+    }
 
     
 }
