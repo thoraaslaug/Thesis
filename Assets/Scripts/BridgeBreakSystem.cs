@@ -8,11 +8,13 @@ using UnityEngine;
 
 public class BridgeBreakSystem : MonoBehaviour
 {
-    
     private Queue<GameObject> rockQueue = new Queue<GameObject>();
+    private List<Coroutine> activeFallCoroutines = new List<Coroutine>();
+    private Coroutine dropRocksCoroutine;
+    private bool cancelCollapse = false;
+    private bool hasRecordedOriginalPositions = false;
 
     [Header("Bridge Settings")]
-    //public GameObject[] bridgeParts;
     public GameObject firstRock;
     public float dropCheckInterval = 0.1f;
     public float fallSpeed = 50f;
@@ -25,24 +27,25 @@ public class BridgeBreakSystem : MonoBehaviour
     [Header("Cinemachine Camera Shake")]
     public CinemachineImpulseSource impulseSource;
 
-    private bool hasPlayerEnteredOnce = false;
     public static bool HasBroken { get; private set; }
-    private GameObject player;
-    private HashSet<GameObject> droppedParts = new HashSet<GameObject>();
     public static bool PlayerIsOnBridge { get; private set; } = false;
-    
-    public Transform bridgeRoot; // ← Assign this in Inspector
-    private GameObject[] bridgeParts;
-    public Transform bridgeStartPoint; // ⬅️ Assign this to the BACK of the bridge in Inspector
 
+    private bool hasPlayerEnteredOnce = false;
+    private bool collapseStarted = false;
+    private GameObject player;
+
+    [Header("Bridge Setup")]
+    public Transform bridgeRoot;
+    public Transform bridgeStartPoint;
+    private GameObject[] bridgeParts;
+    private HashSet<GameObject> droppedParts = new HashSet<GameObject>();
+    private Dictionary<GameObject, Vector3> originalPositions = new Dictionary<GameObject, Vector3>();
 
     public GameObject blocker1;
     public GameObject blocker2;
     public GameObject blocker3;
     public GameObject blocker4;
 
-    private bool collapseStarted = false;
-    
     [Header("Collapse Speed Progression")]
     public float initialDropInterval = 0.3f;
     public float finalDropInterval = 0.05f;
@@ -50,17 +53,19 @@ public class BridgeBreakSystem : MonoBehaviour
 
     public float initialFallSpeed = 10f;
     public float finalFallSpeed = 80f;
-    public float minFallDuration = 0.5f; // Never shorter than this
+    public float minFallDuration = 0.5f;
 
     public WaterSplashTrigger splashTrigger;
-
     public MAnimal horse;
 
+    [Header("Reset Settings")]
+    public float fallThresholdY = -10f;
 
     private void Awake()
     {
         HasBroken = false;
         PlayerIsOnBridge = false;
+
         blocker1.SetActive(false);
         blocker2.SetActive(false);
         blocker3.SetActive(false);
@@ -69,8 +74,6 @@ public class BridgeBreakSystem : MonoBehaviour
 
     private void Start()
     {
-        
-        // Automatically collect all child rocks under bridgeRoot
         if (bridgeRoot != null)
         {
             bridgeParts = bridgeRoot
@@ -79,15 +82,18 @@ public class BridgeBreakSystem : MonoBehaviour
                 .Select(t => t.gameObject)
                 .OrderBy(part => Vector3.Distance(part.transform.position, bridgeStartPoint.position))
                 .ToArray();
-
-            foreach (var rock in bridgeParts)
-            {
-                rockQueue.Enqueue(rock);
-            }
         }
-
     }
 
+    private void Update()
+    {
+        if (player != null && player.transform.position.y < fallThresholdY)
+        {
+            Debug.Log("😵 Player fell — resetting bridge!");
+            ResetBridge();
+            RespawnPlayer();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -108,15 +114,8 @@ public class BridgeBreakSystem : MonoBehaviour
                 }
             }
 
-            if (PreconditionTracker.hasEnteredPrecondition && !HasBroken)
-            {
-                HasBroken = true;
-
-                horseSound?.Play();
-                impulseSource?.GenerateImpulse(1f);
-
-                StartCoroutine(DropRocksBehind());
-            }
+            // Try to start collapse — delayed check
+            Invoke(nameof(StartCollapseIfStillOnBridge), 0.7f);
         }
     }
 
@@ -125,21 +124,69 @@ public class BridgeBreakSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerIsOnBridge = false;
+
+            if (collapseStarted && !HasBroken)
+            {
+                Debug.Log("🚫 Player exited bridge early. Resetting.");
+                ResetBridge();
+            }
         }
     }
+
+    private void StartCollapseIfStillOnBridge()
+    {
+        if (!PlayerIsOnBridge)
+        {
+            Debug.Log("🚫 Player left before collapse started. Canceling.");
+            ResetBridge();
+            return;
+        }
+
+        if (!HasBroken && PreconditionTracker.hasEnteredPrecondition)
+        {
+            HasBroken = true;
+            cancelCollapse = false;
+
+            RecordOriginalPositions(); // ✅ NOW we store correct positions
+
+            horseSound?.Play();
+            impulseSource?.GenerateImpulse(1f);
+
+            dropRocksCoroutine = StartCoroutine(DropRocksBehind());
+        }
+    }
+
+    private void RecordOriginalPositions()
+    {
+        if (hasRecordedOriginalPositions || bridgeParts == null) return;
+
+        originalPositions.Clear();
+        rockQueue.Clear(); // ✅ clear queue first
+
+        foreach (var rock in bridgeParts)
+        {
+            originalPositions[rock] = rock.transform.position;
+            rockQueue.Enqueue(rock); // ✅ queue it here too!
+        }
+
+        hasRecordedOriginalPositions = true;
+        Debug.Log("✅ Recorded bridge positions at collapse start.");
+    }
+
 
     private IEnumerator DelayedFirstRock()
     {
         yield return new WaitForSeconds(2f);
-        StartCoroutine(FallDown(firstRock, 10f));
+        Coroutine firstDrop = StartCoroutine(FallDown(firstRock, 10f));
+        activeFallCoroutines.Add(firstDrop);
         droppedParts.Add(firstRock);
     }
 
     private IEnumerator DropRocksBehind()
     {
-        
         horse.SpeedDown();
         collapseStarted = true;
+        cancelCollapse = false;
 
         blocker1.SetActive(true);
         blocker2.SetActive(true);
@@ -151,42 +198,31 @@ public class BridgeBreakSystem : MonoBehaviour
 
         while (rockQueue.Count > 0)
         {
+            if (!PlayerIsOnBridge)
+            {
+                Debug.Log("🚫 Player left during collapse — cancelling and resetting.");
+                ResetBridge();
+                yield break;
+            }
+
+            if (cancelCollapse)
+            {
+                Debug.Log("⛔ Collapse canceled mid-way.");
+                yield break;
+            }
+
             for (int i = 0; i < 12 && rockQueue.Count > 0; i++)
             {
                 var rock = rockQueue.Dequeue();
-                StartCoroutine(FallDown(rock, currentFallSpeed));
+                Coroutine fall = StartCoroutine(FallDown(rock, currentFallSpeed));
+                activeFallCoroutines.Add(fall);
             }
 
-            // Gradually speed up
             currentInterval = Mathf.Max(finalDropInterval, currentInterval - dropSpeedAcceleration);
             currentFallSpeed = Mathf.Min(finalFallSpeed, currentFallSpeed + dropSpeedAcceleration * 100f);
 
             yield return new WaitForSeconds(currentInterval);
         }
-    }
-
-
-    private GameObject GetNextRockBehindPlayer()
-    {
-        Vector3 playerPos = player.transform.position;
-
-        var candidates = bridgeParts
-            .Where(part => part != null && !droppedParts.Contains(part))
-            .OrderByDescending(part => Vector3.Distance(part.transform.position, playerPos)) // Furthest to closest
-            .ToList();
-
-        foreach (var part in candidates)
-        {
-            Vector3 toPart = playerPos - part.transform.position;
-            float dot = Vector3.Dot(toPart.normalized, player.transform.forward);
-
-            if (dot > 0.5f) // Rock is behind the player
-            {
-                return part;
-            }
-        }
-
-        return null;
     }
 
     private IEnumerator FallDown(GameObject part, float customFallSpeed)
@@ -198,6 +234,11 @@ public class BridgeBreakSystem : MonoBehaviour
         float time = 0f;
         while (time < duration)
         {
+            if (cancelCollapse)
+            {
+                yield break;
+            }
+
             part.transform.position = Vector3.Lerp(start, end, time / duration);
             time += Time.deltaTime;
             yield return null;
@@ -205,10 +246,79 @@ public class BridgeBreakSystem : MonoBehaviour
 
         part.transform.position = end;
 
-       /* if (splashTrigger != null)
+        if (splashTrigger != null && !cancelCollapse)
         {
-            splashTrigger.PlaySplashEffect(part.transform.position); // ✅ Always current position
-        }*/
+            splashTrigger.PlaySplashEffect(end);
+        }
+    }
 
+    private void CancelAllFallCoroutines()
+    {
+        foreach (var c in activeFallCoroutines)
+        {
+            if (c != null) StopCoroutine(c);
+        }
+
+        activeFallCoroutines.Clear();
+    }
+
+    public void ResetBridge()
+    {
+        cancelCollapse = true;
+
+        if (dropRocksCoroutine != null)
+        {
+            StopCoroutine(dropRocksCoroutine);
+            dropRocksCoroutine = null;
+        }
+
+        CancelAllFallCoroutines();
+        rockQueue.Clear();
+        droppedParts.Clear();
+
+        foreach (var rock in bridgeParts)
+        {
+            if (rock == null || !originalPositions.ContainsKey(rock)) continue;
+
+            rock.SetActive(true);
+            rock.transform.localPosition = originalPositions[rock]; // 🔧 restore localPosition
+            rockQueue.Enqueue(rock);
+        }
+
+        HasBroken = false;
+        hasPlayerEnteredOnce = false;
+        collapseStarted = false;
+        hasRecordedOriginalPositions = false;
+
+        blocker1.SetActive(false);
+        blocker2.SetActive(false);
+        blocker3.SetActive(false);
+        blocker4.SetActive(false);
+
+        Debug.Log("🔁 Bridge reset to original state.");
+    }
+
+
+
+    private void RespawnPlayer()
+    {
+        Transform respawnPoint = GameObject.Find("RespawnPoint")?.transform;
+        if (respawnPoint != null && player != null)
+        {
+            player.transform.position = respawnPoint.position;
+            player.transform.rotation = respawnPoint.rotation;
+
+            var animal = player.GetComponent<MAnimal>();
+            if (animal != null)
+            {
+                animal.ResetController();
+            }
+
+            Debug.Log("↩️ Player respawned.");
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ RespawnPoint or player not found!");
+        }
     }
 }
